@@ -2,8 +2,16 @@
   color-scheme: light;
   --sky-progress: 0;
   --scroll-cue-opacity: 1;
+  --hero-opacity: 1;
+  --hero-y: 0vh;
+  --verse-opacity: 0;
+  --verse-y: 2vh;
+  --bridge-opacity: 0;
+  --bridge-y: 2vh;
   --page-blue: #dbeaf5;
   --page-ivory: #f8f4ea;
+  --story-ink: #46596a;
+  --story-soft: #647482;
 }
 
 * {
@@ -29,7 +37,7 @@ body {
 
 .sky-scene {
   position: relative;
-  height: 240svh;
+  height: 420svh;
   background: var(--page-ivory);
 }
 
@@ -99,8 +107,139 @@ body {
     linear-gradient(180deg, rgba(255, 255, 255, .025), rgba(255, 250, 239, .08));
 }
 
+.opening-story {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+}
+
+.story-beat {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: max(36px, env(safe-area-inset-top)) 7vw max(48px, env(safe-area-inset-bottom));
+  text-align: center;
+}
+
+.hero-beat {
+  opacity: var(--hero-opacity);
+  transform: translate3d(0, var(--hero-y), 0);
+  will-change: opacity, transform;
+}
+
+.hero-lockup {
+  animation: hero-arrival 1.8s cubic-bezier(.22, .72, .25, 1) both;
+}
+
+.hero-arabic,
+.hero-english,
+.hero-subtitle,
+.scripture-arabic,
+.scripture-english,
+.scripture-reference,
+.scripture-bridge {
+  margin: 0;
+}
+
+.hero-arabic {
+  color: var(--story-ink);
+  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-size: clamp(5.5rem, 11vw, 10rem);
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: 0 3px 22px rgba(255, 255, 255, .42);
+}
+
+.hero-english {
+  margin-top: clamp(22px, 3vh, 38px);
+  color: var(--story-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2.1vw, 2rem);
+  letter-spacing: .48em;
+  line-height: 1;
+  text-indent: .48em;
+  text-transform: uppercase;
+}
+
+.hero-subtitle {
+  margin-top: 18px;
+  color: var(--story-soft);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.85rem, 1.15vw, 1.05rem);
+  font-style: italic;
+  letter-spacing: .06em;
+}
+
+.scripture-beat {
+  align-content: center;
+}
+
+.scripture-opening {
+  width: min(100%, 980px);
+  opacity: var(--verse-opacity);
+  transform: translate3d(0, var(--verse-y), 0);
+  will-change: opacity, transform;
+}
+
+.scripture-arabic {
+  color: var(--story-ink);
+  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-size: clamp(2.3rem, 5.4vw, 5rem);
+  font-weight: 400;
+  line-height: 1.55;
+  text-shadow: 0 3px 22px rgba(255, 255, 255, .48);
+}
+
+.scripture-english {
+  max-width: 680px;
+  margin: clamp(20px, 3vh, 34px) auto 0;
+  color: var(--story-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+  line-height: 1.55;
+}
+
+.scripture-reference {
+  margin-top: 16px;
+  color: var(--story-soft);
+  font-size: clamp(.62rem, .85vw, .75rem);
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.scripture-bridge {
+  position: absolute;
+  top: calc(50% + clamp(150px, 18vh, 210px));
+  left: 50%;
+  width: min(82vw, 620px);
+  color: var(--story-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2.35vw, 2rem);
+  font-style: italic;
+  line-height: 1.45;
+  opacity: var(--bridge-opacity);
+  transform: translate3d(-50%, var(--bridge-y), 0);
+  text-shadow: 0 3px 22px rgba(255, 255, 255, .48);
+  will-change: opacity, transform;
+}
+
+@keyframes hero-arrival {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .scroll-cue {
   position: absolute;
+  z-index: 3;
   right: max(24px, env(safe-area-inset-right));
   bottom: max(24px, calc(env(safe-area-inset-bottom) + 18px));
   display: flex;
@@ -124,7 +263,7 @@ body {
 
 @media (max-width: 760px) {
   .sky-scene {
-    height: 220svh;
+    height: 400svh;
   }
 
   .sky-background {
@@ -144,11 +283,34 @@ body {
     width: 124%;
     height: 124%;
   }
+
+  .story-beat {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .hero-arabic {
+    font-size: clamp(4.75rem, 24vw, 7rem);
+  }
+
+  .hero-english {
+    font-size: clamp(1rem, 4.5vw, 1.35rem);
+    letter-spacing: .38em;
+    text-indent: .38em;
+  }
+
+  .scripture-arabic {
+    font-size: clamp(2.05rem, 9.2vw, 3.6rem);
+  }
+
+  .scripture-bridge {
+    top: calc(50% + clamp(150px, 20vh, 195px));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sky-scene {
-    height: 140svh;
+    height: 400svh;
   }
 
   .sky-background {
@@ -166,6 +328,17 @@ body {
   .close-clouds {
     object-position: center 38%;
     transform: none;
+    will-change: auto;
+  }
+
+  .hero-lockup {
+    animation: none;
+  }
+
+  .hero-beat,
+  .scripture-opening,
+  .scripture-bridge {
+    transition: none;
     will-change: auto;
   }
 }
