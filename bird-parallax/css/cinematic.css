@@ -38,6 +38,12 @@
   --outcome-opacity: 0;
   --outcome-y: 2vh;
   --continuation-viewport-opacity: 0;
+  --page-sky-x: 0vw;
+  --page-sky-y: 0vh;
+  --page-distant-x: 0vw;
+  --page-distant-y: 0vh;
+  --page-close-x: 0vw;
+  --page-close-y: 0vh;
   --page-blue: #dbeaf5;
   --page-ivory: #f8f4ea;
   --story-ink: #46596a;
@@ -1209,7 +1215,8 @@ blockquote.source-english {
   width: 104%;
   height: 104%;
   object-position: center 18%;
-  transform: scale(1.025);
+  transform: translate3d(var(--page-sky-x), var(--page-sky-y), 0) scale(1.04);
+  will-change: transform;
 }
 
 .content-review-mode .page-atmosphere-distant {
@@ -1220,7 +1227,8 @@ blockquote.source-english {
   object-position: center 20%;
   opacity: .72;
   filter: saturate(.72) contrast(.94);
-  transform: scale(1.015);
+  transform: translate3d(var(--page-distant-x), var(--page-distant-y), 0) scale(1.035);
+  will-change: transform;
 }
 
 .content-review-mode .page-atmosphere-close {
@@ -1231,7 +1239,8 @@ blockquote.source-english {
   object-position: center 20%;
   opacity: .84;
   filter: saturate(.78) brightness(1.015);
-  transform: scale(1.025);
+  transform: translate3d(var(--page-close-x), var(--page-close-y), 0) scale(1.04);
+  will-change: transform;
 }
 
 .content-review-mode .page-atmosphere::after {
