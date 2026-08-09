@@ -73,9 +73,25 @@ body {
   will-change: transform, object-position;
 }
 
-.atmosphere {
+.close-clouds {
   position: absolute;
   z-index: -1;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center calc(var(--sky-progress) * 100%);
+  opacity: .84;
+  filter: saturate(.78) brightness(1.015);
+  transform: translate3d(0, calc(var(--sky-progress) * -10vh), 0) scale(1.025);
+  transform-origin: center;
+  will-change: transform, object-position;
+}
+
+.atmosphere {
+  position: absolute;
+  z-index: 0;
   inset: 0;
   pointer-events: none;
   background:
@@ -122,6 +138,12 @@ body {
     width: 106%;
     height: 106%;
   }
+
+  .close-clouds {
+    inset: -12%;
+    width: 124%;
+    height: 124%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -136,6 +158,12 @@ body {
   }
 
   .distant-clouds {
+    object-position: center 38%;
+    transform: none;
+    will-change: auto;
+  }
+
+  .close-clouds {
     object-position: center 38%;
     transform: none;
     will-change: auto;
