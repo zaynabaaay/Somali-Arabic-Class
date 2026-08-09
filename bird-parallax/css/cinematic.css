@@ -934,8 +934,8 @@ blockquote.source-english {
 
 /*
   Text-first review mode.
-  The cinematic DOM, imagery, and parallax code remain preserved above, but
-  they are removed from the audience-facing flow while Part One is edited.
+  Preserve the cloud title opening while keeping the landscape and river
+  imagery outside the audience-facing content flow.
 */
 .visually-hidden {
   position: absolute;
@@ -948,9 +948,34 @@ blockquote.source-english {
   border: 0;
 }
 
-.content-review-mode .sky-scene,
 .content-review-mode .river-continuation {
   display: none;
+}
+
+.content-review-mode .sky-scene {
+  display: block;
+  height: 100svh;
+  background: var(--page-blue);
+}
+
+.content-review-mode .sky-viewport {
+  position: relative;
+}
+
+.content-review-mode .landscape-window,
+.content-review-mode .scripture-beat {
+  display: none;
+}
+
+.content-review-mode .sky-background {
+  object-position: center 18%;
+  transform: scale(1.025);
+}
+
+.content-review-mode .distant-clouds,
+.content-review-mode .close-clouds {
+  object-position: center 20%;
+  transform: scale(1.025);
 }
 
 .content-review-mode,
