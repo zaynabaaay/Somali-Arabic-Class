@@ -1146,3 +1146,140 @@ blockquote.source-english {
     font-size: clamp(1.15rem, 5.2vw, 1.55rem);
   }
 }
+
+/* Final Part One content flow. */
+.content-review-mode {
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.content-review-mode .part-one-content,
+.content-review-mode .content-scene,
+.content-review-mode .content-scene:nth-child(even),
+.content-review-mode .source-beat:nth-child(even) {
+  background: transparent;
+}
+
+.content-review-mode .part-one-content {
+  background:
+    radial-gradient(circle at 50% 10%, rgba(219, 234, 229, .42), transparent 30%),
+    #f7f3e9;
+}
+
+.content-review-mode .part-one-opening {
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.content-review-mode .part-one-label {
+  margin: 0 0 22px;
+  color: var(--story-soft);
+  font-family: Inter, ui-sans-serif, sans-serif;
+  font-size: clamp(.65rem, .82vw, .78rem);
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.content-review-mode .part-one-title {
+  margin: 0;
+  color: var(--story-ink);
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(3.3rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.content-review-mode .source-arabic {
+  width: min(100%, 940px);
+  max-width: 940px;
+  margin: 0;
+  color: #354f45;
+  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-size: clamp(2.8rem, 6.2vw, 5.8rem);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.content-review-mode .source-english {
+  width: min(100%, 780px);
+  max-width: 780px;
+  margin: 30px 0 0;
+  color: #40554d;
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(1.3rem, 2.5vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.content-review-mode .source-citation {
+  min-height: 48svh;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 64px 24px;
+}
+
+.content-review-mode .source-reference {
+  color: #667970;
+  font-family: Inter, ui-sans-serif, sans-serif;
+  font-size: clamp(.65rem, .82vw, .78rem);
+  font-weight: 500;
+  letter-spacing: .14em;
+  line-height: 1.7;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.content-review-mode .editorial-setup {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.content-review-mode .editorial-setup-line {
+  margin: 0;
+  color: var(--story-ink);
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(5.5rem, 17vw, 14rem);
+  font-weight: 400;
+  line-height: .95;
+}
+
+.content-review-mode [data-scene-id="beyond-imagination"] .source-beat {
+  min-height: 125svh;
+}
+
+.content-review-mode [data-scene-id="seeing-allah"] {
+  padding-top: 38svh;
+}
+
+.content-review-mode .veil-beat {
+  min-height: 135svh;
+}
+
+.content-review-mode .content-scene:last-child::after {
+  content: "";
+  display: block;
+  height: 85svh;
+}
+
+@media (max-width: 760px) {
+  .content-review-mode .source-arabic {
+    font-size: clamp(2.2rem, 10.5vw, 3.6rem);
+    line-height: 1.7;
+  }
+
+  .content-review-mode .source-english {
+    font-size: clamp(1.2rem, 5.8vw, 1.55rem);
+  }
+
+  .content-review-mode .source-reference {
+    max-width: 330px;
+  }
+}

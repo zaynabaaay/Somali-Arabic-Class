@@ -13,14 +13,6 @@ function element(tag, className, text) {
   return node;
 }
 
-function sourceReference(label, url) {
-  const link = element("a", "source-reference", label);
-  link.href = url;
-  link.target = "_blank";
-  link.rel = "noreferrer";
-  return link;
-}
-
 function arabicLine(text, className = "source-arabic") {
   const line = element("p", className, text);
   line.lang = "ar";
@@ -28,125 +20,86 @@ function arabicLine(text, className = "source-arabic") {
   return line;
 }
 
-function renderBeatList(beats) {
+function renderBeatList(beats, sourceId) {
   const list = element("ol", "source-beats");
   beats.forEach((beat, index) => {
     const item = element("li", "source-beat");
     item.dataset.beat = String(index + 1);
-    if (typeof beat === "string") {
-      item.append(element("blockquote", "source-english", beat));
-    } else {
-      item.append(arabicLine(beat.arabic));
-      item.append(element("blockquote", "source-english", beat.english));
-    }
+    if (sourceId === "greatest_reward" && index === 2) item.classList.add("veil-beat");
+    item.append(arabicLine(beat.arabic));
+    item.append(element("blockquote", "source-english", beat.english));
     list.append(item);
   });
   return list;
 }
 
-function renderQuranPassage(scene, passage) {
-  const source = element("div", "on-screen-source quran-source");
-
-  if (passage.beats) {
-    source.append(renderBeatList(passage.beats));
-  } else {
-    passage.groups.forEach((group, groupIndex) => {
-      const groupNode = element("section", "verse-group");
-      groupNode.dataset.group = String(group.id);
-      const verses = element("ol", "verse-list");
-      passage.verses
-        .filter((verse) => verse.verse_number >= group.first && verse.verse_number <= group.last)
-        .forEach((verse) => {
-          const item = element("li", "verse-pair");
-          item.value = verse.verse_number;
-          item.dataset.verse = verse.verse_key;
-          item.append(arabicLine(verse.arabic, "verse-arabic"));
-          item.append(element("p", "verse-english", verse.english));
-          verses.append(item);
-        });
-      groupNode.append(verses);
-      source.append(groupNode);
-    });
-  }
-
-  const citation = element("footer", "source-citation");
-  citation.append(sourceReference(`Surah ${passage.surah} — ${passage.reference}`, passage.source_url));
-  citation.append(element("span", "translation-credit", "Sahih International"));
-  source.append(citation);
-  return source;
+function quranReference(passage) {
+  return `SURAH ${passage.surah.toUpperCase()} · ${passage.reference}`;
 }
 
-function renderHadithCitation(record) {
+function cleanHadithReference(reference) {
+  return reference.replace(/(\d+)[a-z]$/i, "$1").toUpperCase();
+}
+
+function hadithReference(record) {
+  const references = [record.primary_reference, ...(record.parallel_references || []).map((item) => item.reference)]
+    .map(cleanHadithReference)
+  if (references.length === 1) return references[0].replace(/ (\d+)$/, " · $1");
+  return references.join(" · ");
+}
+
+function renderCitation(label, url) {
   const citation = element("footer", "source-citation");
-  citation.append(sourceReference(record.primary_reference, record.primary_url));
-  record.parallel_references?.forEach((parallel) => {
-    citation.append(sourceReference(parallel.reference, parallel.url));
-  });
+  const link = element("a", "source-reference", label);
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noreferrer";
+  citation.append(link);
   return citation;
 }
 
-function renderHadith(scene, record) {
-  const source = element("div", "on-screen-source hadith-source");
-
-  if (record.beats) {
-    if (record.beats.some((beat) => typeof beat === "string")) {
-      const arabicBeat = element("section", "source-beat hadith-arabic-beat");
-      arabicBeat.append(arabicLine(record.arabic, "source-arabic source-arabic-full"));
-      source.append(arabicBeat);
-    }
-    source.append(renderBeatList(record.beats));
-  } else {
-    const singleBeat = element("section", "source-beat hadith-single-beat");
-    singleBeat.append(arabicLine(record.arabic, "source-arabic source-arabic-full"));
-    singleBeat.append(element("blockquote", "source-english source-english-feature", record.english));
-    source.append(singleBeat);
-  }
-  source.append(renderHadithCitation(record));
-
-  if (record.supporting_narration) {
-    const supporting = element("section", "supporting-narration");
-    const supportingBeat = element("section", "source-beat");
-    supportingBeat.append(arabicLine(record.supporting_narration.arabic, "source-arabic source-arabic-full"));
-    supportingBeat.append(element("blockquote", "source-english", record.supporting_narration.english));
-    supporting.append(supportingBeat);
-    const supportingCitation = element("footer", "source-citation");
-    supportingCitation.append(sourceReference(record.supporting_narration.reference, record.supporting_narration.url));
-    supporting.append(supportingCitation);
-    source.append(supporting);
-  }
-
+function renderQuranPassage(passage, sourceId) {
+  const source = element("div", "on-screen-source quran-source");
+  source.append(renderBeatList(passage.beats, sourceId));
+  source.append(renderCitation(quranReference(passage), passage.source_url));
   return source;
 }
 
-function renderScene(scene, data) {
-  const sceneNode = element("article", `content-scene scene-${scene.number}`);
-  sceneNode.id = `content-scene-${scene.number}-${scene.id}`;
-  sceneNode.dataset.scene = String(scene.number);
+function renderHadith(record, sourceId) {
+  const source = element("div", "on-screen-source hadith-source");
+  const beats = record.beats || [{ arabic: record.arabic, english: record.english }];
+  source.append(renderBeatList(beats, sourceId));
+  source.append(renderCitation(hadithReference(record), record.primary_url));
+  return source;
+}
 
-  if (scene.number !== 1) {
-    const header = element("header", "content-scene-header");
-    scene.opening_lines?.forEach((line) => header.append(element("p", "scene-opening-line", line)));
-    header.append(element("h3", "content-scene-title", scene.heading));
-    sceneNode.append(header);
-  }
+function renderOpening(scene) {
+  const opening = element("header", "part-one-opening");
+  opening.append(element("p", "part-one-label", scene.on_screen[0]));
+  opening.append(element("h1", "part-one-title", scene.on_screen[1]));
+  return opening;
+}
+
+function renderScene(scene, data) {
+  const sceneNode = element("article", "content-scene");
+  sceneNode.id = `content-scene-${scene.id}`;
+  sceneNode.dataset.sceneId = scene.id;
 
   if (scene.on_screen) {
-    const source = element("div", "on-screen-source opening-source");
-    source.append(element("p", "opening-eyebrow", `${scene.eyebrow} · ${scene.heading}`));
-    scene.on_screen.forEach((line, index) => {
-      const openingClasses = ["opening-arabic", "opening-english", "opening-subtitle"];
-      const item = element("p", openingClasses[index], line);
-      if (index === 0) {
-        item.lang = "ar";
-        item.dir = "rtl";
-      }
-      source.append(item);
-    });
-    sceneNode.append(source);
-  } else if (scene.source_type === "quran") {
-    sceneNode.append(renderQuranPassage(scene, data.quran.passages[scene.source_id]));
+    sceneNode.append(renderOpening(scene));
+    return sceneNode;
+  }
+
+  if (scene.opening_lines?.length) {
+    const setup = element("div", "editorial-setup");
+    scene.opening_lines.forEach((line) => setup.append(element("p", "editorial-setup-line", line)));
+    sceneNode.append(setup);
+  }
+
+  if (scene.source_type === "quran") {
+    sceneNode.append(renderQuranPassage(data.quran.passages[scene.source_id], scene.source_id));
   } else if (scene.source_type === "hadith") {
-    sceneNode.append(renderHadith(scene, data.hadith.hadith[scene.source_id]));
+    sceneNode.append(renderHadith(data.hadith.hadith[scene.source_id], scene.source_id));
   }
 
   return sceneNode;
@@ -163,12 +116,11 @@ async function loadPartOne() {
       })
     );
 
-    root.replaceChildren();
     const fragment = document.createDocumentFragment();
     scenes.scenes.forEach((scene) => fragment.append(renderScene(scene, { quran, hadith })));
-    root.append(fragment);
+    root.replaceChildren(fragment);
   } catch (error) {
-    root.replaceChildren(element("p", "content-error", "Part One source content could not be loaded. The verified source files remain available in the project data directory."));
+    root.replaceChildren(element("p", "content-error", "Part One could not be loaded."));
     console.error(error);
   }
 }

@@ -15,7 +15,7 @@
           "url": "https://sunnah.com/muslim:2824b"
         }
       ],
-      "arabic": "حَدَّثَنَا الْحُمَيْدِيُّ، حَدَّثَنَا سُفْيَانُ، حَدَّثَنَا أَبُو الزِّنَادِ، عَنِ الأَعْرَجِ، عَنْ أَبِي هُرَيْرَةَ ـ رضى الله عنه ـ قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏\"‏ قَالَ اللَّهُ أَعْدَدْتُ لِعِبَادِي الصَّالِحِينَ مَا لاَ عَيْنَ رَأَتْ، وَلاَ أُذُنَ سَمِعَتْ، وَلاَ خَطَرَ عَلَى قَلْبِ بَشَرٍ، فَاقْرَءُوا إِنْ شِئْتُمْ ‏‏{‏فَلاَ تَعْلَمُ نَفْسٌ مَا أُخْفِيَ لَهُمْ مِنْ قُرَّةِ أَعْيُنٍ ‏}‏‏\"‏‏.‏",
+      "arabic": "أَعْدَدْتُ لِعِبَادِيَ الصَّالِحِينَ مَا لَا عَيْنٌ رَأَتْ وَلَا أُذُنٌ سَمِعَتْ وَلَا خَطَرَ عَلَى قَلْبِ بَشَرٍ",
       "english": "I have prepared for My Pious slaves things which have never been seen by an eye, or heard by an ear, or imagined by a human being."
     },
     "first_to_enter": {
@@ -31,11 +31,30 @@
       "arabic": "حَدَّثَنَا قُتَيْبَةُ بْنُ سَعِيدٍ، حَدَّثَنَا جَرِيرٌ، عَنْ عُمَارَةَ، عَنْ أَبِي زُرْعَةَ، عَنْ أَبِي هُرَيْرَةَ ـ رضى الله عنه ـ قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏\"‏ إِنَّ أَوَّلَ زُمْرَةٍ يَدْخُلُونَ الْجَنَّةَ عَلَى صُورَةِ الْقَمَرِ لَيْلَةَ الْبَدْرِ، ثُمَّ الَّذِينَ يَلُونَهُمْ عَلَى أَشَدِّ كَوْكَبٍ دُرِّيٍّ فِي السَّمَاءِ إِضَاءَةً، لاَ يَبُولُونَ وَلاَ يَتَغَوَّطُونَ وَلاَ يَتْفِلُونَ وَلاَ يَمْتَخِطُونَ، أَمْشَاطُهُمُ الذَّهَبُ، وَرَشْحُهُمُ الْمِسْكُ، وَمَجَامِرُهُمُ الأَلُوَّةُ الأَنْجُوجُ عُودُ الطِّيبِ، وَأَزْوَاجُهُمُ الْحُورُ الْعِينُ، عَلَى خَلْقِ رَجُلٍ وَاحِدٍ عَلَى صُورَةِ أَبِيهِمْ آدَمَ، سِتُّونَ ذِرَاعًا فِي السَّمَاءِ ‏\"‏‏.‏",
       "english": "The first group of people who will enter Paradise, will be glittering like the full moon and those who will follow them, will glitter like the most brilliant star in the sky. They will not urinate, relieve nature, spit, or have any nasal secretions. Their combs will be of gold, and their sweat will smell like musk. The aloes-wood will be used in their centers. Their wives will be houris. All of them will look alike and will resemble their father Adam (in stature), sixty cubits tall.",
       "beats": [
-        "The first group of people who will enter Paradise, will be glittering like the full moon and those who will follow them, will glitter like the most brilliant star in the sky.",
-        "They will not urinate, relieve nature, spit, or have any nasal secretions.",
-        "Their combs will be of gold, and their sweat will smell like musk.",
-        "The aloes-wood will be used in their centers. Their wives will be houris.",
-        "All of them will look alike and will resemble their father Adam (in stature), sixty cubits tall."
+        {
+          "arabic": "إِنَّ أَوَّلَ زُمْرَةٍ يَدْخُلُونَ الْجَنَّةَ عَلَى صُورَةِ الْقَمَرِ لَيْلَةَ الْبَدْرِ، ثُمَّ الَّذِينَ يَلُونَهُمْ عَلَى أَشَدِّ كَوْكَبٍ دُرِّيٍّ فِي السَّمَاءِ إِضَاءَةً",
+          "english": "The first group of people who will enter Paradise, will be glittering like the full moon and those who will follow them, will glitter like the most brilliant star in the sky."
+        },
+        {
+          "arabic": "أَمْشَاطُهُمُ الذَّهَبُ",
+          "english": "Their combs will be of gold,"
+        },
+        {
+          "arabic": "وَرَشْحُهُمُ الْمِسْكُ",
+          "english": "and their sweat will smell like musk."
+        },
+        {
+          "arabic": "لاَ يَبُولُونَ وَلاَ يَتَغَوَّطُونَ وَلاَ يَتْفِلُونَ وَلاَ يَمْتَخِطُونَ، وَمَجَامِرُهُمُ الأَلُوَّةُ الأَنْجُوجُ عُودُ الطِّيبِ، وَأَزْوَاجُهُمُ الْحُورُ الْعِينُ",
+          "english": "They will not urinate, relieve nature, spit, or have any nasal secretions. The aloes-wood will be used in their centers. Their wives will be houris."
+        },
+        {
+          "arabic": "عَلَى خَلْقِ رَجُلٍ وَاحِدٍ عَلَى صُورَةِ أَبِيهِمْ آدَمَ",
+          "english": "All of them will look alike and will resemble their father Adam (in stature),"
+        },
+        {
+          "arabic": "سِتُّونَ ذِرَاعًا فِي السَّمَاءِ",
+          "english": "sixty cubits tall."
+        }
       ],
       "supporting_narration": {
         "reference": "Sahih al-Bukhari 3245",
@@ -54,7 +73,7 @@
           "url": "https://sunnah.com/muslim:2826a"
         }
       ],
-      "arabic": "حَدَّثَنَا رَوْحُ بْنُ عَبْدِ الْمُؤْمِنِ، حَدَّثَنَا يَزِيدُ بْنُ زُرَيْعٍ، حَدَّثَنَا سَعِيدٌ، عَنْ قَتَادَةَ، حَدَّثَنَا أَنَسُ بْنُ مَالِكٍ ـ رضى الله عنه ـ عَنِ النَّبِيِّ صلى الله عليه وسلم قَالَ ‏\"‏ إِنَّ فِي الْجَنَّةِ لَشَجَرَةً يَسِيرُ الرَّاكِبُ فِي ظِلِّهَا مِائَةَ عَامٍ لاَ يَقْطَعُهَا ‏\"‏‏.‏",
+      "arabic": "إِنَّ فِي الْجَنَّةِ لَشَجَرَةً يَسِيرُ الرَّاكِبُ فِي ظِلِّهَا مِائَةَ عَامٍ لاَ يَقْطَعُهَا",
       "english": "There is a tree in Paradise (which is so big and huge that) if a rider travels in its shade for one hundred years, he would not be able to cross it."
     },
     "greatest_reward": {
