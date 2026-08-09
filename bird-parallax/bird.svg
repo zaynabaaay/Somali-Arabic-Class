@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="bird-title bird-desc">
+  <title id="bird-title">Luminous ivory bird in flight</title>
+  <desc id="bird-desc">A refined side-profile bird flying to the right, with layered cream feathers and independently grouped wings, head and tail for animation.</desc>
+
+  <defs>
+    <linearGradient id="body-light" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffdf4"/>
+      <stop offset="0.48" stop-color="#eee7d8"/>
+      <stop offset="1" stop-color="#b7aea1"/>
+    </linearGradient>
+    <linearGradient id="body-shadow" x1="0" y1="0" x2="1" y2="0.8">
+      <stop offset="0" stop-color="#d8d0c2"/>
+      <stop offset="1" stop-color="#817b74"/>
+    </linearGradient>
+    <linearGradient id="wing-light" x1="0.16" y1="0.05" x2="0.82" y2="0.96">
+      <stop offset="0" stop-color="#fffef7"/>
+      <stop offset="0.56" stop-color="#e5ddcd"/>
+      <stop offset="1" stop-color="#9a9288"/>
+    </linearGradient>
+    <linearGradient id="wing-shadow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c8c0b4"/>
+      <stop offset="1" stop-color="#6f6c68"/>
+    </linearGradient>
+    <linearGradient id="tail-light" x1="1" y1="0" x2="0" y2="0.5">
+      <stop offset="0" stop-color="#dfd7c8"/>
+      <stop offset="1" stop-color="#8a857e"/>
+    </linearGradient>
+    <linearGradient id="beak-light" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a89d88"/>
+      <stop offset="1" stop-color="#625f5a"/>
+    </linearGradient>
+    <radialGradient id="head-glow" cx="36%" cy="28%" r="74%">
+      <stop offset="0" stop-color="#fffef8"/>
+      <stop offset="0.68" stop-color="#e6dfd2"/>
+      <stop offset="1" stop-color="#aaa298"/>
+    </radialGradient>
+  </defs>
+
+  <!--
+    ANIMATION MAP
+    #bird             bank or move along a GSAP motion path
+    #right-wing       main visible wing; rotate around the shoulder for flapping
+    #left-wing        far wing; animate with a smaller, slightly delayed rotation
+    #tail             fan or rotate for steering and landing
+    #head             rotate a few degrees for glances and landing anticipation
+    All transform origins are defined on groups so path data remains clean.
+  -->
+  <g id="bird">
+
+    <!-- FAR WING: kept behind the body for believable side-profile depth. -->
+    <g id="left-wing" style="transform-box:fill-box;transform-origin:78% 74%">
+      <g id="left-wing-coverts">
+        <path id="left-covert-base" d="M585 432C554 369 525 302 523 237c53 28 102 82 139 157 14 29 12 58-3 78-25 17-53 4-74-40Z" fill="url(#body-shadow)"/>
+        <path id="left-covert-highlight" d="M595 421c-21-54-39-101-43-143 38 29 74 72 99 126 11 24 10 43-1 57-21 7-41-6-55-40Z" fill="#d8d0c3" opacity=".68"/>
+      </g>
+      <g id="left-wing-secondaries">
+        <path id="left-secondary-1" d="M550 341c-39-39-68-88-78-139 51 35 91 80 120 137 10 20 12 38 5 52-17 1-31-16-47-50Z" fill="#b6aea3"/>
+        <path id="left-secondary-2" d="M536 312c-43-35-77-77-94-126 51 27 97 68 131 120 12 18 16 35 11 50-18 3-32-12-48-44Z" fill="#a49d94"/>
+        <path id="left-secondary-3" d="M526 285c-46-30-84-67-108-112 55 20 102 55 142 101 14 17 20 33 17 48-18 6-34-7-51-37Z" fill="#938e87"/>
+      </g>
+      <g id="left-wing-primaries">
+        <path id="left-primary-1" d="M507 269c-52-19-96-47-130-86 57 9 110 32 155 68 18 14 27 29 27 44-18 10-34 0-52-26Z" fill="#89857f"/>
+        <path id="left-primary-2" d="M500 249c-54-12-102-34-140-68 58 2 114 19 163 48 19 12 30 25 32 40-16 11-35 4-55-20Z" fill="#7d7a75"/>
+        <path id="left-primary-3" d="M496 231c-55-5-106-21-149-50 58-6 115 5 168 28 21 9 33 21 37 35-15 14-34 9-56-13Z" fill="#74716d"/>
+      </g>
+    </g>
+
+    <!-- TAIL: independent group for steering, fanning and landing poses. -->
+    <g id="tail" style="transform-box:fill-box;transform-origin:88% 48%">
+      <path id="tail-feather-upper" d="M421 472C334 431 225 402 117 406c79 36 165 80 253 126 29 15 58 9 76-11 4-18-5-35-25-49Z" fill="url(#tail-light)"/>
+      <path id="tail-feather-mid-upper" d="M427 488C327 468 213 460 104 481c89 20 181 48 279 80 30 10 56 1 70-21 0-19-8-38-26-52Z" fill="#c6beb1"/>
+      <path id="tail-feather-center" d="M432 502C327 502 218 516 116 554c92 4 187 14 287 28 31 4 55-9 64-33-4-20-17-37-35-47Z" fill="#afa79c"/>
+      <path id="tail-feather-mid-lower" d="M438 513c-98 18-198 50-288 102 87-11 179-15 277-14 31 0 53-16 58-42-8-20-25-36-47-46Z" fill="#9b958d"/>
+      <path id="tail-feather-lower" d="M447 520c-85 35-167 81-236 142 77-25 163-45 253-60 29-5 48-25 49-52-12-20-36-32-66-30Z" fill="#87837d"/>
+      <path id="tail-highlight" d="M416 481c-79-28-166-47-247-50 70 23 146 55 224 91" fill="none" stroke="#fffdf5" stroke-linecap="round" stroke-width="4" opacity=".38"/>
+    </g>
+
+    <!-- BODY: long, aerodynamic silhouette with a soft chest and tapered rump. -->
+    <g id="body">
+      <path id="body-base" d="M356 466c67-76 178-112 308-111 86 1 169 20 235 66 35 25 54 59 48 95-8 46-59 82-126 96-108 23-252 12-365-26-72-25-130-69-132-104-1-7 11-12 32-16Z" fill="url(#body-light)"/>
+      <path id="body-under-shadow" d="M334 497c29 48 104 82 190 103 112 27 245 32 341 0 34-11 63-29 78-53-31 15-70 25-115 29-125 12-258-4-366-43-51-18-95-36-128-36Z" fill="url(#body-shadow)" opacity=".63"/>
+      <path id="chest-light" d="M766 389c67 9 125 26 159 57 26 24 26 58 3 83-18 19-49 33-85 38 28-22 37-54 19-80-24-36-70-61-113-77Z" fill="#fffdf6" opacity=".74"/>
+      <path id="rump-shadow" d="M356 466c38-44 93-74 158-92-49 37-70 88-49 130 17 34 55 63 98 84-70-10-130-28-174-54-36-21-61-46-65-66 7-2 17-2 32-2Z" fill="#9c968e" opacity=".52"/>
+    </g>
+
+    <!-- BODY FEATHERS: grouped low-cost texture rather than hundreds of tiny paths. -->
+    <g id="body-feathers" fill="none" stroke-linecap="round">
+      <path id="body-feather-line-1" d="M464 424c63-35 143-48 224-42" stroke="#fffdf6" stroke-width="7" opacity=".48"/>
+      <path id="body-feather-line-2" d="M447 455c76-30 166-38 254-24" stroke="#fffdf6" stroke-width="5" opacity=".36"/>
+      <path id="body-feather-line-3" d="M451 489c72-15 154-14 231 4" stroke="#8d8984" stroke-width="4" opacity=".28"/>
+      <path id="body-feather-line-4" d="M493 528c65-4 136 6 197 28" stroke="#706e6a" stroke-width="4" opacity=".22"/>
+      <path id="chest-feather-1" d="M790 433c25 7 46 20 59 38" stroke="#c0b8aa" stroke-width="5" opacity=".48"/>
+      <path id="chest-feather-2" d="M781 463c30 7 54 20 68 38" stroke="#a49d92" stroke-width="4" opacity=".38"/>
+      <path id="chest-feather-3" d="M773 495c25 7 45 18 59 33" stroke="#8d8882" stroke-width="3" opacity=".28"/>
+      <path id="belly-feather-line" d="M550 571c76 15 160 20 236 11" stroke="#f7f1e7" stroke-width="4" opacity=".26"/>
+    </g>
+
+    <!-- HEAD: independent for subtle turns, bobs and landing anticipation. -->
+    <g id="head" style="transform-box:fill-box;transform-origin:18% 72%">
+      <path id="head-base" d="M821 405c43-45 111-55 163-25 34 20 50 57 39 92-12 39-55 68-104 71-50 3-95-20-115-56-15-27-7-59 17-82Z" fill="url(#head-glow)"/>
+      <path id="neck-transition" d="M806 416c28 12 47 35 49 63 2 35-15 64-43 86-34 8-70 10-109 7 49-25 81-59 94-99 8-24 6-41 9-57Z" fill="#d8d0c2" opacity=".75"/>
+      <path id="cheek-light" d="M879 404c25-17 58-18 83-3 21 13 31 38 23 60-9 24-34 41-62 42-29 0-55-17-62-40-8-23 0-46 18-59Z" fill="#fffef8" opacity=".55"/>
+      <path id="brow-shadow" d="M905 405c19-12 43-13 63-3-19-1-36 5-49 16-8 8-16 10-24 5-2-7 1-12 10-18Z" fill="#8d8780" opacity=".44"/>
+    </g>
+
+    <g id="eye">
+      <ellipse id="eye-socket" cx="948" cy="426" rx="12" ry="10" fill="#a8a095" opacity=".42"/>
+      <ellipse id="eye-iris" cx="950" cy="426" rx="6.5" ry="7" fill="#3c3c39"/>
+      <circle id="eye-pupil" cx="951" cy="427" r="3.7" fill="#181918"/>
+      <circle id="eye-highlight" cx="952" cy="423" r="1.5" fill="#fffdf4"/>
+      <path id="eye-detail" d="M938 422c8-7 19-7 27 0" fill="none" stroke="#6f6b66" stroke-linecap="round" stroke-width="1.8"/>
+    </g>
+
+    <g id="beak">
+      <path id="beak-upper" d="M1000 444c28 2 58 10 83 22-27 3-56 3-81 0-9-1-14-6-13-12 1-5 5-8 11-10Z" fill="url(#beak-light)"/>
+      <path id="beak-lower" d="M1002 466c25 3 53 3 81 0-24 12-51 17-76 15-9-1-14-5-15-10 0-3 3-5 10-5Z" fill="#77736d"/>
+      <path id="beak-seam" d="M997 465c27 3 56 3 86 1" fill="none" stroke="#4b4a48" stroke-linecap="round" stroke-width="1.6" opacity=".7"/>
+    </g>
+
+    <!--
+      VISIBLE / RIGHT WING
+      Shoulder pivot is near x=650 y=430. Animate this group as one unit first;
+      subgroups may be offset later for refined feather drag during fast flaps.
+    -->
+    <g id="right-wing" style="transform-box:fill-box;transform-origin:78% 77%">
+      <path id="right-wing-base" d="M677 458c-55-64-117-138-151-219-25-59-25-116 4-143 42 21 83 60 119 111 57 80 90 165 98 240 2 21-6 38-23 48-18 4-32-8-47-37Z" fill="url(#wing-light)"/>
+
+      <g id="wing-feathers">
+        <g id="coverts">
+          <path id="covert-1" d="M655 429c-42-51-77-107-95-162 38 26 74 70 105 126 13 24 18 45 14 62-11 2-18-7-24-26Z" fill="#fffdf5" opacity=".92"/>
+          <path id="covert-2" d="M626 392c-34-50-57-100-65-148 35 31 63 73 87 124 10 22 12 40 6 54-11 0-18-10-28-30Z" fill="#eee6d8"/>
+          <path id="covert-3" d="M600 349c-25-47-39-91-38-132 29 32 52 72 68 118 7 20 6 36-2 48-10-2-17-13-28-34Z" fill="#d9d0c2"/>
+          <path id="covert-4" d="M575 303c-17-40-23-79-17-114 22 31 38 67 48 104 5 18 2 32-6 42-9-3-15-13-25-32Z" fill="#c8beb1"/>
+          <path id="covert-edge" d="M649 438c-39-65-70-133-84-196" fill="none" stroke="#a49d93" stroke-linecap="round" stroke-width="4" opacity=".46"/>
+        </g>
+
+        <g id="secondary-feathers">
+          <path id="secondary-1" d="M628 421c-49-56-94-119-119-182-18-45-20-84-7-111 34 26 69 68 101 121 42 70 65 133 69 184 1 17-5 29-16 35-11 1-18-13-28-47Z" fill="#e8e0d3"/>
+          <path id="secondary-2" d="M600 386c-48-49-92-104-121-162-21-42-27-78-18-106 35 23 73 60 108 107 45 61 73 120 82 168 4 16-1 29-11 35-12 2-21-11-40-42Z" fill="#d5ccbf"/>
+          <path id="secondary-3" d="M572 349c-49-40-94-87-127-138-24-37-35-72-30-100 37 18 77 50 116 90 49 51 81 104 96 148 6 16 3 29-6 36-12 4-22-8-49-36Z" fill="#c1b9ae"/>
+          <path id="secondary-4" d="M545 312c-48-32-94-70-131-114-27-32-42-63-41-91 38 14 80 39 121 72 51 42 88 88 107 129 8 16 7 28-1 36-13 5-24-5-55-32Z" fill="#ada69d"/>
+          <path id="secondary-5" d="M520 278c-48-24-93-54-133-90-29-27-48-55-51-81 39 9 82 28 125 54 53 33 94 72 118 108 10 15 10 27 3 35-12 7-25-2-62-26Z" fill="#9b958e"/>
+        </g>
+
+        <!-- Major flight feathers are individual paths for optional feather-level drag. -->
+        <g id="primary-feathers">
+          <path id="primary-1" d="M499 252c-51-16-101-39-145-68-33-22-56-47-62-72 40 4 85 17 131 38 58 26 105 58 134 91 12 13 14 25 8 34-12 8-27 1-66-23Z" fill="#918c85"/>
+          <path id="primary-2" d="M483 229c-53-10-105-27-152-51-35-18-61-41-71-65 40 0 87 8 134 24 60 20 110 47 142 76 14 12 17 23 12 33-11 9-27 3-65-17Z" fill="#85817b"/>
+          <path id="primary-3" d="M468 207c-54-4-108-15-157-33-37-14-66-34-79-56 40-4 87-1 136 10 62 14 114 36 150 61 15 10 20 21 16 31-10 10-27 6-66-13Z" fill="#7b7873"/>
+          <path id="primary-4" d="M455 188c-55 1-109-4-160-17-39-9-69-25-85-46 40-8 87-9 137-3 63 8 118 24 156 45 16 9 22 19 19 29-9 12-26 9-67-8Z" fill="#726f6b"/>
+          <path id="primary-5" d="M445 170c-54 7-109 7-161 1-39-5-72-18-90-36 39-12 86-18 136-17 64 1 120 12 160 28 17 7 24 16 22 27-8 12-25 12-67-3Z" fill="#6b6965"/>
+          <path id="primary-6" d="M439 155c-53 12-108 17-160 15-40-1-74-10-94-27 37-15 83-25 133-29 63-4 120 2 162 14 17 5 26 14 25 24-7 13-24 14-66 3Z" fill="#64625f"/>
+        </g>
+
+        <g id="wing-highlights" fill="none" stroke-linecap="round">
+          <path id="wing-highlight-1" d="M636 414c-37-81-76-159-121-229" stroke="#fffef7" stroke-width="7" opacity=".52"/>
+          <path id="wing-highlight-2" d="M610 397c-43-78-92-148-146-209" stroke="#fffef7" stroke-width="4" opacity=".33"/>
+          <path id="wing-shadow-line" d="M669 450c-21-76-55-156-101-230" stroke="#77736d" stroke-width="3" opacity=".28"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- A few soft scapular feathers visually connect the wing to the body. -->
+    <g id="shoulder-feathers">
+      <path id="scapular-1" d="M664 412c38 2 70 15 91 39-16 8-34 8-54 0-22-9-35-22-37-39Z" fill="#f7f2e8"/>
+      <path id="scapular-2" d="M656 435c39 5 69 21 86 47-18 5-36 2-54-8-20-12-31-25-32-39Z" fill="#d8d0c3"/>
+      <path id="scapular-3" d="M654 459c35 8 61 23 77 45-18 4-35 1-50-8-18-10-27-23-27-37Z" fill="#b7b0a6"/>
+    </g>
+  </g>
+</svg>
