@@ -188,19 +188,19 @@
     <header>
       <div>
         <p class="eyebrow">Cinematic descent · key-pose review</p>
-        <h1>Follow the bird down.</h1>
+        <h1>Fly with the bird.</h1>
       </div>
-      <p class="note">Six major camera poses only. Transitional animation frames will be created after this movement direction is approved.</p>
+      <p class="note">The shot begins from the side. As the bird banks, the camera moves behind it and remains locked there throughout the descent.</p>
     </header>
 
     <div class="bird-holder" id="bird-holder">
-      <img id="bird" src="cinematic/descent-key-poses/descent-00.png" alt="Blue and gold anime bird in a peaceful side glide">
+      <img id="bird" src="cinematic/descent-key-poses/descent-00.png" alt="Blue and gold anime bird entering in side profile">
     </div>
 
     <div class="status" aria-live="polite">
       <span class="counter" id="counter">01 / 06</span>
       <span class="status-copy">
-        <strong id="pose-name">Peaceful sky glide</strong>
+        <strong id="pose-name">Side entrance</strong>
         <span class="instruction">Scroll to follow the shot</span>
       </span>
     </div>
@@ -213,12 +213,12 @@
       `cinematic/descent-key-poses/descent-${String(index).padStart(2, "0")}.png`
     );
     const poses = [
-      { name: "Peaceful sky glide", alt: "peaceful side glide", x: -5, y: 2, rotation: 0, scale: .92 },
-      { name: "Decision to descend", alt: "slightly downward side glide", x: -2, y: 1, rotation: 7, scale: .96 },
-      { name: "Banking away", alt: "rear three-quarter bank", x: 3, y: 1, rotation: 45, scale: 1 },
-      { name: "Committed dive", alt: "rear three-quarter downward dive", x: 5, y: 3, rotation: 70, scale: 1.04 },
-      { name: "Steep back-view dive", alt: "steep back-view dive", x: 2, y: 4, rotation: 150, scale: 1.08 },
-      { name: "Wings opening for pull-out", alt: "wide-wing rear pull-out", x: 0, y: 1, rotation: 30, scale: 1.03 }
+      { name: "Side entrance", alt: "peaceful side-profile entrance", x: -7, y: 2, rotation: 0, scale: .92 },
+      { name: "Preparing to descend", alt: "side view preparing to descend", x: -3, y: 1, rotation: 6, scale: .96 },
+      { name: "Camera arcs behind", alt: "rear three-quarter bank as the camera moves behind", x: 2, y: 1, rotation: 28, scale: 1 },
+      { name: "Chase camera locks", alt: "rear three-quarter chase-camera view", x: 1, y: 1, rotation: 12, scale: 1.05 },
+      { name: "Camera follows the dive", alt: "stable back-view chase during the dive", x: 0, y: 1, rotation: 0, scale: 1.12 },
+      { name: "Following the pull-out", alt: "wide-wing rear chase view during pull-out", x: 0, y: 1, rotation: -4, scale: 1.06 }
     ];
 
     frames.forEach(source => { const image = new Image(); image.src = source; });
