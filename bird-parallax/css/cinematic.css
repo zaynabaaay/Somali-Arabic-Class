@@ -990,7 +990,6 @@ blockquote.source-english {
   text-align: center;
 }
 
-.content-review-mode .scene-number,
 .content-review-mode .scene-opening-line {
   margin: 0 0 20px;
 }
@@ -1005,13 +1004,6 @@ blockquote.source-english {
   max-width: none;
 }
 
-.content-review-mode .source-content-label {
-  width: min(100%, 900px);
-  margin: 0 auto;
-  padding: 42px max(24px, 7vw);
-  text-align: center;
-}
-
 .content-review-mode .opening-source {
   min-height: 100svh;
   display: grid;
@@ -1021,18 +1013,41 @@ blockquote.source-english {
   text-align: center;
 }
 
-.content-review-mode .opening-source .source-content-label {
-  padding-top: 0;
+.content-review-mode .opening-eyebrow {
+  margin: 0 0 clamp(18px, 2.4vh, 30px);
+  color: var(--story-soft);
+  font-size: clamp(.62rem, .8vw, .75rem);
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
 }
 
 .content-review-mode .opening-arabic {
-  font-size: clamp(6rem, 18vw, 13rem);
+  color: var(--story-ink);
+  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-size: clamp(5.5rem, 11vw, 10rem);
+  font-weight: 400;
+  line-height: 1;
 }
 
-.content-review-mode .opening-line {
-  font-size: clamp(1.35rem, 3vw, 2.5rem);
-  letter-spacing: .08em;
+.content-review-mode .opening-english {
+  margin: clamp(22px, 3vh, 38px) 0 0;
+  color: var(--story-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2.1vw, 2rem);
+  letter-spacing: .48em;
+  line-height: 1;
+  text-indent: .48em;
   text-transform: uppercase;
+}
+
+.content-review-mode .opening-subtitle {
+  margin: 18px 0 0;
+  color: var(--story-soft);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.85rem, 1.15vw, 1.05rem);
+  font-style: italic;
+  letter-spacing: .06em;
 }
 
 .content-review-mode .source-beats,
@@ -1054,15 +1069,6 @@ blockquote.source-english {
 .content-review-mode .source-beat:nth-child(even),
 .content-review-mode .verse-pair:nth-child(even) {
   background: rgba(255, 255, 255, .3);
-}
-
-.content-review-mode .beat-marker {
-  margin: 0 0 30px;
-  color: #7a8981;
-  font-size: .7rem;
-  font-weight: 650;
-  letter-spacing: .16em;
-  text-transform: uppercase;
 }
 
 .content-review-mode .source-arabic,
@@ -1087,24 +1093,6 @@ blockquote.source-english {
 
 .content-review-mode .verse-group {
   margin: 0;
-}
-
-.content-review-mode .editorial-group-label,
-.content-review-mode .supporting-heading {
-  width: min(100%, 900px);
-  min-height: 58svh;
-  display: grid;
-  align-content: center;
-  margin: 0 auto;
-  padding: 72px max(24px, 7vw);
-  color: #53685e;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.45;
-  text-align: center;
-  text-transform: none;
 }
 
 .content-review-mode .supporting-narration {
