@@ -2,100 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Preview of a detailed, animation-ready layered bird SVG.">
-  <title>Animation-ready Bird SVG</title>
-  <link rel="stylesheet" href="preview.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#dbeaf5">
+  <meta name="description" content="A cinematic, scroll-led journey through an atmospheric vision of Jannah.">
+  <title>Jannah · A Cinematic Journey</title>
+  <link rel="preload" href="assets/backgrounds/sky/jannah-sky-atmosphere-v1.png" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="css/cinematic.css">
 </head>
 <body>
-  <main>
-    <header class="intro">
-      <p class="eyebrow">Vector study · 01</p>
-      <h1>A bird built<br>to move.</h1>
-      <p class="lede">A layered, pure-SVG illustration prepared for gliding, flapping, banking and landing animation.</p>
-    </header>
-
-    <section class="preview-shell" aria-label="Interactive bird preview">
-      <div class="preview-toolbar">
-        <div class="background-controls" aria-label="Preview background">
-          <button class="swatch active" data-theme="neutral">Neutral</button>
-          <button class="swatch" data-theme="sky">Sky</button>
-          <button class="swatch" data-theme="garden">Garden</button>
-        </div>
-        <button id="flapToggle" class="motion-toggle" aria-pressed="true">Pause wing motion</button>
-      </div>
-      <div id="birdStage" class="bird-stage theme-neutral">
-        <div id="birdMount" class="bird-mount" aria-live="polite"></div>
+  <main class="cinematic-page">
+    <section class="sky-scene" id="opening-sky" aria-label="An immense, luminous celestial sky">
+      <div class="sky-viewport">
+        <img
+          class="sky-background"
+          src="assets/backgrounds/sky/jannah-sky-atmosphere-v1.png"
+          alt=""
+          width="941"
+          height="1672"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="atmosphere" aria-hidden="true"></div>
+        <p class="scroll-cue" aria-hidden="true"><span></span>Scroll</p>
       </div>
     </section>
-
-    <section class="anatomy">
-      <div>
-        <p class="eyebrow">Animation anatomy</p>
-        <h2>Every major movement<br>has its own layer.</h2>
-      </div>
-      <ul>
-        <li><code>#right-wing</code><span>Primary visible flap, shoulder origin</span></li>
-        <li><code>#left-wing</code><span>Far wing, smaller delayed flap</span></li>
-        <li><code>#tail</code><span>Steering, fanning and landing balance</span></li>
-        <li><code>#head</code><span>Subtle glance and anticipation motion</span></li>
-        <li><code>#bird</code><span>Glide, bank and GSAP motion path target</span></li>
-      </ul>
-    </section>
-
-    <footer>
-      <p>Pure SVG · Transparent background · No raster assets · No dependencies</p>
-      <a href="bird.svg" download>Download bird.svg</a>
-    </footer>
   </main>
 
-  <script>
-    const mount = document.querySelector("#birdMount");
-    const stage = document.querySelector("#birdStage");
-    const flapToggle = document.querySelector("#flapToggle");
-
-    // The standalone SVG is fetched and inserted inline only for this preview,
-    // allowing preview.css to target its named animation groups directly.
-    fetch("bird.svg")
-      .then((response) => {
-        if (!response.ok) throw new Error("The bird SVG could not be loaded.");
-        return response.text();
-      })
-      .then((markup) => {
-        mount.innerHTML = markup;
-        mount.querySelector("#bird").classList.add("is-flapping");
-      })
-      .catch((error) => {
-        mount.textContent = error.message;
-      });
-
-    document.querySelectorAll(".swatch").forEach((button) => {
-      button.addEventListener("click", () => {
-        document.querySelectorAll(".swatch").forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        stage.className = `bird-stage theme-${button.dataset.theme}`;
-      });
-    });
-
-    flapToggle.addEventListener("click", () => {
-      const bird = mount.querySelector("#bird");
-      const paused = bird.classList.toggle("motion-paused");
-      flapToggle.textContent = paused ? "Play wing motion" : "Pause wing motion";
-      flapToggle.setAttribute("aria-pressed", String(!paused));
-    });
-
-    /*
-      GSAP TARGETS FOR LATER USE
-      gsap.to("#right-wing", { rotation: -12, transformOrigin: "88% 86%" });
-      gsap.to("#left-wing",  { rotation:  8, transformOrigin: "84% 18%" });
-      gsap.to("#tail",       { rotation:  4, transformOrigin: "94% 48%" });
-      gsap.to("#head",       { rotation: -3, transformOrigin: "15% 72%" });
-      gsap.to("#bird",       { motionPath: yourFlightPath });
-
-      Do not target every texture path during normal flight. For performance,
-      animate the anatomy groups; reserve individual primary-feather paths for
-      close-up drag, braking or landing details.
-    */
-  </script>
+  <script src="js/cinematic-scroll.js"></script>
 </body>
 </html>

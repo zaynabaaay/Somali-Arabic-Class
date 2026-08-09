@@ -1,0 +1,115 @@
+:root {
+  color-scheme: light;
+  --sky-progress: 0;
+  --scroll-cue-opacity: 1;
+  --page-blue: #dbeaf5;
+  --page-ivory: #f8f4ea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--page-blue);
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--page-blue);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.cinematic-page {
+  width: 100%;
+}
+
+.sky-scene {
+  position: relative;
+  height: 240svh;
+  background: var(--page-ivory);
+}
+
+.sky-viewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--page-blue), var(--page-ivory));
+  isolation: isolate;
+}
+
+.sky-background {
+  position: absolute;
+  z-index: -2;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center calc(var(--sky-progress) * 100%);
+  transform: scale(calc(1.025 + var(--sky-progress) * .012));
+  transform-origin: center;
+  will-change: transform, object-position;
+}
+
+.atmosphere {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255, 255, 255, .11), transparent 48%),
+    linear-gradient(180deg, rgba(255, 255, 255, .025), rgba(255, 250, 239, .08));
+}
+
+.scroll-cue {
+  position: absolute;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, calc(env(safe-area-inset-bottom) + 18px));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: rgba(50, 70, 82, .54);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  opacity: var(--scroll-cue-opacity);
+  text-transform: uppercase;
+  transition: opacity .25s ease;
+}
+
+.scroll-cue span {
+  width: 30px;
+  height: 1px;
+  background: currentColor;
+}
+
+@media (max-width: 760px) {
+  .sky-scene {
+    height: 220svh;
+  }
+
+  .sky-background {
+    inset: -1%;
+    width: 102%;
+    height: 102%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-scene {
+    height: 140svh;
+  }
+
+  .sky-background {
+    object-position: center 38%;
+    transform: none;
+    will-change: auto;
+  }
+}
