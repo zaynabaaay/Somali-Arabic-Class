@@ -1,0 +1,106 @@
+{
+  "part": {
+    "number": 1,
+    "eyebrow": "Part One",
+    "title": "Descriptions of Jannah",
+    "purpose": "Before discussing the levels of Jannah, the gates, hardships, sacrifice, or deeds that lead to Jannah, establish what Jannah is and why it is worth striving for.",
+    "progression": [
+      "Jannah",
+      "Allah begins describing it",
+      "rivers",
+      "extraordinary abundance",
+      "permanence",
+      "beyond human imagination",
+      "gardens",
+      "comfort and peace",
+      "the people of Jannah",
+      "extraordinary scale",
+      "the greatest reward of all: seeing Allah"
+    ]
+  },
+  "scenes": [
+    {
+      "number": 1,
+      "id": "opening",
+      "eyebrow": "Part One",
+      "heading": "Descriptions of Jannah",
+      "on_screen": ["الجَنَّة", "JANNAH", "The Garden of Paradise"],
+      "existing_cinematic_scene": true
+    },
+    {
+      "number": 2,
+      "id": "the-promise",
+      "heading": "The Promise",
+      "source_type": "quran",
+      "source_id": "ar_rad_13_35",
+      "existing_cinematic_scene": true
+    },
+    {
+      "number": 3,
+      "id": "the-rivers",
+      "heading": "The Rivers of Jannah",
+      "source_type": "quran",
+      "source_id": "muhammad_47_15"
+    },
+    {
+      "number": 4,
+      "id": "beyond-imagination",
+      "heading": "Beyond Imagination",
+      "source_type": "hadith",
+      "source_id": "beyond_imagination"
+    },
+    {
+      "number": 5,
+      "id": "the-gardens",
+      "heading": "The Gardens",
+      "source_type": "quran",
+      "source_id": "ar_rahman_55_46_78",
+      "group_labels": [
+        "Two gardens, branches, and flowing springs",
+        "Fruits, reclining, and fruit within reach",
+        "Companions, rubies and coral, and the reward for good",
+        "Another pair of gardens, springs, fruit, palms, and pomegranates",
+        "Goodness and beauty, pavilions, cushions, and carpets",
+        "The conclusion of the passage"
+      ]
+    },
+    {
+      "number": 6,
+      "id": "abundance-rest-peace",
+      "heading": "Abundance, Rest and Peace",
+      "source_type": "quran",
+      "source_id": "al_waqiah_56_15_38",
+      "group_labels": [
+        "Couches, attendants, drink, fruit, and food",
+        "Companions, reward, and peace",
+        "The companions of the right: shade, water, fruit, and rest",
+        "The remaining verses of the selected passage"
+      ]
+    },
+    {
+      "number": 7,
+      "id": "the-first-to-enter",
+      "heading": "The First to Enter",
+      "source_type": "hadith",
+      "source_id": "first_to_enter",
+      "beat_labels": ["The First Group", "The Full Moon", "Gold", "Musk", "Adam", "Sixty Cubits"]
+    },
+    {
+      "number": 8,
+      "id": "the-tree",
+      "heading": "A Tree in Paradise",
+      "opening_lines": ["100 Years", "One Tree."],
+      "source_type": "hadith",
+      "source_id": "tree_in_paradise"
+    },
+    {
+      "number": 9,
+      "id": "the-greatest-reward",
+      "heading": "The Greatest Reward",
+      "opening_lines": ["But there is something greater."],
+      "source_type": "hadith",
+      "source_id": "greatest_reward",
+      "climax": true
+    }
+  ]
+}

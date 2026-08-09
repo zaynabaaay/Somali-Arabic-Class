@@ -1,0 +1,496 @@
+{
+  "source": {
+    "provider": "Quran.com API",
+    "api": "https://api.quran.com/api/v4",
+    "arabic_script": "Uthmani",
+    "translation": "Sahih International",
+    "quran_com_resource_name": "Saheeh International",
+    "translation_resource_id": 20,
+    "retrieved": "2026-08-09"
+  },
+  "passages": {
+    "ar_rad_13_35": {
+      "surah": "Ar-Ra'd",
+      "reference": "13:35",
+      "source_url": "https://quran.com/13/35",
+      "complete_arabic": "۞ مَّثَلُ ٱلْجَنَّةِ ٱلَّتِى وُعِدَ ٱلْمُتَّقُونَ ۖ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَـٰرُ ۖ أُكُلُهَا دَآئِمٌ وَظِلُّهَا ۚ تِلْكَ عُقْبَى ٱلَّذِينَ ٱتَّقَوا۟ ۖ وَّعُقْبَى ٱلْكَـٰفِرِينَ ٱلنَّارُ",
+      "complete_english": "The example of Paradise, which the righteous have been promised, is [that] beneath it rivers flow. Its fruit is lasting, and its shade. That is the consequence for the righteous, and the consequence for the disbelievers is the Fire.",
+      "beats": [
+        {
+          "id": "promise",
+          "arabic": "مَّثَلُ ٱلْجَنَّةِ ٱلَّتِى وُعِدَ ٱلْمُتَّقُونَ ۖ",
+          "english": "The example of Paradise, which the righteous have been promised,"
+        },
+        {
+          "id": "rivers-flow",
+          "arabic": "تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَـٰرُ ۖ",
+          "english": "is [that] beneath it rivers flow."
+        },
+        {
+          "id": "lasting-fruit-shade",
+          "arabic": "أُكُلُهَا دَآئِمٌ وَظِلُّهَا ۚ",
+          "english": "Its fruit is lasting, and its shade."
+        },
+        {
+          "id": "consequence",
+          "arabic": "تِلْكَ عُقْبَى ٱلَّذِينَ ٱتَّقَوا۟ ۖ وَّعُقْبَى ٱلْكَـٰفِرِينَ ٱلنَّارُ",
+          "english": "That is the consequence for the righteous, and the consequence for the disbelievers is the Fire."
+        }
+      ]
+    },
+    "muhammad_47_15": {
+      "surah": "Muhammad",
+      "reference": "47:15",
+      "source_url": "https://quran.com/47/15",
+      "complete_arabic": "مَّثَلُ ٱلْجَنَّةِ ٱلَّتِى وُعِدَ ٱلْمُتَّقُونَ ۖ فِيهَآ أَنْهَـٰرٌ مِّن مَّآءٍ غَيْرِ ءَاسِنٍ وَأَنْهَـٰرٌ مِّن لَّبَنٍ لَّمْ يَتَغَيَّرْ طَعْمُهُۥ وَأَنْهَـٰرٌ مِّنْ خَمْرٍ لَّذَّةٍ لِّلشَّـٰرِبِينَ وَأَنْهَـٰرٌ مِّنْ عَسَلٍ مُّصَفًّى ۖ وَلَهُمْ فِيهَا مِن كُلِّ ٱلثَّمَرَٰتِ وَمَغْفِرَةٌ مِّن رَّبِّهِمْ ۖ كَمَنْ هُوَ خَـٰلِدٌ فِى ٱلنَّارِ وَسُقُوا۟ مَآءً حَمِيمًا فَقَطَّعَ أَمْعَآءَهُمْ",
+      "complete_english": "Is the description of Paradise, which the righteous are promised, wherein are rivers of water unaltered, rivers of milk the taste of which never changes, rivers of wine delicious to those who drink, and rivers of purified honey, in which they will have from all [kinds of] fruits and forgiveness from their Lord, like [that of] those who abide eternally in the Fire and are given to drink scalding water that will sever their intestines?",
+      "beats": [
+        {
+          "id": "description",
+          "arabic": "مَّثَلُ ٱلْجَنَّةِ ٱلَّتِى وُعِدَ ٱلْمُتَّقُونَ ۖ",
+          "english": "Is the description of Paradise, which the righteous are promised,"
+        },
+        {
+          "id": "water",
+          "arabic": "فِيهَآ أَنْهَـٰرٌ مِّن مَّآءٍ غَيْرِ ءَاسِنٍ",
+          "english": "wherein are rivers of water unaltered,"
+        },
+        {
+          "id": "milk",
+          "arabic": "وَأَنْهَـٰرٌ مِّن لَّبَنٍ لَّمْ يَتَغَيَّرْ طَعْمُهُۥ",
+          "english": "rivers of milk the taste of which never changes,"
+        },
+        {
+          "id": "wine",
+          "arabic": "وَأَنْهَـٰرٌ مِّنْ خَمْرٍ لَّذَّةٍ لِّلشَّـٰرِبِينَ",
+          "english": "rivers of wine delicious to those who drink,"
+        },
+        {
+          "id": "honey",
+          "arabic": "وَأَنْهَـٰرٌ مِّنْ عَسَلٍ مُّصَفًّى ۖ",
+          "english": "and rivers of purified honey,"
+        },
+        {
+          "id": "fruit-forgiveness",
+          "arabic": "وَلَهُمْ فِيهَا مِن كُلِّ ٱلثَّمَرَٰتِ وَمَغْفِرَةٌ مِّن رَّبِّهِمْ ۖ",
+          "english": "in which they will have from all [kinds of] fruits and forgiveness from their Lord,"
+        },
+        {
+          "id": "comparison",
+          "arabic": "كَمَنْ هُوَ خَـٰلِدٌ فِى ٱلنَّارِ وَسُقُوا۟ مَآءً حَمِيمًا فَقَطَّعَ أَمْعَآءَهُمْ",
+          "english": "like [that of] those who abide eternally in the Fire and are given to drink scalding water that will sever their intestines?"
+        }
+      ]
+    },
+    "ar_rahman_55_46_78": {
+      "surah": "Ar-Rahman",
+      "reference": "55:46–78",
+      "source_url": "https://quran.com/55/46-78",
+      "groups": [
+        {
+          "id": 1,
+          "first": 46,
+          "last": 50
+        },
+        {
+          "id": 2,
+          "first": 51,
+          "last": 55
+        },
+        {
+          "id": 3,
+          "first": 56,
+          "last": 61
+        },
+        {
+          "id": 4,
+          "first": 62,
+          "last": 69
+        },
+        {
+          "id": 5,
+          "first": 70,
+          "last": 77
+        },
+        {
+          "id": 6,
+          "first": 78,
+          "last": 78
+        }
+      ],
+      "verses": [
+        {
+          "verse_number": 46,
+          "verse_key": "55:46",
+          "arabic": "وَلِمَنْ خَافَ مَقَامَ رَبِّهِۦ جَنَّتَانِ",
+          "english": "But for he who has feared the position of his Lord are two gardens -"
+        },
+        {
+          "verse_number": 47,
+          "verse_key": "55:47",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny? -"
+        },
+        {
+          "verse_number": 48,
+          "verse_key": "55:48",
+          "arabic": "ذَوَاتَآ أَفْنَانٍ",
+          "english": "Having [spreading] branches."
+        },
+        {
+          "verse_number": 49,
+          "verse_key": "55:49",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 50,
+          "verse_key": "55:50",
+          "arabic": "فِيهِمَا عَيْنَانِ تَجْرِيَانِ",
+          "english": "In both of them are two springs, flowing."
+        },
+        {
+          "verse_number": 51,
+          "verse_key": "55:51",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 52,
+          "verse_key": "55:52",
+          "arabic": "فِيهِمَا مِن كُلِّ فَـٰكِهَةٍ زَوْجَانِ",
+          "english": "In both of them are of every fruit, two kinds."
+        },
+        {
+          "verse_number": 53,
+          "verse_key": "55:53",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 54,
+          "verse_key": "55:54",
+          "arabic": "مُتَّكِـِٔينَ عَلَىٰ فُرُشٍۭ بَطَآئِنُهَا مِنْ إِسْتَبْرَقٍ ۚ وَجَنَى ٱلْجَنَّتَيْنِ دَانٍ",
+          "english": "[They are] reclining on beds whose linings are of silk brocade, and the fruit of the two gardens is hanging low."
+        },
+        {
+          "verse_number": 55,
+          "verse_key": "55:55",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 56,
+          "verse_key": "55:56",
+          "arabic": "فِيهِنَّ قَـٰصِرَٰتُ ٱلطَّرْفِ لَمْ يَطْمِثْهُنَّ إِنسٌ قَبْلَهُمْ وَلَا جَآنٌّ",
+          "english": "In them are women limiting [their] glances, untouched before them by man or jinnī -"
+        },
+        {
+          "verse_number": 57,
+          "verse_key": "55:57",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny? -"
+        },
+        {
+          "verse_number": 58,
+          "verse_key": "55:58",
+          "arabic": "كَأَنَّهُنَّ ٱلْيَاقُوتُ وَٱلْمَرْجَانُ",
+          "english": "As if they were rubies and coral."
+        },
+        {
+          "verse_number": 59,
+          "verse_key": "55:59",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 60,
+          "verse_key": "55:60",
+          "arabic": "هَلْ جَزَآءُ ٱلْإِحْسَـٰنِ إِلَّا ٱلْإِحْسَـٰنُ",
+          "english": "Is the reward for good [anything] but good?"
+        },
+        {
+          "verse_number": 61,
+          "verse_key": "55:61",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 62,
+          "verse_key": "55:62",
+          "arabic": "وَمِن دُونِهِمَا جَنَّتَانِ",
+          "english": "And below them both [in excellence] are two [other] gardens -"
+        },
+        {
+          "verse_number": 63,
+          "verse_key": "55:63",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny? -"
+        },
+        {
+          "verse_number": 64,
+          "verse_key": "55:64",
+          "arabic": "مُدْهَآمَّتَانِ",
+          "english": "Dark green [in color]."
+        },
+        {
+          "verse_number": 65,
+          "verse_key": "55:65",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 66,
+          "verse_key": "55:66",
+          "arabic": "فِيهِمَا عَيْنَانِ نَضَّاخَتَانِ",
+          "english": "In both of them are two springs, spouting."
+        },
+        {
+          "verse_number": 67,
+          "verse_key": "55:67",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 68,
+          "verse_key": "55:68",
+          "arabic": "فِيهِمَا فَـٰكِهَةٌ وَنَخْلٌ وَرُمَّانٌ",
+          "english": "In both of them are fruit and palm trees and pomegranates."
+        },
+        {
+          "verse_number": 69,
+          "verse_key": "55:69",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 70,
+          "verse_key": "55:70",
+          "arabic": "فِيهِنَّ خَيْرَٰتٌ حِسَانٌ",
+          "english": "In them are good and beautiful women -"
+        },
+        {
+          "verse_number": 71,
+          "verse_key": "55:71",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny? -"
+        },
+        {
+          "verse_number": 72,
+          "verse_key": "55:72",
+          "arabic": "حُورٌ مَّقْصُورَٰتٌ فِى ٱلْخِيَامِ",
+          "english": "Fair ones reserved in pavilions -"
+        },
+        {
+          "verse_number": 73,
+          "verse_key": "55:73",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny? -"
+        },
+        {
+          "verse_number": 74,
+          "verse_key": "55:74",
+          "arabic": "لَمْ يَطْمِثْهُنَّ إِنسٌ قَبْلَهُمْ وَلَا جَآنٌّ",
+          "english": "Untouched before them by man or jinnī -"
+        },
+        {
+          "verse_number": 75,
+          "verse_key": "55:75",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny? -"
+        },
+        {
+          "verse_number": 76,
+          "verse_key": "55:76",
+          "arabic": "مُتَّكِـِٔينَ عَلَىٰ رَفْرَفٍ خُضْرٍ وَعَبْقَرِىٍّ حِسَانٍ",
+          "english": "Reclining on green cushions and beautiful fine carpets."
+        },
+        {
+          "verse_number": 77,
+          "verse_key": "55:77",
+          "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+          "english": "So which of the favors of your Lord would you deny?"
+        },
+        {
+          "verse_number": 78,
+          "verse_key": "55:78",
+          "arabic": "تَبَـٰرَكَ ٱسْمُ رَبِّكَ ذِى ٱلْجَلَـٰلِ وَٱلْإِكْرَامِ",
+          "english": "Blessed is the name of your Lord, Owner of Majesty and Honor."
+        }
+      ]
+    },
+    "al_waqiah_56_15_38": {
+      "surah": "Al-Waqi'ah",
+      "reference": "56:15–38",
+      "source_url": "https://quran.com/56/15-38",
+      "groups": [
+        {
+          "id": 1,
+          "first": 15,
+          "last": 21
+        },
+        {
+          "id": 2,
+          "first": 22,
+          "last": 26
+        },
+        {
+          "id": 3,
+          "first": 27,
+          "last": 34
+        },
+        {
+          "id": 4,
+          "first": 35,
+          "last": 38
+        }
+      ],
+      "verses": [
+        {
+          "verse_number": 15,
+          "verse_key": "56:15",
+          "arabic": "عَلَىٰ سُرُرٍ مَّوْضُونَةٍ",
+          "english": "On thrones woven [with ornament],"
+        },
+        {
+          "verse_number": 16,
+          "verse_key": "56:16",
+          "arabic": "مُّتَّكِـِٔينَ عَلَيْهَا مُتَقَـٰبِلِينَ",
+          "english": "Reclining on them, facing each other."
+        },
+        {
+          "verse_number": 17,
+          "verse_key": "56:17",
+          "arabic": "يَطُوفُ عَلَيْهِمْ وِلْدَٰنٌ مُّخَلَّدُونَ",
+          "english": "There will circulate among them young boys made eternal."
+        },
+        {
+          "verse_number": 18,
+          "verse_key": "56:18",
+          "arabic": "بِأَكْوَابٍ وَأَبَارِيقَ وَكَأْسٍ مِّن مَّعِينٍ",
+          "english": "With vessels, pitchers and a cup [of wine] from a flowing spring -"
+        },
+        {
+          "verse_number": 19,
+          "verse_key": "56:19",
+          "arabic": "لَّا يُصَدَّعُونَ عَنْهَا وَلَا يُنزِفُونَ",
+          "english": "No headache will they have therefrom, nor will they be intoxicated -"
+        },
+        {
+          "verse_number": 20,
+          "verse_key": "56:20",
+          "arabic": "وَفَـٰكِهَةٍ مِّمَّا يَتَخَيَّرُونَ",
+          "english": "And fruit of what they select"
+        },
+        {
+          "verse_number": 21,
+          "verse_key": "56:21",
+          "arabic": "وَلَحْمِ طَيْرٍ مِّمَّا يَشْتَهُونَ",
+          "english": "And the meat of fowl, from whatever they desire."
+        },
+        {
+          "verse_number": 22,
+          "verse_key": "56:22",
+          "arabic": "وَحُورٌ عِينٌ",
+          "english": "And [for them are] fair women with large, [beautiful] eyes,"
+        },
+        {
+          "verse_number": 23,
+          "verse_key": "56:23",
+          "arabic": "كَأَمْثَـٰلِ ٱللُّؤْلُؤِ ٱلْمَكْنُونِ",
+          "english": "The likenesses of pearls well-protected,"
+        },
+        {
+          "verse_number": 24,
+          "verse_key": "56:24",
+          "arabic": "جَزَآءًۢ بِمَا كَانُوا۟ يَعْمَلُونَ",
+          "english": "As reward for what they used to do."
+        },
+        {
+          "verse_number": 25,
+          "verse_key": "56:25",
+          "arabic": "لَا يَسْمَعُونَ فِيهَا لَغْوًا وَلَا تَأْثِيمًا",
+          "english": "They will not hear therein ill speech or commission of sin -"
+        },
+        {
+          "verse_number": 26,
+          "verse_key": "56:26",
+          "arabic": "إِلَّا قِيلًا سَلَـٰمًا سَلَـٰمًا",
+          "english": "Only a saying [of] peace, peace."
+        },
+        {
+          "verse_number": 27,
+          "verse_key": "56:27",
+          "arabic": "وَأَصْحَـٰبُ ٱلْيَمِينِ مَآ أَصْحَـٰبُ ٱلْيَمِينِ",
+          "english": "The companions of the right - what are the companions of the right?"
+        },
+        {
+          "verse_number": 28,
+          "verse_key": "56:28",
+          "arabic": "فِى سِدْرٍ مَّخْضُودٍ",
+          "english": "[They will be] among lote trees with thorns removed."
+        },
+        {
+          "verse_number": 29,
+          "verse_key": "56:29",
+          "arabic": "وَطَلْحٍ مَّنضُودٍ",
+          "english": "And [banana] trees layered [with fruit]."
+        },
+        {
+          "verse_number": 30,
+          "verse_key": "56:30",
+          "arabic": "وَظِلٍّ مَّمْدُودٍ",
+          "english": "And shade extended."
+        },
+        {
+          "verse_number": 31,
+          "verse_key": "56:31",
+          "arabic": "وَمَآءٍ مَّسْكُوبٍ",
+          "english": "And water poured out"
+        },
+        {
+          "verse_number": 32,
+          "verse_key": "56:32",
+          "arabic": "وَفَـٰكِهَةٍ كَثِيرَةٍ",
+          "english": "And fruit, abundant [and varied],"
+        },
+        {
+          "verse_number": 33,
+          "verse_key": "56:33",
+          "arabic": "لَّا مَقْطُوعَةٍ وَلَا مَمْنُوعَةٍ",
+          "english": "Neither limited [to season] nor forbidden,"
+        },
+        {
+          "verse_number": 34,
+          "verse_key": "56:34",
+          "arabic": "وَفُرُشٍ مَّرْفُوعَةٍ",
+          "english": "And [upon] beds raised high."
+        },
+        {
+          "verse_number": 35,
+          "verse_key": "56:35",
+          "arabic": "إِنَّآ أَنشَأْنَـٰهُنَّ إِنشَآءً",
+          "english": "Indeed, We have produced them [i.e., the women of Paradise] in a [new] creation"
+        },
+        {
+          "verse_number": 36,
+          "verse_key": "56:36",
+          "arabic": "فَجَعَلْنَـٰهُنَّ أَبْكَارًا",
+          "english": "And made them virgins,"
+        },
+        {
+          "verse_number": 37,
+          "verse_key": "56:37",
+          "arabic": "عُرُبًا أَتْرَابًا",
+          "english": "Devoted [to their husbands] and of equal age,"
+        },
+        {
+          "verse_number": 38,
+          "verse_key": "56:38",
+          "arabic": "لِّأَصْحَـٰبِ ٱلْيَمِينِ",
+          "english": "For the companions of the right [who are]"
+        }
+      ]
+    }
+  }
+}

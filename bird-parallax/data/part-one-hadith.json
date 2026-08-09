@@ -1,0 +1,86 @@
+{
+  "source": {
+    "provider": "Sunnah.com",
+    "retrieved": "2026-08-09",
+    "note": "English quotations and Arabic source text are preserved from the cited Sunnah.com records."
+  },
+  "hadith": {
+    "beyond_imagination": {
+      "label": "Hadith Qudsi",
+      "primary_reference": "Sahih al-Bukhari 3244",
+      "primary_url": "https://sunnah.com/bukhari:3244",
+      "parallel_references": [
+        {
+          "reference": "Sahih Muslim 2824b",
+          "url": "https://sunnah.com/muslim:2824b"
+        }
+      ],
+      "arabic": "حَدَّثَنَا الْحُمَيْدِيُّ، حَدَّثَنَا سُفْيَانُ، حَدَّثَنَا أَبُو الزِّنَادِ، عَنِ الأَعْرَجِ، عَنْ أَبِي هُرَيْرَةَ ـ رضى الله عنه ـ قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏\"‏ قَالَ اللَّهُ أَعْدَدْتُ لِعِبَادِي الصَّالِحِينَ مَا لاَ عَيْنَ رَأَتْ، وَلاَ أُذُنَ سَمِعَتْ، وَلاَ خَطَرَ عَلَى قَلْبِ بَشَرٍ، فَاقْرَءُوا إِنْ شِئْتُمْ ‏‏{‏فَلاَ تَعْلَمُ نَفْسٌ مَا أُخْفِيَ لَهُمْ مِنْ قُرَّةِ أَعْيُنٍ ‏}‏‏\"‏‏.‏",
+      "english": "I have prepared for My Pious slaves things which have never been seen by an eye, or heard by an ear, or imagined by a human being."
+    },
+    "first_to_enter": {
+      "label": "The First to Enter",
+      "primary_reference": "Sahih al-Bukhari 3327",
+      "primary_url": "https://sunnah.com/bukhari:3327",
+      "parallel_references": [
+        {
+          "reference": "Sahih Muslim 2834e",
+          "url": "https://sunnah.com/muslim:2834e"
+        }
+      ],
+      "arabic": "حَدَّثَنَا قُتَيْبَةُ بْنُ سَعِيدٍ، حَدَّثَنَا جَرِيرٌ، عَنْ عُمَارَةَ، عَنْ أَبِي زُرْعَةَ، عَنْ أَبِي هُرَيْرَةَ ـ رضى الله عنه ـ قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏\"‏ إِنَّ أَوَّلَ زُمْرَةٍ يَدْخُلُونَ الْجَنَّةَ عَلَى صُورَةِ الْقَمَرِ لَيْلَةَ الْبَدْرِ، ثُمَّ الَّذِينَ يَلُونَهُمْ عَلَى أَشَدِّ كَوْكَبٍ دُرِّيٍّ فِي السَّمَاءِ إِضَاءَةً، لاَ يَبُولُونَ وَلاَ يَتَغَوَّطُونَ وَلاَ يَتْفِلُونَ وَلاَ يَمْتَخِطُونَ، أَمْشَاطُهُمُ الذَّهَبُ، وَرَشْحُهُمُ الْمِسْكُ، وَمَجَامِرُهُمُ الأَلُوَّةُ الأَنْجُوجُ عُودُ الطِّيبِ، وَأَزْوَاجُهُمُ الْحُورُ الْعِينُ، عَلَى خَلْقِ رَجُلٍ وَاحِدٍ عَلَى صُورَةِ أَبِيهِمْ آدَمَ، سِتُّونَ ذِرَاعًا فِي السَّمَاءِ ‏\"‏‏.‏",
+      "english": "The first group of people who will enter Paradise, will be glittering like the full moon and those who will follow them, will glitter like the most brilliant star in the sky. They will not urinate, relieve nature, spit, or have any nasal secretions. Their combs will be of gold, and their sweat will smell like musk. The aloes-wood will be used in their centers. Their wives will be houris. All of them will look alike and will resemble their father Adam (in stature), sixty cubits tall.",
+      "beats": [
+        "The first group of people who will enter Paradise, will be glittering like the full moon and those who will follow them, will glitter like the most brilliant star in the sky.",
+        "They will not urinate, relieve nature, spit, or have any nasal secretions.",
+        "Their combs will be of gold, and their sweat will smell like musk.",
+        "The aloes-wood will be used in their centers. Their wives will be houris.",
+        "All of them will look alike and will resemble their father Adam (in stature), sixty cubits tall."
+      ],
+      "supporting_narration": {
+        "reference": "Sahih al-Bukhari 3245",
+        "url": "https://sunnah.com/bukhari:3245",
+        "arabic": "حَدَّثَنَا مُحَمَّدُ بْنُ مُقَاتِلٍ، أَخْبَرَنَا عَبْدُ اللَّهِ، أَخْبَرَنَا مَعْمَرٌ، عَنْ هَمَّامِ بْنِ مُنَبِّهٍ، عَنْ أَبِي هُرَيْرَةَ ـ رضى الله عنه ـ قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏\"‏ أَوَّلُ زُمْرَةٍ تَلِجُ الْجَنَّةَ صُورَتُهُمْ عَلَى صُورَةِ الْقَمَرِ لَيْلَةَ الْبَدْرِ، لاَ يَبْصُقُونَ فِيهَا وَلاَ يَمْتَخِطُونَ وَلاَ يَتَغَوَّطُونَ، آنِيَتُهُمْ فِيهَا الذَّهَبُ، أَمْشَاطُهُمْ مِنَ الذَّهَبِ وَالْفِضَّةِ، وَمَجَامِرُهُمُ الأَلُوَّةُ، وَرَشْحُهُمُ الْمِسْكُ، وَلِكُلِّ وَاحِدٍ مِنْهُمْ زَوْجَتَانِ، يُرَى مُخُّ سُوقِهِمَا مِنْ وَرَاءِ اللَّحْمِ، مِنَ الْحُسْنِ، لاَ اخْتِلاَفَ بَيْنَهُمْ وَلاَ تَبَاغُضَ، قُلُوبُهُمْ قَلْبٌ وَاحِدٌ، يُسَبِّحُونَ اللَّهَ بُكْرَةً وَعَشِيًّا ‏\"‏‏.‏",
+        "english": "The first group (of people) who will enter Paradise will be (glittering) like the moon when it is full. They will not spit or blow their noses or relieve nature. Their utensils will be of gold and their combs of gold and silver; in their centers the aloe wood will be used, and their sweat will smell like musk. Everyone of them will have two wives; the marrow of the bones of the wives' legs will be seen through the flesh out of excessive beauty. They ( i.e. the people of Paradise) will neither have differences nor hatred amongst themselves; their hearts will be as if one heart and they will be glorifying Allah in the morning and in the evening."
+      }
+    },
+    "tree_in_paradise": {
+      "label": "A Tree in Paradise",
+      "primary_reference": "Sahih al-Bukhari 3251",
+      "primary_url": "https://sunnah.com/bukhari:3251",
+      "parallel_references": [
+        {
+          "reference": "Sahih Muslim 2826a",
+          "url": "https://sunnah.com/muslim:2826a"
+        }
+      ],
+      "arabic": "حَدَّثَنَا رَوْحُ بْنُ عَبْدِ الْمُؤْمِنِ، حَدَّثَنَا يَزِيدُ بْنُ زُرَيْعٍ، حَدَّثَنَا سَعِيدٌ، عَنْ قَتَادَةَ، حَدَّثَنَا أَنَسُ بْنُ مَالِكٍ ـ رضى الله عنه ـ عَنِ النَّبِيِّ صلى الله عليه وسلم قَالَ ‏\"‏ إِنَّ فِي الْجَنَّةِ لَشَجَرَةً يَسِيرُ الرَّاكِبُ فِي ظِلِّهَا مِائَةَ عَامٍ لاَ يَقْطَعُهَا ‏\"‏‏.‏",
+      "english": "There is a tree in Paradise (which is so big and huge that) if a rider travels in its shade for one hundred years, he would not be able to cross it."
+    },
+    "greatest_reward": {
+      "label": "The Greatest Reward",
+      "primary_reference": "Sahih Muslim 181a",
+      "primary_url": "https://sunnah.com/muslim:181a",
+      "arabic": "حَدَّثَنَا عُبَيْدُ اللَّهِ بْنُ عُمَرَ بْنِ مَيْسَرَةَ، قَالَ حَدَّثَنِي عَبْدُ الرَّحْمَنِ بْنِ مَهْدِيٍّ، حَدَّثَنَا حَمَّادُ بْنُ سَلَمَةَ، عَنْ ثَابِتٍ الْبُنَانِيِّ، عَنْ عَبْدِ الرَّحْمَنِ بْنِ أَبِي لَيْلَى، عَنْ صُهَيْبٍ، عَنِ النَّبِيِّ صلى الله عليه وسلم قَالَ ‏\"‏ إِذَا دَخَلَ أَهْلُ الْجَنَّةِ الْجَنَّةَ - قَالَ - يَقُولُ اللَّهُ تَبَارَكَ وَتَعَالَى تُرِيدُونَ شَيْئًا أَزِيدُكُمْ فَيَقُولُونَ أَلَمْ تُبَيِّضْ وُجُوهَنَا أَلَمْ تُدْخِلْنَا الْجَنَّةَ وَتُنَجِّنَا مِنَ النَّارِ - قَالَ - فَيَكْشِفُ الْحِجَابَ فَمَا أُعْطُوا شَيْئًا أَحَبَّ إِلَيْهِمْ مِنَ النَّظَرِ إِلَى رَبِّهِمْ عَزَّ وَجَلَّ ‏\" ‏ ‏.‏",
+      "english": "When those deserving of Paradise would enter Paradise, the Blessed and the Exalted would ask: Do you wish Me to give you anything more? They would say: Hast Thou not brightened our faces? Hast Thou not made us enter Paradise and saved us from Fire? He (the narrator) said: He (God) would lift the veil, and of things given to them nothing would he dearer to them than the sight of their Lord, the Mighty and the Glorious.",
+      "beats": [
+        {
+          "arabic": "إِذَا دَخَلَ أَهْلُ الْجَنَّةِ الْجَنَّةَ - قَالَ - يَقُولُ اللَّهُ تَبَارَكَ وَتَعَالَى تُرِيدُونَ شَيْئًا أَزِيدُكُمْ",
+          "english": "When those deserving of Paradise would enter Paradise, the Blessed and the Exalted would ask: Do you wish Me to give you anything more?"
+        },
+        {
+          "arabic": "فَيَقُولُونَ أَلَمْ تُبَيِّضْ وُجُوهَنَا أَلَمْ تُدْخِلْنَا الْجَنَّةَ وَتُنَجِّنَا مِنَ النَّارِ",
+          "english": "They would say: Hast Thou not brightened our faces? Hast Thou not made us enter Paradise and saved us from Fire?"
+        },
+        {
+          "arabic": "قَالَ - فَيَكْشِفُ الْحِجَابَ",
+          "english": "He (the narrator) said: He (God) would lift the veil,"
+        },
+        {
+          "arabic": "فَمَا أُعْطُوا شَيْئًا أَحَبَّ إِلَيْهِمْ مِنَ النَّظَرِ إِلَى رَبِّهِمْ عَزَّ وَجَلَّ",
+          "english": "and of things given to them nothing would he dearer to them than the sight of their Lord, the Mighty and the Glorious."
+        }
+      ]
+    }
+  }
+}
