@@ -9,6 +9,11 @@
   --bridge-opacity: 0;
   --bridge-y: 2vh;
   --landscape-reveal: 0;
+  --river-progress: 0;
+  --river-approach-opacity: 0;
+  --river-continuity-opacity: 1;
+  --river-distant-shift: -3.5;
+  --river-close-shift: -10;
   --page-blue: #dbeaf5;
   --page-ivory: #f8f4ea;
   --story-ink: #46596a;
@@ -292,6 +297,107 @@ body {
   background: currentColor;
 }
 
+/* Scene 2 begins on the exact aerial plate used at the end of the opening. */
+.river-scene {
+  position: relative;
+  height: 320svh;
+  background: var(--page-ivory);
+}
+
+.river-viewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--page-blue), var(--page-ivory));
+  isolation: isolate;
+}
+
+.river-sky,
+.river-continuity,
+.river-approach,
+.river-distant-clouds,
+.river-close-clouds {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+}
+
+.river-sky {
+  z-index: -5;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.river-continuity,
+.river-approach {
+  inset: 0 -4%;
+  width: 108%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform-origin: center 38%;
+  will-change: opacity, transform;
+}
+
+.river-continuity {
+  z-index: -4;
+  opacity: var(--river-continuity-opacity);
+  filter: saturate(.8) brightness(1.035) contrast(.94);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .62) 8%, #000 19%);
+  mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .62) 8%, #000 19%);
+  transform: translate3d(0, calc(var(--river-progress) * -2vh), 0)
+    scale(calc(1 + var(--river-progress) * .11));
+}
+
+.river-approach {
+  z-index: -3;
+  opacity: var(--river-approach-opacity);
+  filter: saturate(.86) brightness(1.015) contrast(.96);
+  transform: translate3d(0, calc((1 - var(--river-progress)) * 2.5vh - var(--river-progress) * 5vh), 0)
+    scale(calc(.975 + var(--river-progress) * .105));
+}
+
+.river-distant-clouds {
+  z-index: -2;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  object-position: center bottom;
+  opacity: .72;
+  filter: saturate(.72) contrast(.94);
+  transform: translate3d(0, calc(var(--river-distant-shift) * 1vh), 0) scale(1.015);
+  will-change: transform;
+}
+
+.river-close-clouds {
+  z-index: -1;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  object-fit: cover;
+  object-position: center bottom;
+  opacity: .84;
+  filter: saturate(.78) brightness(1.015);
+  transform: translate3d(0, calc(var(--river-close-shift) * 1vh), 0) scale(1.025);
+  will-change: transform;
+}
+
+.river-atmosphere {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .14), transparent 28%),
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, .1), transparent 50%);
+}
+
 @media (max-width: 760px) {
   .sky-scene {
     height: 460svh;
@@ -332,6 +438,10 @@ body {
 
   .scripture-arabic {
     font-size: clamp(2.05rem, 9.2vw, 3.6rem);
+  }
+
+  .river-scene {
+    height: 300svh;
   }
 
 }
@@ -376,6 +486,22 @@ body {
   .scripture-opening,
   .scripture-bridge {
     transition: none;
+    will-change: auto;
+  }
+
+  .river-scene {
+    height: 160svh;
+  }
+
+  .river-continuity,
+  .river-distant-clouds,
+  .river-close-clouds {
+    display: none;
+  }
+
+  .river-approach {
+    opacity: 1;
+    transform: none;
     will-change: auto;
   }
 }

@@ -1,6 +1,7 @@
 (() => {
   const root = document.documentElement;
   const scene = document.querySelector("#opening-sky");
+  const riverScene = document.querySelector("#river-approach");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let frameRequested = false;
 
@@ -13,13 +14,18 @@
     return value * value * (3 - 2 * value);
   }
 
-  function updateOpeningSky() {
+  function sceneProgress(element) {
+    if (!element) return 0;
+    const travel = Math.max(1, element.offsetHeight - window.innerHeight);
+    return clamp(-element.getBoundingClientRect().top / travel);
+  }
+
+  function updateScenes() {
     frameRequested = false;
 
-    if (!scene) return;
+    if (!scene && !riverScene) return;
 
-    const travel = Math.max(1, scene.offsetHeight - window.innerHeight);
-    const progress = clamp(-scene.getBoundingClientRect().top / travel);
+    const progress = sceneProgress(scene);
     const heroDeparture = easeBetween(progress, .2, .35);
     const verseArrival = easeBetween(progress, .5, .58);
     const verseDeparture = easeBetween(progress, .8, .87);
@@ -41,12 +47,26 @@
     root.style.setProperty("--bridge-opacity", (bridgeArrival * (1 - bridgeDeparture)).toFixed(3));
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
+
+    const riverProgress = sceneProgress(riverScene);
+    const approachArrival = easeBetween(riverProgress, .12, .48);
+    const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
+    const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
+
+    root.style.setProperty("--river-approach-opacity", approachArrival.toFixed(3));
+    root.style.setProperty("--river-continuity-opacity", (1 - approachArrival).toFixed(3));
+
+    if (!reduceMotion.matches) {
+      root.style.setProperty("--river-progress", riverProgress.toFixed(4));
+      root.style.setProperty("--river-close-shift", (-10 - 132 * closeCloudDeparture).toFixed(3));
+      root.style.setProperty("--river-distant-shift", (-3.5 - 104 * distantCloudDeparture).toFixed(3));
+    }
   }
 
   function requestUpdate() {
     if (frameRequested) return;
     frameRequested = true;
-    requestAnimationFrame(updateOpeningSky);
+    requestAnimationFrame(updateScenes);
   }
 
   window.addEventListener("scroll", requestUpdate, { passive: true });
