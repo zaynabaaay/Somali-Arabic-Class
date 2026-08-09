@@ -20,10 +20,10 @@
       <path d="M130 555L705 570 735 805 235 880 130 555Z"/>
     </clipPath>
     <clipPath id="body-clip">
-      <path d="M365 525C500 510 650 535 780 560 865 576 930 548 1015 545L1060 700C975 730 940 786 820 824 665 874 500 832 420 755 380 705 360 620 365 525Z"/>
+      <path d="M485 535C575 518 680 540 780 560 865 576 930 548 1015 545L1060 700C975 730 940 786 820 824 665 874 555 830 500 780 472 710 468 620 485 535Z"/>
     </clipPath>
     <clipPath id="head-clip">
-      <path d="M900 480C1010 500 1080 500 1160 540 1210 565 1255 600 1262 635 1210 686 1115 719 1015 710 960 688 918 642 900 575Z"/>
+      <path d="M900 480C1000 496 1080 503 1134 540 1146 553 1150 578 1147 605L1147 626C1139 650 1112 677 1072 695 1039 710 1008 708 982 692 939 666 916 625 900 575Z"/>
     </clipPath>
     <clipPath id="wing-clip">
       <path d="M270 104C430 114 640 188 790 305 890 384 945 500 950 612 930 682 850 724 760 716 650 700 555 642 482 560 382 447 310 285 270 104Z"/>
@@ -88,16 +88,16 @@
   <g id="bird">
     <!-- ANIMATION: rotate from the feather roots near 610,700. -->
     <g id="tail">
-      <use xlink:href="#traced-palette" clip-path="url(#tail-clip)"/>
-      <g id="major-tail-feathers" stroke="#a89f92" stroke-width="2" stroke-linejoin="round">
-        <path id="tail-feather-1" d="M172 589C317 603 477 647 620 708 477 675 330 650 185 634Z" fill="#eee5d3"/>
-        <path id="tail-feather-2" d="M156 642C314 646 466 684 591 742 442 705 298 695 170 685Z" fill="#ded4c3"/>
-        <path id="tail-feather-3" d="M193 704C334 692 457 723 548 770 420 739 304 750 218 758Z" fill="#c7c0b5"/>
+      <g id="major-tail-feathers" stroke-linejoin="round">
+        <path id="tail-feather-1" d="M558 661C445 625 324 601 181 587 303 639 414 684 564 706Z" fill="#eee5d3"/>
+        <path id="tail-feather-2" d="M560 688C421 668 298 660 159 672 300 701 425 721 566 724Z" fill="#ddd4c4"/>
+        <path id="tail-feather-3" d="M561 710C430 714 323 737 208 787 335 759 447 756 574 736Z" fill="#c6bfb2"/>
+        <path id="tail-feather-4" d="M565 727C461 753 377 789 295 840 394 801 482 777 584 748Z" fill="#aaa296"/>
       </g>
-      <g id="tail-feather-details" fill="none" stroke="#f3ead9" stroke-linecap="round" opacity=".62">
-        <path id="tail-feather-line-1" d="M226 634C345 652 472 686 603 725"/>
-        <path id="tail-feather-line-2" d="M205 681C352 690 477 722 575 760"/>
-        <path id="tail-feather-line-3" d="M247 755C355 748 443 770 518 802"/>
+      <g id="tail-feather-details" fill="none" stroke="#f6eddd" stroke-width="2.4" stroke-linecap="round" opacity=".5">
+        <path id="tail-feather-line-1" d="M239 620C365 652 462 680 548 698"/>
+        <path id="tail-feather-line-2" d="M227 681C354 693 450 710 551 719"/>
+        <path id="tail-feather-line-3" d="M281 770C380 743 461 735 557 732"/>
       </g>
     </g>
 
@@ -120,20 +120,20 @@
     <g id="right-wing">
       <g id="wing-feathers">
         <use xlink:href="#traced-palette" clip-path="url(#wing-clip)"/>
-        <g id="primary-feathers" fill="none" stroke="#80786e" stroke-width="3.5" stroke-linecap="round" opacity=".48">
-          <path id="primary-feather-1" d="M326 145C485 193 637 294 748 420"/>
-          <path id="primary-feather-2" d="M314 196C480 238 635 330 760 452"/>
-          <path id="primary-feather-3" d="M327 252C489 287 638 367 770 488"/>
-          <path id="primary-feather-4" d="M360 317C513 339 647 409 780 527"/>
+        <g id="primary-feathers" fill="#766f65" opacity=".02">
+          <path id="primary-feather-1" d="M312 145C454 178 613 270 743 403 609 300 461 221 326 188Z"/>
+          <path id="primary-feather-2" d="M306 211C454 236 615 316 760 447 610 349 464 282 322 257Z"/>
+          <path id="primary-feather-3" d="M326 282C468 302 620 371 770 493 622 407 481 349 343 331Z"/>
+          <path id="primary-feather-4" d="M370 359C499 372 635 430 779 535 638 467 510 421 388 407Z"/>
         </g>
-        <g id="secondary-feathers" fill="none" stroke="#fff8e9" stroke-width="4" stroke-linecap="round" opacity=".58">
-          <path id="secondary-feather-1" d="M477 401C588 422 688 482 785 577"/>
-          <path id="secondary-feather-2" d="M507 466C608 480 691 526 774 610"/>
-          <path id="secondary-feather-3" d="M548 530C628 542 696 576 752 642"/>
+        <g id="secondary-feathers" fill="#fff9ea" opacity=".04">
+          <path id="secondary-feather-1" d="M470 415C581 432 688 482 790 568 680 505 583 465 488 451Z"/>
+          <path id="secondary-feather-2" d="M507 481C607 492 690 532 774 603 684 554 608 525 525 514Z"/>
+          <path id="secondary-feather-3" d="M551 544C631 552 697 582 754 638 688 601 627 580 567 574Z"/>
         </g>
-        <g id="coverts" fill="none" stroke="#f5ecdb" stroke-width="9" stroke-linecap="round" opacity=".42">
-          <path id="covert-row-1" d="M692 349C766 407 821 475 850 550"/>
-          <path id="covert-row-2" d="M652 390C730 449 787 511 815 578"/>
+        <g id="coverts" fill="#f7efdf" opacity=".06">
+          <path id="covert-row-1" d="M687 357C755 408 807 470 839 540 789 480 741 431 678 393Z"/>
+          <path id="covert-row-2" d="M652 407C719 451 770 506 802 570 755 518 708 477 644 445Z"/>
         </g>
       </g>
     </g>
@@ -141,16 +141,16 @@
     <!-- ANIMATION: a small independent nod around the neck base near 985,655. -->
     <g id="head">
       <use xlink:href="#traced-palette" clip-path="url(#head-clip)"/>
-      <path id="face-glow" d="M979 568C1028 532 1094 527 1144 552 1116 557 1103 572 1092 596 1074 636 1036 655 992 642 970 625 964 594 979 568Z" fill="url(#face-light)" opacity=".7"/>
+      <path id="face-glow" d="M967 562C1010 528 1070 525 1120 549 1138 561 1147 582 1147 605L1147 625C1128 655 1087 676 1040 678 998 670 971 643 961 610 957 592 959 576 967 562Z" fill="#f4ecdc"/>
       <g id="eye">
-        <path id="eye-lash" d="M1086 579C1098 570 1113 571 1123 581 1112 587 1098 588 1088 584Z" fill="#4d4841"/>
-        <ellipse id="eye-iris" cx="1106" cy="581" rx="5.5" ry="7" fill="#2f2d2a"/>
-        <circle id="eye-highlight" cx="1108" cy="578.5" r="1.8" fill="#fffdf5"/>
+        <path id="eye-lash" d="M1084 579C1095 570 1110 569 1122 578 1112 582 1098 584 1086 582Z" fill="#49453f"/>
+        <ellipse id="eye-iris" cx="1105" cy="578" rx="4.6" ry="5.8" fill="#282725"/>
+        <circle id="eye-highlight" cx="1107" cy="576" r="1.5" fill="#fffdf5"/>
       </g>
       <g id="beak">
-        <path id="upper-beak" d="M1146 607C1183 599 1221 607 1250 620 1214 625 1177 626 1147 620Z" fill="url(#beak-light)"/>
-        <path id="lower-beak" d="M1148 620C1180 626 1214 625 1246 621 1212 635 1174 638 1148 628Z" fill="#71685e"/>
-        <path id="beak-seam" d="M1150 621C1182 624 1216 623 1247 620" fill="none" stroke="#403c38" stroke-width="1.6" opacity=".62"/>
+        <path id="upper-beak" d="M1145 606C1181 603 1218 609 1247 620 1210 621 1176 621 1146 617Z" fill="url(#beak-light)"/>
+        <path id="lower-beak" d="M1146 618C1178 622 1212 622 1247 620 1215 630 1176 632 1147 625Z" fill="#71685e"/>
+        <path id="beak-seam" d="M1148 619C1180 621 1214 621 1246 620" fill="none" stroke="#403c38" stroke-width="1.2" opacity=".5"/>
       </g>
     </g>
   </g>
