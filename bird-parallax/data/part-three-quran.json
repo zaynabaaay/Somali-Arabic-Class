@@ -1,0 +1,37 @@
+{
+  "translation": "Saheeh International",
+  "passages": {
+    "al_buruj_85_4_8": {
+      "surah": "Al-Buruj",
+      "reference": "85:4–8",
+      "source_url": "https://quran.com/85/4-8",
+      "verses": [
+        {
+          "verse_key": "85:4",
+          "arabic": "قُتِلَ أَصْحَـٰبُ ٱلْأُخْدُودِ",
+          "english": "Destroyed [i.e., cursed] were the companions of the trench"
+        },
+        {
+          "verse_key": "85:5",
+          "arabic": "ٱلنَّارِ ذَاتِ ٱلْوَقُودِ",
+          "english": "[Containing] the fire full of fuel,"
+        },
+        {
+          "verse_key": "85:6",
+          "arabic": "إِذْ هُمْ عَلَيْهَا قُعُودٌ",
+          "english": "When they were sitting near it."
+        },
+        {
+          "verse_key": "85:7",
+          "arabic": "وَهُمْ عَلَىٰ مَا يَفْعَلُونَ بِٱلْمُؤْمِنِينَ شُهُودٌ",
+          "english": "And they, to what they were doing against the believers, were witnesses."
+        },
+        {
+          "verse_key": "85:8",
+          "arabic": "وَمَا نَقَمُوا۟ مِنْهُمْ إِلَّآ أَن يُؤْمِنُوا۟ بِٱللَّهِ ٱلْعَزِيزِ ٱلْحَمِيدِ",
+          "english": "And they resented them not except because they believed in Allāh, the Exalted in Might, the Praiseworthy,"
+        }
+      ]
+    }
+  }
+}

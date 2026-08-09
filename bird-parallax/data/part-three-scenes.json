@@ -1,0 +1,32 @@
+{
+  "part": {
+    "number": 3,
+    "title": "The Proof"
+  },
+  "scenes": [
+    {
+      "id": "opening",
+      "on_screen": ["PART THREE", "The Proof"]
+    },
+    {
+      "id": "al-buruj-85-4-8",
+      "source_type": "quran",
+      "source_id": "al_buruj_85_4_8"
+    },
+    {
+      "id": "muslim-3005",
+      "source_type": "hadith",
+      "source_id": "muslim_3005"
+    },
+    {
+      "id": "bukhari-6943",
+      "source_type": "hadith",
+      "source_id": "bukhari_6943"
+    },
+    {
+      "id": "woman-of-paradise",
+      "source_type": "hadith",
+      "source_id": "woman_of_paradise"
+    }
+  ]
+}

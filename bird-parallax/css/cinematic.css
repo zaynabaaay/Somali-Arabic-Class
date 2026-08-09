@@ -1154,6 +1154,7 @@ blockquote.source-english {
 
 .content-review-mode .part-one-content,
 .content-review-mode .part-two-content,
+.content-review-mode .part-three-content,
 .content-review-mode .content-scene,
 .content-review-mode .content-scene:nth-child(even),
 .content-review-mode .source-beat:nth-child(even) {
@@ -1161,7 +1162,8 @@ blockquote.source-english {
 }
 
 .content-review-mode .part-one-content,
-.content-review-mode .part-two-content {
+.content-review-mode .part-two-content,
+.content-review-mode .part-three-content {
   padding: 0;
   background:
     radial-gradient(circle at 50% 10%, rgba(219, 234, 229, .42), transparent 30%),
@@ -1169,13 +1171,15 @@ blockquote.source-english {
 }
 
 .content-review-mode .part-one-scenes,
-.content-review-mode .part-two-scenes {
+.content-review-mode .part-two-scenes,
+.content-review-mode .part-three-scenes {
   width: 100%;
   max-width: none;
 }
 
 .content-review-mode .part-one-opening,
-.content-review-mode .part-two-opening {
+.content-review-mode .part-two-opening,
+.content-review-mode .part-three-opening {
   min-height: 100svh;
   display: grid;
   align-content: center;
@@ -1185,7 +1189,8 @@ blockquote.source-english {
 }
 
 .content-review-mode .part-one-label,
-.content-review-mode .part-two-label {
+.content-review-mode .part-two-label,
+.content-review-mode .part-three-label {
   margin: 0 0 22px;
   color: var(--story-soft);
   font-family: Inter, ui-sans-serif, sans-serif;
@@ -1196,7 +1201,8 @@ blockquote.source-english {
 }
 
 .content-review-mode .part-one-title,
-.content-review-mode .part-two-title {
+.content-review-mode .part-two-title,
+.content-review-mode .part-three-title {
   margin: 0;
   color: var(--story-ink);
   font-family: "EB Garamond", Garamond, Georgia, serif;
@@ -1296,6 +1302,10 @@ blockquote.source-english {
 
 .content-review-mode .part-two-final-beat {
   min-height: 135svh;
+}
+
+.content-review-mode .part-three-final-beat {
+  min-height: 125svh;
 }
 
 .content-review-mode .content-scene:last-child::after {
