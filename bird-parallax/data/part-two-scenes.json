@@ -1,0 +1,32 @@
+{
+  "part": {
+    "number": 2,
+    "title": "The Price"
+  },
+  "scenes": [
+    {
+      "id": "opening",
+      "on_screen": ["PART TWO", "The Price"]
+    },
+    {
+      "id": "al-baqarah-2-214",
+      "source_type": "quran",
+      "source_id": "al_baqarah_2_214"
+    },
+    {
+      "id": "muslim-2822",
+      "source_type": "hadith",
+      "source_id": "muslim_2822"
+    },
+    {
+      "id": "tirmidhi-2560",
+      "source_type": "hadith",
+      "source_id": "tirmidhi_2560"
+    },
+    {
+      "id": "tirmidhi-2450",
+      "source_type": "hadith",
+      "source_id": "tirmidhi_2450"
+    }
+  ]
+}
