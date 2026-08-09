@@ -1185,18 +1185,70 @@ blockquote.source-english {
   background: transparent;
 }
 
-/* Deepest content backdrop: the distant cloud layer remains fixed while text scrolls. */
-.content-review-mode .cinematic-page::before {
+/* One continuous three-layer atmosphere behind the title and every content part. */
+.content-review-mode .page-atmosphere {
   position: fixed;
   z-index: 0;
-  inset: -5%;
-  background-image: url("../assets/backgrounds/clouds/distant-clouds-v1.png");
-  background-position: center 20%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  content: "";
-  opacity: .58;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--page-blue), var(--page-ivory));
   pointer-events: none;
+}
+
+.content-review-mode .page-atmosphere-sky,
+.content-review-mode .page-atmosphere-distant,
+.content-review-mode .page-atmosphere-close {
+  position: absolute;
+  max-width: none;
+  object-fit: cover;
+}
+
+.content-review-mode .page-atmosphere-sky {
+  z-index: 0;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  object-position: center 18%;
+  transform: scale(1.025);
+}
+
+.content-review-mode .page-atmosphere-distant {
+  z-index: 1;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  object-position: center 20%;
+  opacity: .72;
+  filter: saturate(.72) contrast(.94);
+  transform: scale(1.015);
+}
+
+.content-review-mode .page-atmosphere-close {
+  z-index: 2;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  object-position: center 20%;
+  opacity: .84;
+  filter: saturate(.78) brightness(1.015);
+  transform: scale(1.025);
+}
+
+.content-review-mode .page-atmosphere::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255, 255, 255, .08), transparent 48%),
+    linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 250, 239, .07));
+  content: "";
+}
+
+.content-review-mode .sky-viewport > .sky-background,
+.content-review-mode .sky-viewport > .distant-clouds,
+.content-review-mode .sky-viewport > .close-clouds,
+.content-review-mode .sky-viewport > .atmosphere {
+  display: none;
 }
 
 .content-review-mode .sky-scene,
@@ -1220,9 +1272,12 @@ blockquote.source-english {
 .content-review-mode .part-two-content,
 .content-review-mode .part-three-content {
   padding: 0;
-  background:
-    radial-gradient(circle at 50% 10%, rgba(247, 244, 235, .62), transparent 32%),
-    linear-gradient(180deg, rgba(247, 243, 233, .5), rgba(232, 241, 238, .38));
+  background: transparent;
+}
+
+.content-review-mode .sky-scene,
+.content-review-mode .sky-viewport {
+  background: transparent;
 }
 
 .content-review-mode .part-one-scenes,
