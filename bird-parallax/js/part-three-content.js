@@ -48,7 +48,7 @@ function citationLink(label, url) {
 }
 
 function renderCitation(references) {
-  const citation = element("footer", "source-citation");
+  const citation = element("header", "source-citation");
   references.forEach((reference) => citation.append(citationLink(reference.label, reference.url)));
   return citation;
 }
@@ -58,15 +58,14 @@ function renderSource(scene, data) {
   if (scene.source_type === "quran") {
     const passage = data.quran.passages[scene.source_id];
     source.classList.add("quran-source");
-    source.append(renderBeats(passage.verses, scene.source_id));
     source.append(renderCitation([{
       label: `SURAH ${passage.surah.toUpperCase()} · ${passage.reference}`,
       url: passage.source_url
     }]));
+    source.append(renderBeats(passage.verses, scene.source_id));
   } else {
     const record = data.hadith.hadith[scene.source_id];
     source.classList.add("hadith-source");
-    source.append(renderBeats(record.beats, scene.source_id));
     const references = [{
       label: cleanHadithReference(record.primary_reference),
       url: record.primary_url
@@ -76,6 +75,7 @@ function renderSource(scene, data) {
       url: reference.url
     }));
     source.append(renderCitation(references));
+    source.append(renderBeats(record.beats, scene.source_id));
   }
   return source;
 }

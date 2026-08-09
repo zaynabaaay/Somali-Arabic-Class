@@ -34,7 +34,7 @@ function renderBeats(beats, sourceId) {
 }
 
 function renderCitation(label, url) {
-  const citation = element("footer", "source-citation");
+  const citation = element("header", "source-citation");
   const link = element("a", "source-reference", label);
   link.href = url;
   link.target = "_blank";
@@ -52,14 +52,14 @@ function renderSource(scene, data) {
   if (scene.source_type === "quran") {
     const passage = data.quran.passages[scene.source_id];
     source.classList.add("quran-source");
-    source.append(renderBeats(passage.beats, scene.source_id));
     source.append(renderCitation(`SURAH ${passage.surah.toUpperCase()} · ${passage.reference}`, passage.source_url));
+    source.append(renderBeats(passage.beats, scene.source_id));
   } else {
     const record = data.hadith.hadith[scene.source_id];
     const beats = record.beats || [{ arabic: record.arabic, english: record.english }];
     source.classList.add("hadith-source");
-    source.append(renderBeats(beats, scene.source_id));
     source.append(renderCitation(cleanHadithReference(record.primary_reference), record.primary_url));
+    source.append(renderBeats(beats, scene.source_id));
   }
   return source;
 }

@@ -49,7 +49,7 @@ function hadithReference(record) {
 }
 
 function renderCitation(label, url) {
-  const citation = element("footer", "source-citation");
+  const citation = element("header", "source-citation");
   const link = element("a", "source-reference", label);
   link.href = url;
   link.target = "_blank";
@@ -60,16 +60,16 @@ function renderCitation(label, url) {
 
 function renderQuranPassage(passage, sourceId) {
   const source = element("div", "on-screen-source quran-source");
-  source.append(renderBeatList(passage.beats, sourceId));
   source.append(renderCitation(quranReference(passage), passage.source_url));
+  source.append(renderBeatList(passage.beats, sourceId));
   return source;
 }
 
 function renderHadith(record, sourceId) {
   const source = element("div", "on-screen-source hadith-source");
   const beats = record.beats || [{ arabic: record.arabic, english: record.english }];
-  source.append(renderBeatList(beats, sourceId));
   source.append(renderCitation(hadithReference(record), record.primary_url));
+  source.append(renderBeatList(beats, sourceId));
   return source;
 }
 

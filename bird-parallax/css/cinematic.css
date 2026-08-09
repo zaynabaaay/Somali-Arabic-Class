@@ -1366,9 +1366,9 @@ blockquote.source-english {
 .content-review-mode .source-reference {
   color: #667970;
   font-family: Inter, ui-sans-serif, sans-serif;
-  font-size: clamp(.65rem, .82vw, .78rem);
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
   font-weight: 500;
-  letter-spacing: .14em;
+  letter-spacing: .12em;
   line-height: 1.7;
   text-align: center;
   text-transform: uppercase;
