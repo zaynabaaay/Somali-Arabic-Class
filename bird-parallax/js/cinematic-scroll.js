@@ -49,21 +49,23 @@
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
 
-    const approachArrival = easeBetween(riverProgress, .12, .48);
     const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
     const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
     const landscapeHeight = 82 * landscapeReveal + 18 * riverProgress;
+    const landscapeY = 2 * (1 - landscapeReveal) - 6 * riverProgress;
+    const landscapeScale = .96 + .04 * landscapeReveal + .22 * riverProgress;
+    const landscapeMaskFactor = 1 - riverProgress;
 
-    root.style.setProperty("--river-approach-opacity", approachArrival.toFixed(3));
-    root.style.setProperty("--far-landscape-opacity", (1 - approachArrival).toFixed(3));
     root.style.setProperty("--landscape-height", `${landscapeHeight.toFixed(3)}%`);
+    root.style.setProperty("--landscape-y", `${landscapeY.toFixed(3)}vh`);
+    root.style.setProperty("--landscape-scale", landscapeScale.toFixed(4));
+    root.style.setProperty("--landscape-mask-mid", `${(9 * landscapeMaskFactor).toFixed(3)}%`);
+    root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
-      root.style.setProperty("--river-progress", riverProgress.toFixed(4));
+      root.style.setProperty("--landscape-focus-y", `${(58 * riverProgress).toFixed(3)}%`);
       root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
       root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
-      root.style.setProperty("--river-approach-y", `${(2.5 - 7.5 * riverProgress).toFixed(3)}vh`);
-      root.style.setProperty("--river-approach-scale", (.975 + .105 * riverProgress).toFixed(4));
     }
   }
 
