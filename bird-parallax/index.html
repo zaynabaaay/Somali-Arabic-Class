@@ -10,7 +10,8 @@
   <link rel="preload" href="assets/backgrounds/landscape/jannah-river-reveal-v1.png" as="image">
   <link rel="preload" href="assets/backgrounds/clouds/distant-clouds-v1.png" as="image">
   <link rel="preload" href="assets/backgrounds/clouds/close-clouds-v1.png" as="image">
-  <link rel="stylesheet" href="css/cinematic.css?v=single-river-1">
+  <link rel="preload" href="assets/backgrounds/river/river-far-environment-v1.png" as="image">
+  <link rel="stylesheet" href="css/cinematic.css?v=layered-river-1">
 </head>
 <body>
   <main class="cinematic-page">
@@ -75,8 +76,85 @@
         <p class="scroll-cue" aria-hidden="true"><span></span>Scroll</p>
       </div>
     </section>
+
+    <section class="river-continuation" id="river-continuation" aria-label="Descending toward and travelling along the river">
+      <div class="river-continuation-viewport">
+        <img
+          class="continuation-aerial"
+          src="assets/backgrounds/landscape/jannah-river-reveal-v1.png"
+          alt=""
+          width="941"
+          height="1672"
+          decoding="async"
+        >
+
+        <div class="lower-river-world" aria-hidden="true">
+          <img
+            class="river-depth-layer river-far-layer"
+            src="assets/backgrounds/river/river-far-environment-v1.png"
+            alt=""
+            width="941"
+            height="1672"
+            decoding="async"
+          >
+          <img
+            class="river-depth-layer river-water-layer"
+            src="assets/backgrounds/river/river-midground-v1.png"
+            alt=""
+            width="941"
+            height="1672"
+            loading="lazy"
+            decoding="async"
+          >
+          <img
+            class="river-depth-layer river-banks-layer"
+            src="assets/backgrounds/river/riverbanks-v1.png"
+            alt=""
+            width="941"
+            height="1672"
+            loading="lazy"
+            decoding="async"
+          >
+          <img
+            class="river-depth-layer river-trees-layer"
+            src="assets/backgrounds/river/near-trees-v1.png"
+            alt=""
+            width="941"
+            height="1672"
+            loading="lazy"
+            decoding="async"
+          >
+          <img
+            class="river-depth-layer river-foliage-layer"
+            src="assets/backgrounds/river/foreground-foliage-v1.png"
+            alt=""
+            width="941"
+            height="1672"
+            loading="lazy"
+            decoding="async"
+          >
+          <div class="river-world-light"></div>
+        </div>
+
+        <div class="descent-mist" aria-hidden="true"></div>
+
+        <div class="river-verse" aria-label="Continuation of Surah Ar-Ra'd, verse 35">
+          <section class="river-verse-beat fruit-and-shade">
+            <p class="river-verse-arabic" lang="ar" dir="rtl">أُكُلُهَا دَآئِمٌ وَظِلُّهَا</p>
+            <p class="river-verse-english">“…its fruit is everlasting, and so is its shade…”</p>
+            <p class="river-verse-reference">Surah Ar-Ra'd — 13:35</p>
+          </section>
+
+          <section class="river-verse-beat final-outcome">
+            <p class="river-verse-arabic" lang="ar" dir="rtl">تِلْكَ عُقْبَى ٱلَّذِينَ ٱتَّقَوا۟ ۖ وَّعُقْبَى ٱلْكَٰفِرِينَ ٱلنَّارُ</p>
+            <p class="river-verse-english">“That is the outcome of those who are mindful of Allah, while the outcome of the disbelievers is the Fire.”</p>
+            <p class="river-verse-reference">Surah Ar-Ra'd — 13:35</p>
+          </section>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script src="js/cinematic-scroll.js?v=single-river-1"></script>
+  <script src="js/cinematic-scroll.js?v=layered-river-1"></script>
 </body>
 </html>
