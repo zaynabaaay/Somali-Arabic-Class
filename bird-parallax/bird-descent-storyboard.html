@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#a7c5d6">
+  <title>Blue Bird · Cinematic Descent Storyboard</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17263d;
+      --gold: #b87f24;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: #a7c5d6; }
+
+    body {
+      min-width: 320px;
+      height: 600svh;
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .stage {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 77% 17%, rgba(255,255,255,.9) 0 5%, transparent 5.4%),
+        linear-gradient(165deg, #8db8cf 0%, #bed4df 47%, #e6e3d7 100%);
+      isolation: isolate;
+    }
+
+    .stage::before,
+    .stage::after {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255,255,255,.24);
+      content: "";
+      filter: blur(9px);
+      z-index: -1;
+    }
+
+    .stage::before {
+      top: 24%;
+      left: -7%;
+      width: 42vw;
+      height: 6vw;
+    }
+
+    .stage::after {
+      right: -9%;
+      bottom: 18%;
+      width: 36vw;
+      height: 5vw;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      padding: max(24px, env(safe-area-inset-top)) clamp(20px, 4vw, 60px) 20px;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      z-index: 3;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #8b611f;
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font: 400 clamp(34px, 5vw, 70px)/.95 Georgia, serif;
+      letter-spacing: -.045em;
+    }
+
+    .note {
+      max-width: 29ch;
+      margin: 3px 0 0;
+      color: rgba(23,38,61,.68);
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: right;
+    }
+
+    .bird-holder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      transform: translate3d(var(--x, 0), var(--y, 0), 0) rotate(var(--rotation, 0deg)) scale(var(--scale, 1));
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    #bird {
+      display: block;
+      width: min(72vw, 74svh, 820px);
+      max-height: 78svh;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      filter: drop-shadow(0 26px 24px rgba(24,52,76,.12));
+    }
+
+    .status {
+      position: absolute;
+      bottom: max(26px, env(safe-area-inset-bottom));
+      left: clamp(20px, 4vw, 60px);
+      display: flex;
+      min-width: min(440px, calc(100vw - 40px));
+      padding: 13px 15px;
+      border: 1px solid rgba(255,255,255,.68);
+      border-radius: 16px;
+      background: rgba(250,249,245,.64);
+      box-shadow: 0 14px 35px rgba(28,48,68,.08);
+      align-items: center;
+      gap: 14px;
+      backdrop-filter: blur(14px);
+      z-index: 3;
+    }
+
+    .counter {
+      min-width: 40px;
+      color: #36506a;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .status-copy { flex: 1; }
+
+    #pose-name {
+      display: block;
+      font: 600 15px/1.2 Georgia, serif;
+    }
+
+    .instruction {
+      display: block;
+      margin-top: 3px;
+      color: rgba(23,38,61,.58);
+      font-size: 11px;
+    }
+
+    .progress {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background: rgba(255,255,255,.24);
+      z-index: 4;
+    }
+
+    .progress span {
+      display: block;
+      width: var(--progress, 0%);
+      height: 100%;
+      background: linear-gradient(90deg, #255b97, #d79a31);
+    }
+
+    @media (max-width: 700px) {
+      header { display: block; }
+      .note { max-width: 36ch; margin-top: 12px; text-align: left; }
+      #bird { width: min(100vw, 72svh); max-height: 68svh; }
+      .status { right: 14px; bottom: max(16px, env(safe-area-inset-bottom)); left: 14px; min-width: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bird-holder { will-change: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" aria-label="Scroll-controlled cinematic bird descent storyboard">
+    <header>
+      <div>
+        <p class="eyebrow">Cinematic descent · key-pose review</p>
+        <h1>Follow the bird down.</h1>
+      </div>
+      <p class="note">Six major camera poses only. Transitional animation frames will be created after this movement direction is approved.</p>
+    </header>
+
+    <div class="bird-holder" id="bird-holder">
+      <img id="bird" src="cinematic/descent-key-poses/descent-00.png" alt="Blue and gold anime bird in a peaceful side glide">
+    </div>
+
+    <div class="status" aria-live="polite">
+      <span class="counter" id="counter">01 / 06</span>
+      <span class="status-copy">
+        <strong id="pose-name">Peaceful sky glide</strong>
+        <span class="instruction">Scroll to follow the shot</span>
+      </span>
+    </div>
+
+    <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+  </main>
+
+  <script>
+    const frames = Array.from({ length: 6 }, (_, index) =>
+      `cinematic/descent-key-poses/descent-${String(index).padStart(2, "0")}.png`
+    );
+    const poses = [
+      { name: "Peaceful sky glide", alt: "peaceful side glide", x: -5, y: 2, rotation: 0, scale: .92 },
+      { name: "Decision to descend", alt: "slightly downward side glide", x: -2, y: 1, rotation: 7, scale: .96 },
+      { name: "Banking away", alt: "rear three-quarter bank", x: 3, y: 1, rotation: 45, scale: 1 },
+      { name: "Committed dive", alt: "rear three-quarter downward dive", x: 5, y: 3, rotation: 70, scale: 1.04 },
+      { name: "Steep back-view dive", alt: "steep back-view dive", x: 2, y: 4, rotation: 150, scale: 1.08 },
+      { name: "Wings opening for pull-out", alt: "wide-wing rear pull-out", x: 0, y: 1, rotation: 30, scale: 1.03 }
+    ];
+
+    frames.forEach(source => { const image = new Image(); image.src = source; });
+
+    const holder = document.querySelector("#bird-holder");
+    const bird = document.querySelector("#bird");
+    const name = document.querySelector("#pose-name");
+    const counter = document.querySelector("#counter");
+    const progressBar = document.querySelector("#progress");
+    let currentFrame = -1;
+    let ticking = false;
+
+    function interpolate(from, to, amount) { return from + (to - from) * amount; }
+
+    function render() {
+      const available = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const progress = Math.min(1, Math.max(0, window.scrollY / available));
+      const framePosition = progress * (frames.length - 1);
+      const index = Math.min(frames.length - 1, Math.floor(framePosition));
+      const nextIndex = Math.min(frames.length - 1, index + 1);
+      const mix = framePosition - index;
+      const pose = poses[index];
+      const next = poses[nextIndex];
+
+      if (index !== currentFrame) {
+        currentFrame = index;
+        bird.src = frames[index];
+        bird.alt = `Blue and gold anime bird — ${pose.alt}`;
+        name.textContent = pose.name;
+        counter.textContent = `${String(index + 1).padStart(2, "0")} / 06`;
+      }
+
+      holder.style.setProperty("--x", `${interpolate(pose.x, next.x, mix)}vw`);
+      holder.style.setProperty("--y", `${interpolate(pose.y, next.y, mix)}vh`);
+      holder.style.setProperty("--rotation", `${interpolate(pose.rotation, next.rotation, mix)}deg`);
+      holder.style.setProperty("--scale", interpolate(pose.scale, next.scale, mix));
+      progressBar.style.setProperty("--progress", `${progress * 100}%`);
+      ticking = false;
+    }
+
+    function requestRender() {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(render);
+      }
+    }
+
+    window.addEventListener("scroll", requestRender, { passive: true });
+    window.addEventListener("resize", requestRender);
+    render();
+  </script>
+</body>
+</html>
