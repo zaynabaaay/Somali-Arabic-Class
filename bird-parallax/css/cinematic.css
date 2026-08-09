@@ -8,6 +8,7 @@
   --verse-y: 2vh;
   --bridge-opacity: 0;
   --bridge-y: 2vh;
+  --landscape-reveal: 0;
   --page-blue: #dbeaf5;
   --page-ivory: #f8f4ea;
   --story-ink: #46596a;
@@ -37,7 +38,7 @@ body {
 
 .sky-scene {
   position: relative;
-  height: 420svh;
+  height: 480svh;
   background: var(--page-ivory);
 }
 
@@ -53,7 +54,7 @@ body {
 
 .sky-background {
   position: absolute;
-  z-index: -3;
+  z-index: -4;
   inset: -2%;
   width: 104%;
   height: 104%;
@@ -63,6 +64,36 @@ body {
   transform: scale(calc(1.025 + var(--sky-progress) * .012));
   transform-origin: center;
   will-change: transform, object-position;
+}
+
+.landscape-window {
+  position: absolute;
+  z-index: -3;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: calc(var(--landscape-reveal) * 82%);
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .62) 9%, #000 20%);
+  mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .62) 9%, #000 20%);
+  will-change: height;
+}
+
+.river-landscape {
+  position: absolute;
+  top: 0;
+  left: -4%;
+  width: 108%;
+  height: 100svh;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+  filter: saturate(.8) brightness(1.035) contrast(.94);
+  transform: translate3d(0, calc((1 - var(--landscape-reveal)) * 2vh), 0)
+    scale(calc(.96 + var(--landscape-reveal) * .04));
+  transform-origin: center top;
+  will-change: transform;
 }
 
 .distant-clouds {
@@ -212,7 +243,7 @@ body {
 
 .scripture-bridge {
   position: absolute;
-  top: calc(50% + clamp(150px, 18vh, 210px));
+  top: 50%;
   left: 50%;
   width: min(82vw, 620px);
   color: var(--story-ink);
@@ -221,7 +252,7 @@ body {
   font-style: italic;
   line-height: 1.45;
   opacity: var(--bridge-opacity);
-  transform: translate3d(-50%, var(--bridge-y), 0);
+  transform: translate3d(-50%, calc(-50% + var(--bridge-y)), 0);
   text-shadow: 0 3px 22px rgba(255, 255, 255, .48);
   will-change: opacity, transform;
 }
@@ -263,7 +294,7 @@ body {
 
 @media (max-width: 760px) {
   .sky-scene {
-    height: 400svh;
+    height: 460svh;
   }
 
   .sky-background {
@@ -303,14 +334,11 @@ body {
     font-size: clamp(2.05rem, 9.2vw, 3.6rem);
   }
 
-  .scripture-bridge {
-    top: calc(50% + clamp(150px, 20vh, 195px));
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sky-scene {
-    height: 400svh;
+    height: 460svh;
   }
 
   .sky-background {
@@ -327,6 +355,15 @@ body {
 
   .close-clouds {
     object-position: center 38%;
+    transform: none;
+    will-change: auto;
+  }
+
+  .landscape-window {
+    will-change: auto;
+  }
+
+  .river-landscape {
     transform: none;
     will-change: auto;
   }
