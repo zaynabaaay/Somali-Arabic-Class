@@ -45,7 +45,7 @@ body {
 
 .sky-background {
   position: absolute;
-  z-index: -2;
+  z-index: -3;
   inset: -2%;
   width: 104%;
   height: 104%;
@@ -53,6 +53,22 @@ body {
   object-fit: cover;
   object-position: center calc(var(--sky-progress) * 100%);
   transform: scale(calc(1.025 + var(--sky-progress) * .012));
+  transform-origin: center;
+  will-change: transform, object-position;
+}
+
+.distant-clouds {
+  position: absolute;
+  z-index: -2;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center calc(var(--sky-progress) * 100%);
+  opacity: .72;
+  filter: saturate(.72) contrast(.94);
+  transform: translate3d(0, calc(var(--sky-progress) * -3.5vh), 0) scale(1.015);
   transform-origin: center;
   will-change: transform, object-position;
 }
@@ -100,6 +116,12 @@ body {
     width: 102%;
     height: 102%;
   }
+
+  .distant-clouds {
+    inset: -3%;
+    width: 106%;
+    height: 106%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -108,6 +130,12 @@ body {
   }
 
   .sky-background {
+    object-position: center 38%;
+    transform: none;
+    will-change: auto;
+  }
+
+  .distant-clouds {
     object-position: center 38%;
     transform: none;
     will-change: auto;
