@@ -18,7 +18,7 @@
 
     body {
       min-width: 320px;
-      height: 600svh;
+      height: 900svh;
       margin: 0;
       color: var(--ink);
       font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -187,10 +187,10 @@
   <main class="stage" aria-label="Scroll-controlled cinematic bird descent storyboard">
     <header>
       <div>
-        <p class="eyebrow">Cinematic descent · key-pose review</p>
+        <p class="eyebrow">Cinematic descent · orbit transition</p>
         <h1>Fly with the bird.</h1>
       </div>
-      <p class="note">The shot begins from the side. As the bird banks, the camera moves behind it and remains locked there throughout the descent.</p>
+      <p class="note">Six new in-between drawings carry the camera smoothly from the bird’s side into the locked rear chase view.</p>
     </header>
 
     <div class="bird-holder" id="bird-holder">
@@ -198,7 +198,7 @@
     </div>
 
     <div class="status" aria-live="polite">
-      <span class="counter" id="counter">01 / 06</span>
+      <span class="counter" id="counter">01 / 10</span>
       <span class="status-copy">
         <strong id="pose-name">Side entrance</strong>
         <span class="instruction">Scroll to follow the shot</span>
@@ -209,14 +209,27 @@
   </main>
 
   <script>
-    const frames = Array.from({ length: 6 }, (_, index) =>
-      `cinematic/descent-key-poses/descent-${String(index).padStart(2, "0")}.png`
-    );
+    const frames = [
+      "cinematic/descent-key-poses/descent-00.png",
+      "cinematic/descent-key-poses/descent-01.png",
+      "cinematic/orbit-transition/orbit-00.png",
+      "cinematic/orbit-transition/orbit-01.png",
+      "cinematic/orbit-transition/orbit-02.png",
+      "cinematic/orbit-transition/orbit-03.png",
+      "cinematic/orbit-transition/orbit-04.png",
+      "cinematic/orbit-transition/orbit-05.png",
+      "cinematic/descent-key-poses/descent-04.png",
+      "cinematic/descent-key-poses/descent-05.png"
+    ];
     const poses = [
       { name: "Side entrance", alt: "peaceful side-profile entrance", x: -7, y: 2, rotation: 0, scale: .92 },
       { name: "Preparing to descend", alt: "side view preparing to descend", x: -3, y: 1, rotation: 6, scale: .96 },
-      { name: "Camera arcs behind", alt: "rear three-quarter bank as the camera moves behind", x: 2, y: 1, rotation: 28, scale: 1 },
-      { name: "Chase camera locks", alt: "rear three-quarter chase-camera view", x: 1, y: 1, rotation: 12, scale: 1.05 },
+      { name: "Camera orbit begins", alt: "slightly rearward side view", x: -2, y: 1, rotation: 10, scale: .98 },
+      { name: "Side-rear view", alt: "side-rear camera orbit view", x: 0, y: 1, rotation: 16, scale: 1 },
+      { name: "Rear three-quarter", alt: "rear three-quarter view during the bank", x: 1, y: 1, rotation: 22, scale: 1.02 },
+      { name: "Camera moves behind", alt: "camera approaching the tail centerline", x: 1, y: 1, rotation: 18, scale: 1.03 },
+      { name: "Near-rear view", alt: "near-rear view with both wing tops visible", x: 0, y: 1, rotation: 10, scale: 1.05 },
+      { name: "Chase camera locks", alt: "direct rear chase-camera view", x: 0, y: 1, rotation: 0, scale: 1.08 },
       { name: "Camera follows the dive", alt: "stable back-view chase during the dive", x: 0, y: 1, rotation: 0, scale: 1.12 },
       { name: "Following the pull-out", alt: "wide-wing rear chase view during pull-out", x: 0, y: 1, rotation: -4, scale: 1.06 }
     ];
@@ -248,7 +261,7 @@
         bird.src = frames[index];
         bird.alt = `Blue and gold anime bird — ${pose.alt}`;
         name.textContent = pose.name;
-        counter.textContent = `${String(index + 1).padStart(2, "0")} / 06`;
+        counter.textContent = `${String(index + 1).padStart(2, "0")} / ${String(frames.length).padStart(2, "0")}`;
       }
 
       holder.style.setProperty("--x", `${interpolate(pose.x, next.x, mix)}vw`);
