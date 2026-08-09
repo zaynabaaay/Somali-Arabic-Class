@@ -1194,29 +1194,31 @@ blockquote.source-english {
 }
 
 .content-review-mode .source-arabic {
-  width: min(100%, 940px);
-  max-width: 940px;
+  width: min(100%, 880px);
+  max-width: 880px;
   margin: 0;
   color: #354f45;
   font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
-  font-size: clamp(2.8rem, 6.2vw, 5.8rem);
+  font-size: clamp(2.65rem, 5.4vw, 5rem);
   font-weight: 400;
   line-height: 1.65;
+  text-align: center;
 }
 
 .content-review-mode .source-english {
-  width: min(100%, 780px);
-  max-width: 780px;
+  width: min(100%, 680px);
+  max-width: 680px;
   margin: 30px 0 0;
   color: #40554d;
   font-family: "EB Garamond", Garamond, Georgia, serif;
   font-size: clamp(1.3rem, 2.5vw, 2.1rem);
   font-weight: 400;
   line-height: 1.55;
+  text-align: center;
 }
 
 .content-review-mode .source-citation {
-  min-height: 48svh;
+  min-height: 34svh;
   display: grid;
   place-items: center;
   margin: 0;
@@ -1232,6 +1234,22 @@ blockquote.source-english {
   line-height: 1.7;
   text-align: center;
   text-transform: uppercase;
+}
+
+.content-review-mode .source-beat {
+  position: relative;
+  isolation: isolate;
+  justify-items: center;
+  text-align: center;
+}
+
+.content-review-mode .source-beat::before {
+  position: absolute;
+  z-index: -1;
+  inset: 12% 3%;
+  background: radial-gradient(ellipse at center, rgba(248, 244, 234, .58), rgba(248, 244, 234, .2) 52%, transparent 76%);
+  content: "";
+  pointer-events: none;
 }
 
 .content-review-mode .editorial-setup {
@@ -1271,7 +1289,7 @@ blockquote.source-english {
 
 @media (max-width: 760px) {
   .content-review-mode .source-arabic {
-    font-size: clamp(2.2rem, 10.5vw, 3.6rem);
+    font-size: clamp(2.15rem, 9.5vw, 3.25rem);
     line-height: 1.7;
   }
 
