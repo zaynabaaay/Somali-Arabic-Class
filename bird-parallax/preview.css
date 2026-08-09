@@ -11,11 +11,12 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--ink);
   background: var(--paper);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-main { width: min(1500px, 100%); margin: 0 auto; }
+main { width: 100%; max-width: 1500px; margin: 0 auto; overflow: hidden; }
 .intro { display: grid; min-height: 42vh; align-content: end; padding: 7vw; }
 .eyebrow { margin: 0 0 20px; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
 h1, h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.045em; line-height: .95; }
@@ -48,32 +49,32 @@ button:hover { transform: translateY(-1px); }
 #bird.is-flapping #right-wing {
   animation: visible-wing-flap 2.5s cubic-bezier(.42, 0, .32, 1) infinite alternate;
   transform-box: fill-box;
-  transform-origin: 78% 77%;
+  transform-origin: 88% 86%;
 }
 #bird.is-flapping #left-wing {
   animation: far-wing-flap 2.5s .12s cubic-bezier(.42, 0, .32, 1) infinite alternate;
   transform-box: fill-box;
-  transform-origin: 78% 74%;
+  transform-origin: 84% 18%;
 }
 #bird.is-flapping #tail {
   animation: tail-balance 5s ease-in-out infinite alternate;
   transform-box: fill-box;
-  transform-origin: 88% 48%;
+  transform-origin: 94% 48%;
 }
 #bird.is-flapping #head {
   animation: head-balance 5s .2s ease-in-out infinite alternate;
   transform-box: fill-box;
-  transform-origin: 18% 72%;
+  transform-origin: 15% 72%;
 }
 #bird.motion-paused * { animation-play-state: paused !important; }
 
 @keyframes visible-wing-flap {
-  0% { transform: rotate(-7deg) translateY(-4px); }
-  100% { transform: rotate(9deg) translateY(7px); }
+  0% { transform: rotate(-3deg) translateY(-3px); }
+  100% { transform: rotate(5deg) translateY(5px); }
 }
 @keyframes far-wing-flap {
-  0% { transform: rotate(-3deg) translateY(-2px); }
-  100% { transform: rotate(6deg) translateY(4px); }
+  0% { transform: rotate(-2deg) translateY(-2px); }
+  100% { transform: rotate(4deg) translateY(3px); }
 }
 @keyframes tail-balance { to { transform: rotate(2.5deg); } }
 @keyframes head-balance { to { transform: rotate(-1.5deg); } }
@@ -87,13 +88,16 @@ footer { display: flex; align-items: center; justify-content: space-between; gap
 footer a { color: var(--ink); font-weight: 700; }
 
 @media (max-width: 760px) {
-  .intro { min-height: 52vh; padding: 12vw 7vw; }
-  .preview-shell { margin: 0; border-right: 0; border-left: 0; }
-  .preview-toolbar { align-items: flex-start; flex-direction: column; }
-  .bird-stage { min-height: 56vh; }
-  .bird-mount { width: 112%; transform: translateX(-4%); }
-  .anatomy { grid-template-columns: 1fr; }
-  .anatomy li { grid-template-columns: 120px 1fr; }
+  .intro { min-height: 0; padding: 56px 24px 44px; }
+  h1 { font-size: clamp(50px, 17vw, 72px); }
+  .lede { width: 100%; max-width: 320px; margin-top: 24px; overflow-wrap: normal; font-size: 15px; }
+  .preview-shell { width: 100vw; max-width: 100vw; margin: 0; border-right: 0; border-left: 0; }
+  .preview-toolbar { min-height: 0; align-items: flex-start; flex-direction: column; padding: 12px 20px; }
+  .bird-stage { width: 100vw; max-width: 100vw; min-height: 390px; }
+  .bird-mount { width: 100vw; max-width: 100vw; transform: translateX(-8%) scale(.68); transform-origin: center; }
+  .anatomy { grid-template-columns: 1fr; padding-right: 24px; padding-left: 24px; }
+  .anatomy li { grid-template-columns: minmax(0, 112px) minmax(0, 1fr); }
+  .anatomy code { overflow-wrap: anywhere; }
   footer { align-items: flex-start; flex-direction: column; }
 }
 
