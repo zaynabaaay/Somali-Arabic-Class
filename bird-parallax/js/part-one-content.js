@@ -1,8 +1,7 @@
 const dataPaths = {
   scenes: "data/part-one-scenes.json",
   quran: "data/part-one-quran.json",
-  hadith: "data/part-one-hadith.json",
-  notes: "data/part-one-presenter-notes.json"
+  hadith: "data/part-one-hadith.json"
 };
 
 const root = document.querySelector("#part-one-scenes");
@@ -29,20 +28,12 @@ function arabicLine(text, className = "source-arabic") {
   return line;
 }
 
-function appendPresenterNotes(sceneNode, paragraphs) {
-  const notes = element("details", "presenter-notes");
-  notes.append(element("summary", "presenter-notes-label", "Presenter notes · development only"));
-  const body = element("div", "presenter-notes-body");
-  paragraphs.forEach((paragraph) => body.append(element("p", "", paragraph)));
-  notes.append(body);
-  sceneNode.append(notes);
-}
-
 function renderBeatList(beats) {
   const list = element("ol", "source-beats");
   beats.forEach((beat, index) => {
     const item = element("li", "source-beat");
     item.dataset.beat = String(index + 1);
+    item.append(element("p", "beat-marker", `Beat ${index + 1}`));
     if (typeof beat === "string") {
       item.append(element("blockquote", "source-english", beat));
     } else {
@@ -56,7 +47,7 @@ function renderBeatList(beats) {
 
 function renderQuranPassage(scene, passage) {
   const source = element("div", "on-screen-source quran-source");
-  source.append(element("p", "source-content-label", "On-screen source content · Qur’an"));
+  source.append(element("p", "source-content-label", "Qur’an · Sahih International"));
 
   if (passage.beats) {
     source.append(renderBeatList(passage.beats));
@@ -66,7 +57,7 @@ function renderQuranPassage(scene, passage) {
       groupNode.dataset.group = String(group.id);
       const groupLabel = scene.group_labels?.[groupIndex];
       if (groupLabel) {
-        groupNode.append(element("h4", "editorial-group-label", `Editorial grouping · ${groupLabel}`));
+        groupNode.append(element("h4", "editorial-group-label", `Group ${group.id} · ${groupLabel}`));
       }
       const verses = element("ol", "verse-list");
       passage.verses
@@ -75,9 +66,9 @@ function renderQuranPassage(scene, passage) {
           const item = element("li", "verse-pair");
           item.value = verse.verse_number;
           item.dataset.verse = verse.verse_key;
+          item.append(element("p", "beat-marker", `Verse ${verse.verse_key}`));
           item.append(arabicLine(verse.arabic, "verse-arabic"));
           item.append(element("p", "verse-english", verse.english));
-          item.append(element("span", "verse-number", verse.verse_key));
           verses.append(item);
         });
       groupNode.append(verses);
@@ -103,25 +94,33 @@ function renderHadithCitation(record) {
 
 function renderHadith(scene, record) {
   const source = element("div", "on-screen-source hadith-source");
-  source.append(element("p", "source-content-label", `On-screen source content · ${record.label}`));
+  source.append(element("p", "source-content-label", `Hadith · ${record.primary_reference}`));
 
-  if (record.beats) source.append(renderBeatList(record.beats));
-  else source.append(element("blockquote", "source-english source-english-feature", record.english));
-
-  const fullArabic = element("details", "full-source-text");
-  fullArabic.append(element("summary", "full-source-label", "Exact Arabic source text"));
-  fullArabic.append(arabicLine(record.arabic, "source-arabic source-arabic-full"));
-  source.append(fullArabic);
+  if (record.beats) {
+    if (record.beats.some((beat) => typeof beat === "string")) {
+      const arabicBeat = element("section", "source-beat hadith-arabic-beat");
+      arabicBeat.append(element("p", "beat-marker", "Arabic source text"));
+      arabicBeat.append(arabicLine(record.arabic, "source-arabic source-arabic-full"));
+      source.append(arabicBeat);
+    }
+    source.append(renderBeatList(record.beats));
+  } else {
+    const singleBeat = element("section", "source-beat hadith-single-beat");
+    singleBeat.append(element("p", "beat-marker", "Beat 1"));
+    singleBeat.append(arabicLine(record.arabic, "source-arabic source-arabic-full"));
+    singleBeat.append(element("blockquote", "source-english source-english-feature", record.english));
+    source.append(singleBeat);
+  }
   source.append(renderHadithCitation(record));
 
   if (record.supporting_narration) {
     const supporting = element("section", "supporting-narration");
     supporting.append(element("h4", "supporting-heading", "Separate supporting narration"));
-    supporting.append(element("blockquote", "source-english", record.supporting_narration.english));
-    const supportingArabic = element("details", "full-source-text");
-    supportingArabic.append(element("summary", "full-source-label", "Exact Arabic source text"));
-    supportingArabic.append(arabicLine(record.supporting_narration.arabic, "source-arabic source-arabic-full"));
-    supporting.append(supportingArabic);
+    const supportingBeat = element("section", "source-beat");
+    supportingBeat.append(element("p", "beat-marker", "Supporting beat"));
+    supportingBeat.append(arabicLine(record.supporting_narration.arabic, "source-arabic source-arabic-full"));
+    supportingBeat.append(element("blockquote", "source-english", record.supporting_narration.english));
+    supporting.append(supportingBeat);
     const supportingCitation = element("footer", "source-citation");
     supportingCitation.append(sourceReference(record.supporting_narration.reference, record.supporting_narration.url));
     supporting.append(supportingCitation);
@@ -136,15 +135,17 @@ function renderScene(scene, data) {
   sceneNode.id = `content-scene-${scene.number}-${scene.id}`;
   sceneNode.dataset.scene = String(scene.number);
 
-  const header = element("header", "content-scene-header");
-  header.append(element("p", "scene-number", `Scene ${scene.number}`));
-  scene.opening_lines?.forEach((line) => header.append(element("p", "scene-opening-line", line)));
-  header.append(element(scene.number === 1 ? "h2" : "h3", "content-scene-title", scene.heading));
-  sceneNode.append(header);
+  if (scene.number !== 1) {
+    const header = element("header", "content-scene-header");
+    header.append(element("p", "scene-number", `Scene ${scene.number}`));
+    scene.opening_lines?.forEach((line) => header.append(element("p", "scene-opening-line", line)));
+    header.append(element("h3", "content-scene-title", scene.heading));
+    sceneNode.append(header);
+  }
 
   if (scene.on_screen) {
     const source = element("div", "on-screen-source opening-source");
-    source.append(element("p", "source-content-label", "On-screen editorial content"));
+    source.append(element("p", "source-content-label", `${scene.eyebrow} · ${scene.heading}`));
     scene.on_screen.forEach((line, index) => {
       const item = element(index === 0 ? "p" : "p", index === 0 ? "opening-arabic" : "opening-line", line);
       if (index === 0) {
@@ -160,14 +161,13 @@ function renderScene(scene, data) {
     sceneNode.append(renderHadith(scene, data.hadith.hadith[scene.source_id]));
   }
 
-  appendPresenterNotes(sceneNode, data.notes.scenes[scene.id]);
   return sceneNode;
 }
 
 async function loadPartOne() {
   if (!root) return;
   try {
-    const [scenes, quran, hadith, notes] = await Promise.all(
+    const [scenes, quran, hadith] = await Promise.all(
       Object.values(dataPaths).map(async (path) => {
         const response = await fetch(path);
         if (!response.ok) throw new Error(`Unable to load ${path}`);
@@ -177,7 +177,7 @@ async function loadPartOne() {
 
     root.replaceChildren();
     const fragment = document.createDocumentFragment();
-    scenes.scenes.forEach((scene) => fragment.append(renderScene(scene, { quran, hadith, notes })));
+    scenes.scenes.forEach((scene) => fragment.append(renderScene(scene, { quran, hadith })));
     const ending = element("footer", "part-one-ending");
     ending.append(element("p", "part-one-ending-label", "End of Part One"));
     ending.append(element("p", "part-one-ending-statement", "and of things given to them nothing would he dearer to them than the sight of their Lord, the Mighty and the Glorious."));
