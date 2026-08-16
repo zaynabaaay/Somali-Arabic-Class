@@ -199,6 +199,9 @@ body {
 }
 
 .hero-lockup {
+  display: grid;
+  width: min(90vw, 680px);
+  justify-items: center;
   animation: hero-arrival 1.8s cubic-bezier(.22, .72, .25, 1) both;
 }
 
@@ -225,30 +228,67 @@ body {
 }
 
 .hero-arabic {
-  color: var(--story-ink);
-  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
-  font-size: clamp(5.5rem, 11vw, 10rem);
-  font-weight: 400;
-  line-height: 1;
-  text-shadow: 0 3px 22px rgba(255, 255, 255, .42);
+  display: grid;
+  place-items: center;
+  line-height: 0;
+}
+
+.hero-calligraphy {
+  display: block;
+  width: clamp(250px, 28vw, 350px);
+  height: auto;
+  filter: drop-shadow(0 3px 18px rgba(255, 255, 255, .36));
+}
+
+.hero-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2vw, 24px);
+  margin-top: clamp(8px, 1.2vh, 14px);
+}
+
+.hero-ornament {
+  position: relative;
+  width: clamp(28px, 4vw, 52px);
+  height: 1px;
+  background: rgba(102, 91, 70, .35);
+}
+
+.hero-ornament::after {
+  position: absolute;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(164, 139, 91, .7);
+  content: "";
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.hero-ornament:first-child::after {
+  right: -1px;
+}
+
+.hero-ornament:last-child::after {
+  left: -1px;
 }
 
 .hero-english {
-  margin-top: clamp(22px, 3vh, 38px);
   color: var(--story-ink);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.2rem, 2.1vw, 2rem);
-  letter-spacing: .48em;
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(1.15rem, 1.9vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: .46em;
   line-height: 1;
-  text-indent: .48em;
+  text-indent: .46em;
   text-transform: uppercase;
 }
 
 .hero-subtitle {
-  margin-top: 18px;
+  margin-top: clamp(14px, 1.8vh, 20px);
   color: var(--story-soft);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(.85rem, 1.15vw, 1.05rem);
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(.92rem, 1.15vw, 1.08rem);
   font-style: italic;
   letter-spacing: .06em;
 }
@@ -839,14 +879,14 @@ blockquote.source-english {
     padding-left: 24px;
   }
 
-  .hero-arabic {
-    font-size: clamp(4.75rem, 24vw, 7rem);
+  .hero-calligraphy {
+    width: min(76vw, 320px);
   }
 
   .hero-english {
-    font-size: clamp(1rem, 4.5vw, 1.35rem);
-    letter-spacing: .38em;
-    text-indent: .38em;
+    font-size: clamp(1rem, 4.5vw, 1.3rem);
+    letter-spacing: .34em;
+    text-indent: .34em;
   }
 
   .scripture-arabic {
