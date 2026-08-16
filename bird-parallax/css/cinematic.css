@@ -1396,9 +1396,9 @@ blockquote.source-english {
   margin: 0;
   color: var(--story-ink);
   font-family: "EB Garamond", Garamond, Georgia, serif;
-  font-size: clamp(3.3rem, 8vw, 7rem);
-  font-weight: 400;
-  line-height: 1.05;
+  font-size: clamp(3rem, 6.8vw, 5.8rem);
+  font-weight: 500;
+  line-height: 1.08;
 }
 
 .content-review-mode .source-arabic {
