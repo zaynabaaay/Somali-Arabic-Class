@@ -942,10 +942,6 @@ blockquote.source-english {
   border: 0;
 }
 
-.content-review-mode .river-continuation {
-  display: none;
-}
-
 .content-review-mode .scripture-beat {
   display: none;
 }
@@ -1256,7 +1252,7 @@ blockquote.source-english {
 
 .garden-window {
   position: absolute;
-  z-index: -2;
+  z-index: -1;
   inset: 0;
   overflow: hidden;
   opacity: var(--garden-reveal);
