@@ -450,12 +450,6 @@ body {
   will-change: opacity;
 }
 
-/* The earlier boat-level river composite is paused while the shaded-garden
-   scene is being developed. Keep its assets in the project for later use. */
-.content-review-mode .lower-river-world {
-  display: none;
-}
-
 .river-depth-layer {
   inset: 0;
   width: 100%;
