@@ -32,13 +32,26 @@
     const previousOpeningTravel = Math.max(1, totalTravel * openingPhaseRatio);
     const riverTravel = Math.max(1, totalTravel - previousOpeningTravel);
     const progress = clamp(scrolled / previousOpeningTravel);
-    const riverProgress = clamp((scrolled - previousOpeningTravel) / riverTravel);
+    let riverProgress = clamp((scrolled - previousOpeningTravel) / riverTravel);
     const heroDeparture = easeBetween(progress, .2, .35);
     const verseArrival = easeBetween(progress, .5, .58);
     const verseDeparture = easeBetween(progress, .8, .87);
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
-    const landscapeReveal = easeBetween(progress, .855, 1);
+    let landscapeReveal = easeBetween(progress, .855, 1);
+
+    // Synchronize the landscape with the actual “beneath it rivers flow”
+    // content beat. This remains responsive if the text layout changes.
+    const riversBeat = document.querySelector(
+      '#content-scene-the-promise .source-beat[data-beat="2"]'
+    );
+    if (riversBeat) {
+      const beatRect = riversBeat.getBoundingClientRect();
+      const beatCenter = beatRect.top + beatRect.height / 2;
+      const beatPosition = 1 - beatCenter / Math.max(window.innerHeight, 1);
+      landscapeReveal = easeBetween(beatPosition, .18, .48);
+      riverProgress = easeBetween(beatPosition, .32, .82);
+    }
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -72,7 +85,10 @@
       // As the aerial image rises into view, shift its focal point down into
       // the river rather than leaving the wide viewport on the pale sky at
       // the top of the portrait asset.
-      root.style.setProperty("--landscape-focus-y", `${(58 * landscapeReveal).toFixed(3)}%`);
+      root.style.setProperty(
+        "--landscape-focus-y",
+        `${(48 + 10 * landscapeReveal).toFixed(3)}%`
+      );
       root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
       root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
     }
@@ -127,5 +143,9 @@
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate, { passive: true });
   reduceMotion.addEventListener?.("change", requestUpdate);
+  const contentRoot = document.querySelector("#part-one-scenes");
+  if (contentRoot) {
+    new MutationObserver(requestUpdate).observe(contentRoot, { childList: true });
+  }
   requestUpdate();
 })();
