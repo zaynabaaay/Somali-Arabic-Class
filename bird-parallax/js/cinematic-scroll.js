@@ -20,7 +20,12 @@
     if (!scene) return;
 
     const totalTravel = Math.max(1, scene.offsetHeight - window.innerHeight);
-    const scrolled = Math.min(totalTravel, Math.max(0, -scene.getBoundingClientRect().top));
+    // The viewport inside the opening is sticky, so its bounding rect stays
+    // pinned at the top. Use document scroll position for the scene progress.
+    const scrolled = Math.min(
+      totalTravel,
+      Math.max(0, window.scrollY - scene.offsetTop)
+    );
     const previousOpeningTravel = Math.min(
       totalTravel,
       window.innerHeight * (window.innerWidth <= 760 ? 3.6 : 3.8)
