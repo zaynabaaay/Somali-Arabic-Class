@@ -39,7 +39,7 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
     let landscapeReveal = easeBetween(progress, .855, 1);
-    const treesReveal = easeBetween(progress, .93, 1);
+    const treesReveal = easeBetween(progress, .72, .92);
 
     // Synchronize the landscape with the actual “beneath it rivers flow”
     // content beat. This remains responsive if the text layout changes.

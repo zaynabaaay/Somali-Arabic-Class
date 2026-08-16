@@ -985,7 +985,7 @@ blockquote.source-english {
 
 .content-review-mode .sky-scene {
   display: block;
-  height: 700svh;
+  height: 480svh;
   background: var(--page-blue);
 }
 
