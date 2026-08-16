@@ -983,35 +983,8 @@ blockquote.source-english {
   display: none;
 }
 
-.content-review-mode .sky-scene {
-  display: block;
-  height: 480svh;
-  background: var(--page-blue);
-}
-
-.content-review-mode .sky-viewport {
-  position: sticky;
-}
-
-.content-review-mode .landscape-window,
 .content-review-mode .scripture-beat {
   display: none;
-}
-
-.content-review-mode .landscape-window,
-.content-review-mode .trees-window {
-  display: block;
-}
-
-.content-review-mode .sky-background {
-  object-position: center 18%;
-  transform: scale(1.025);
-}
-
-.content-review-mode .distant-clouds,
-.content-review-mode .close-clouds {
-  object-position: center 20%;
-  transform: scale(1.025);
 }
 
 .content-review-mode,
@@ -1283,13 +1256,6 @@ blockquote.source-english {
   content: "";
 }
 
-.content-review-mode .sky-viewport > .sky-background,
-.content-review-mode .sky-viewport > .distant-clouds,
-.content-review-mode .sky-viewport > .close-clouds,
-.content-review-mode .sky-viewport > .atmosphere {
-  display: none;
-}
-
 /* Restore the original cinematic opening stack while retaining the current
    text-first content below it. The river handoff happens beneath cloud layers
    that rise vertically at different rates as the page scrolls. */
@@ -1319,6 +1285,11 @@ blockquote.source-english {
 .content-review-mode .landscape-window {
   display: block;
   z-index: -3;
+}
+
+.content-review-mode .trees-window {
+  display: block;
+  z-index: -2;
 }
 
 .content-review-mode .sky-viewport > .sky-background,
