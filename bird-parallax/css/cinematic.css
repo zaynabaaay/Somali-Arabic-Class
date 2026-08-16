@@ -306,7 +306,7 @@ body {
 
 .scripture-arabic {
   color: var(--story-ink);
-  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-family: "Amiri Quran", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
   font-size: clamp(2.3rem, 5.4vw, 5rem);
   font-weight: 400;
   line-height: 1.55;
@@ -348,7 +348,7 @@ body {
 }
 
 .scripture-bridge-arabic {
-  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-family: "Amiri Quran", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
   font-size: clamp(2rem, 4.5vw, 4.25rem);
   font-style: normal;
   line-height: 1.5;
@@ -545,7 +545,7 @@ body {
 .river-verse-arabic {
   max-width: 1040px;
   color: #40574d;
-  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-family: "Amiri Quran", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
   font-size: clamp(2.25rem, 5vw, 4.8rem);
   font-weight: 400;
   line-height: 1.55;
@@ -699,7 +699,7 @@ body {
 .opening-arabic {
   margin: 0;
   color: #354f45;
-  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-family: "Amiri Quran", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
   font-size: clamp(1.9rem, 3.8vw, 3.35rem);
   font-weight: 400;
   line-height: 1.75;
@@ -1095,7 +1095,7 @@ blockquote.source-english {
 
 .content-review-mode .opening-arabic {
   color: var(--story-ink);
-  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-family: "Amiri Quran", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
   font-size: clamp(5.5rem, 11vw, 10rem);
   font-weight: 400;
   line-height: 1;
@@ -1476,7 +1476,7 @@ blockquote.source-english {
   max-width: 880px;
   margin: 0;
   color: #354f45;
-  font-family: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-family: "Amiri Quran", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
   font-size: clamp(2.65rem, 5.4vw, 5rem);
   font-weight: 400;
   line-height: 1.65;
