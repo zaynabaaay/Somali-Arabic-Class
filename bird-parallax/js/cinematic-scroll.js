@@ -107,6 +107,7 @@
     const fruitArrival = easeBetween(continuationProgress, .5, .58);
     const fruitDeparture = easeBetween(continuationProgress, .69, .76);
     const outcomeArrival = easeBetween(continuationProgress, .76, .84);
+    const treesArrival = easeBetween(continuationProgress, .7, .84);
 
     root.style.setProperty("--continuation-viewport-opacity", continuationRect.top <= .5 ? "1" : "0");
     root.style.setProperty("--continuation-aerial-opacity", (1 - aerialDeparture).toFixed(3));
@@ -114,6 +115,9 @@
     root.style.setProperty("--descent-mist-opacity", (.94 * mistArrival * (1 - mistDeparture)).toFixed(3));
     root.style.setProperty("--fruit-opacity", (fruitArrival * (1 - fruitDeparture)).toFixed(3));
     root.style.setProperty("--fruit-y", `${(2 - 4 * fruitArrival - 4 * fruitDeparture).toFixed(3)}vh`);
+    root.style.setProperty("--trees-transition-opacity", treesArrival.toFixed(3));
+    root.style.setProperty("--trees-transition-y", `${(-2.5 * treesArrival).toFixed(3)}vh`);
+    root.style.setProperty("--trees-transition-scale", (1.04 - .04 * treesArrival).toFixed(4));
     root.style.setProperty("--outcome-opacity", outcomeArrival.toFixed(3));
     root.style.setProperty("--outcome-y", `${(2 * (1 - outcomeArrival)).toFixed(3)}vh`);
 

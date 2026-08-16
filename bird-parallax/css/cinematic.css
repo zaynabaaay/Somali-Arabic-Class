@@ -35,6 +35,9 @@
   --river-foliage-y: 0vh;
   --fruit-opacity: 0;
   --fruit-y: 2vh;
+  --trees-transition-opacity: 0;
+  --trees-transition-y: 0vh;
+  --trees-transition-scale: 1.04;
   --outcome-opacity: 0;
   --outcome-y: 2vh;
   --continuation-viewport-opacity: 0;
@@ -445,6 +448,23 @@ body {
   opacity: var(--lower-river-opacity);
   background: #dceee7;
   will-change: opacity;
+}
+
+.trees-transition {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  opacity: var(--trees-transition-opacity);
+  transform: translate3d(0, var(--trees-transition-y), 0) scale(var(--trees-transition-scale));
+  transform-origin: center 54%;
+  filter: saturate(.86) brightness(1.02) contrast(.95);
+  pointer-events: none;
+  will-change: opacity, transform;
 }
 
 /* Keep the close river composite hidden while the next garden view is being prepared. */
@@ -949,7 +969,7 @@ blockquote.source-english {
 }
 
 .content-review-mode .river-continuation {
-  display: none;
+  display: block;
 }
 
 .content-review-mode .sky-scene {
