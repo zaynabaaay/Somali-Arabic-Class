@@ -26,10 +26,10 @@
       totalTravel,
       Math.max(0, window.scrollY - scene.offsetTop)
     );
-    const previousOpeningTravel = Math.min(
-      totalTravel,
-      window.innerHeight * (window.innerWidth <= 760 ? 3.6 : 3.8)
-    );
+    // Preserve the original opening/river phase proportions inside the
+    // shorter text-layout scroll distance, so content position does not move.
+    const openingPhaseRatio = window.innerWidth <= 760 ? 3.6 / 5.6 : 3.8 / 6;
+    const previousOpeningTravel = Math.max(1, totalTravel * openingPhaseRatio);
     const riverTravel = Math.max(1, totalTravel - previousOpeningTravel);
     const progress = clamp(scrolled / previousOpeningTravel);
     const riverProgress = clamp((scrolled - previousOpeningTravel) / riverTravel);
