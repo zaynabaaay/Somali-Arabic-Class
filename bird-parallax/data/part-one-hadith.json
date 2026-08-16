@@ -5,19 +5,6 @@
     "note": "English quotations and Arabic source text are preserved from the cited Sunnah.com records."
   },
   "hadith": {
-    "beyond_imagination": {
-      "label": "Hadith Qudsi",
-      "primary_reference": "Sahih al-Bukhari 3244",
-      "primary_url": "https://sunnah.com/bukhari:3244",
-      "parallel_references": [
-        {
-          "reference": "Sahih Muslim 2824b",
-          "url": "https://sunnah.com/muslim:2824b"
-        }
-      ],
-      "arabic": "أَعْدَدْتُ لِعِبَادِيَ الصَّالِحِينَ مَا لَا عَيْنٌ رَأَتْ وَلَا أُذُنٌ سَمِعَتْ وَلَا خَطَرَ عَلَى قَلْبِ بَشَرٍ",
-      "english": "I have prepared for My Pious slaves things which have never been seen by an eye, or heard by an ear, or imagined by a human being."
-    },
     "first_to_enter": {
       "label": "The First to Enter",
       "primary_reference": "Sahih al-Bukhari 3327",
@@ -62,19 +49,6 @@
         "arabic": "حَدَّثَنَا مُحَمَّدُ بْنُ مُقَاتِلٍ، أَخْبَرَنَا عَبْدُ اللَّهِ، أَخْبَرَنَا مَعْمَرٌ، عَنْ هَمَّامِ بْنِ مُنَبِّهٍ، عَنْ أَبِي هُرَيْرَةَ ـ رضى الله عنه ـ قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏\"‏ أَوَّلُ زُمْرَةٍ تَلِجُ الْجَنَّةَ صُورَتُهُمْ عَلَى صُورَةِ الْقَمَرِ لَيْلَةَ الْبَدْرِ، لاَ يَبْصُقُونَ فِيهَا وَلاَ يَمْتَخِطُونَ وَلاَ يَتَغَوَّطُونَ، آنِيَتُهُمْ فِيهَا الذَّهَبُ، أَمْشَاطُهُمْ مِنَ الذَّهَبِ وَالْفِضَّةِ، وَمَجَامِرُهُمُ الأَلُوَّةُ، وَرَشْحُهُمُ الْمِسْكُ، وَلِكُلِّ وَاحِدٍ مِنْهُمْ زَوْجَتَانِ، يُرَى مُخُّ سُوقِهِمَا مِنْ وَرَاءِ اللَّحْمِ، مِنَ الْحُسْنِ، لاَ اخْتِلاَفَ بَيْنَهُمْ وَلاَ تَبَاغُضَ، قُلُوبُهُمْ قَلْبٌ وَاحِدٌ، يُسَبِّحُونَ اللَّهَ بُكْرَةً وَعَشِيًّا ‏\"‏‏.‏",
         "english": "The first group (of people) who will enter Paradise will be (glittering) like the moon when it is full. They will not spit or blow their noses or relieve nature. Their utensils will be of gold and their combs of gold and silver; in their centers the aloe wood will be used, and their sweat will smell like musk. Everyone of them will have two wives; the marrow of the bones of the wives' legs will be seen through the flesh out of excessive beauty. They ( i.e. the people of Paradise) will neither have differences nor hatred amongst themselves; their hearts will be as if one heart and they will be glorifying Allah in the morning and in the evening."
       }
-    },
-    "tree_in_paradise": {
-      "label": "A Tree in Paradise",
-      "primary_reference": "Sahih al-Bukhari 3251",
-      "primary_url": "https://sunnah.com/bukhari:3251",
-      "parallel_references": [
-        {
-          "reference": "Sahih Muslim 2826a",
-          "url": "https://sunnah.com/muslim:2826a"
-        }
-      ],
-      "arabic": "إِنَّ فِي الْجَنَّةِ لَشَجَرَةً يَسِيرُ الرَّاكِبُ فِي ظِلِّهَا مِائَةَ عَامٍ لاَ يَقْطَعُهَا",
-      "english": "There is a tree in Paradise (which is so big and huge that) if a rider travels in its shade for one hundred years, he would not be able to cross it."
     },
     "greatest_reward": {
       "label": "The Greatest Reward",

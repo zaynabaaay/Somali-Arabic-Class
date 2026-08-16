@@ -8,13 +8,7 @@
       "Jannah",
       "Allah begins describing it",
       "rivers",
-      "extraordinary abundance",
-      "permanence",
-      "beyond human imagination",
-      "gardens",
-      "comfort and peace",
       "the people of Jannah",
-      "extraordinary scale",
       "the greatest reward of all: seeing Allah"
     ]
   },
@@ -36,31 +30,12 @@
     },
     {
       "number": 3,
-      "id": "the-rivers",
-      "source_type": "quran",
-      "source_id": "muhammad_47_15"
-    },
-    {
-      "number": 4,
-      "id": "beyond-imagination",
-      "source_type": "hadith",
-      "source_id": "beyond_imagination"
-    },
-    {
-      "number": 5,
       "id": "the-first-to-enter",
       "source_type": "hadith",
       "source_id": "first_to_enter"
     },
     {
-      "number": 6,
-      "id": "the-tree",
-      "opening_lines": ["100 YEARS"],
-      "source_type": "hadith",
-      "source_id": "tree_in_paradise"
-    },
-    {
-      "number": 7,
+      "number": 4,
       "id": "seeing-allah",
       "source_type": "hadith",
       "source_id": "greatest_reward",
