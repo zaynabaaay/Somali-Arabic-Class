@@ -44,7 +44,7 @@ function cleanHadithReference(reference) {
 function hadithReference(record) {
   const references = [record.primary_reference, ...(record.parallel_references || []).map((item) => item.reference)]
     .map(cleanHadithReference)
-  if (references.length === 1) return references[0].replace(/ (\d+)$/, " · $1");
+    .map((reference) => reference.replace(/ (\d+)$/, " · $1"));
   return references.join(" · ");
 }
 
