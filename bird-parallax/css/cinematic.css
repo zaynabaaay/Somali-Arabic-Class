@@ -15,6 +15,7 @@
   --landscape-focus-y: 0%;
   --landscape-mask-mid: 9%;
   --landscape-mask-end: 20%;
+  --garden-reveal: 0;
   --distant-cloud-y: 0vh;
   --close-cloud-y: 0vh;
   --continuation-aerial-opacity: 1;
@@ -1251,6 +1252,27 @@ blockquote.source-english {
   opacity: var(--landscape-reveal);
   -webkit-mask-image: none;
   mask-image: none;
+}
+
+.garden-window {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  overflow: hidden;
+  opacity: var(--garden-reveal);
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.garden-landscape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.86) brightness(1.02) contrast(.95);
 }
 
 

@@ -39,6 +39,7 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
     let landscapeReveal = easeBetween(progress, .855, 1);
+    const gardenReveal = easeBetween(progress, .72, .92);
 
     // Synchronize the landscape with the actual “beneath it rivers flow”
     // content beat. This remains responsive if the text layout changes.
@@ -67,6 +68,7 @@
     root.style.setProperty("--bridge-opacity", (bridgeArrival * (1 - bridgeDeparture)).toFixed(3));
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
+    root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
     const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
