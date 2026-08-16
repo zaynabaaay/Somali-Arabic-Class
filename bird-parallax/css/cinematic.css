@@ -1276,9 +1276,9 @@ blockquote.source-english {
 
 .content-review-mode .landscape-window {
   display: block;
-  /* Lift it above the fixed page atmosphere; the later cloud layers still
-     paint over it so the river feels like it is appearing beneath the clouds. */
-  z-index: 0;
+  /* Lift it above the fixed page atmosphere so the landscape can be seen
+     during the final opening reveal. */
+  z-index: 5;
 }
 
 .content-review-mode .sky-scene,
