@@ -21,20 +21,20 @@ function renderAtmosphere() {
   const viewportHeight = Math.max(window.innerHeight, 1);
   const scrollPhase = window.scrollY / viewportHeight;
 
-  // The deepest layer barely shifts; nearer clouds travel farther and faster.
+  // The deepest layer barely shifts; nearer clouds rise farther and faster.
   setLayerPosition(
     "sky",
-    Math.sin(scrollPhase * 0.32) * 0.45,
+    0,
     Math.sin(scrollPhase * 0.24) * -0.7
   );
   setLayerPosition(
     "distant",
-    Math.sin(scrollPhase * 0.68) * 1.15,
+    0,
     Math.sin(scrollPhase * 0.82) * -2.8
   );
   setLayerPosition(
     "close",
-    Math.sin(scrollPhase * 1.16) * 2.2,
+    0,
     Math.sin(scrollPhase * 1.34) * -7.2
   );
 }

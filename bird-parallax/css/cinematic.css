@@ -1260,11 +1260,11 @@ blockquote.source-english {
   display: none;
 }
 
-/* Keep the text-first layout, but restore the original opening camera move:
-   the sky and cloud layers travel with scroll and the aerial river image
-   rises in gradually near the end of the opening. */
+/* Restore the original cinematic opening stack while retaining the current
+   text-first content below it. The river handoff happens beneath cloud layers
+   that rise vertically at different rates as the page scrolls. */
 .content-review-mode .sky-scene {
-  height: 400svh;
+  height: 480svh;
 }
 
 .content-review-mode .sky-viewport {
@@ -1276,9 +1276,32 @@ blockquote.source-english {
 
 .content-review-mode .landscape-window {
   display: block;
-  /* Lift it above the fixed page atmosphere so the landscape can be seen
-     during the final opening reveal. */
-  z-index: 5;
+  z-index: -3;
+}
+
+.content-review-mode .sky-viewport > .sky-background,
+.content-review-mode .sky-viewport > .distant-clouds,
+.content-review-mode .sky-viewport > .close-clouds,
+.content-review-mode .sky-viewport > .atmosphere {
+  display: block;
+}
+
+.content-review-mode .sky-background {
+  transform: scale(calc(1.025 + var(--sky-progress) * .012));
+}
+
+.content-review-mode .distant-clouds {
+  transform: translate3d(0, var(--distant-cloud-y), 0) scale(1.015);
+}
+
+.content-review-mode .close-clouds {
+  transform: translate3d(0, var(--close-cloud-y), 0) scale(1.025);
+}
+
+@media (max-width: 760px) {
+  .content-review-mode .sky-scene {
+    height: 460svh;
+  }
 }
 
 .content-review-mode .sky-scene,
