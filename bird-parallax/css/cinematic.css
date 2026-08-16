@@ -1246,7 +1246,11 @@ blockquote.source-english {
 
 .content-review-mode .landscape-window {
   display: block;
+  height: 100%;
   z-index: -3;
+  opacity: var(--landscape-reveal);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 
