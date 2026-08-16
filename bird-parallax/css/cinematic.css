@@ -1173,10 +1173,10 @@ blockquote.source-english {
 }
 
 .content-review-mode .source-citation {
-  min-height: 38svh;
+  min-height: 22svh;
   justify-content: center;
   margin: 0;
-  padding: 60px 24px;
+  padding: 36px 24px;
   border: 0;
   text-align: center;
 }
@@ -1497,11 +1497,11 @@ blockquote.source-english {
 }
 
 .content-review-mode .source-citation {
-  min-height: 34svh;
+  min-height: 22svh;
   display: grid;
   place-items: center;
   margin: 0;
-  padding: 64px 24px;
+  padding: 36px 24px;
 }
 
 .content-review-mode .source-reference {
