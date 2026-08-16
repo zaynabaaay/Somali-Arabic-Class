@@ -456,11 +456,6 @@ body {
   display: none;
 }
 
-/* Keep the source text anchored while the background transition changes. */
-.content-review-mode .river-verse-beat {
-  transform: none !important;
-}
-
 .river-depth-layer {
   inset: 0;
   width: 100%;
