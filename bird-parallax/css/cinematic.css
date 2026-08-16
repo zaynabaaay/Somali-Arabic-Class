@@ -1260,6 +1260,24 @@ blockquote.source-english {
   display: none;
 }
 
+/* Keep the text-first layout, but restore the original opening camera move:
+   the sky and cloud layers travel with scroll and the aerial river image
+   rises in gradually near the end of the opening. */
+.content-review-mode .sky-scene {
+  height: 400svh;
+}
+
+.content-review-mode .sky-viewport {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.content-review-mode .landscape-window {
+  display: block;
+}
+
 .content-review-mode .sky-scene,
 .content-review-mode .part-one-content,
 .content-review-mode .part-two-content,
