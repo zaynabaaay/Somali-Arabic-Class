@@ -476,11 +476,6 @@ body {
   transform: translate3d(0, var(--river-banks-y), 0) scale(var(--river-banks-scale));
 }
 
-.river-trees-layer {
-  z-index: -2;
-  transform: translate3d(0, var(--river-trees-y), 0) scale(var(--river-trees-scale));
-}
-
 .river-foliage-layer {
   z-index: -1;
   transform: translate3d(0, var(--river-foliage-y), 0) scale(var(--river-foliage-scale));
