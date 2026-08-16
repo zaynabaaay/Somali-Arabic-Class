@@ -69,7 +69,10 @@
     root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
-      root.style.setProperty("--landscape-focus-y", `${(58 * riverProgress).toFixed(3)}%`);
+      // As the aerial image rises into view, shift its focal point down into
+      // the river rather than leaving the wide viewport on the pale sky at
+      // the top of the portrait asset.
+      root.style.setProperty("--landscape-focus-y", `${(58 * landscapeReveal).toFixed(3)}%`);
       root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
       root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
     }
