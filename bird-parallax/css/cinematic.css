@@ -1264,14 +1264,19 @@ blockquote.source-english {
    text-first content below it. The river handoff happens beneath cloud layers
    that rise vertically at different rates as the page scrolls. */
 .content-review-mode .sky-scene {
-  height: 480svh;
+  height: 700svh;
 }
 
 .content-review-mode .sky-viewport {
   position: sticky;
   top: 0;
-  height: 100svh;
+  min-height: 100svh;
+  height: 100dvh;
   overflow: hidden;
+}
+
+.content-review-mode .river-landscape {
+  height: 100dvh;
 }
 
 .content-review-mode .landscape-window {
@@ -1300,7 +1305,13 @@ blockquote.source-english {
 
 @media (max-width: 760px) {
   .content-review-mode .sky-scene {
-    height: 460svh;
+    height: 660svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-review-mode .sky-scene {
+    height: 520svh;
   }
 }
 
