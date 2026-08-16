@@ -106,6 +106,10 @@
     const forwardProgress = easeBetween(continuationProgress, .44, 1);
     const fruitArrival = easeBetween(continuationProgress, .5, .58);
     const fruitDeparture = easeBetween(continuationProgress, .69, .76);
+    // The fruit-and-shade beat gets a dedicated garden view. It crossfades
+    // over the river world, then recedes before the final outcome beat.
+    const gardenArrival = easeBetween(continuationProgress, .46, .57);
+    const gardenDeparture = easeBetween(continuationProgress, .66, .75);
     const outcomeArrival = easeBetween(continuationProgress, .76, .84);
 
     root.style.setProperty("--continuation-viewport-opacity", continuationRect.top <= .5 ? "1" : "0");
@@ -114,6 +118,9 @@
     root.style.setProperty("--descent-mist-opacity", (.94 * mistArrival * (1 - mistDeparture)).toFixed(3));
     root.style.setProperty("--fruit-opacity", (fruitArrival * (1 - fruitDeparture)).toFixed(3));
     root.style.setProperty("--fruit-y", `${(2 - 4 * fruitArrival - 4 * fruitDeparture).toFixed(3)}vh`);
+    root.style.setProperty("--garden-opacity", (gardenArrival * (1 - gardenDeparture)).toFixed(3));
+    root.style.setProperty("--garden-scale", (1.03 - .03 * gardenArrival + .06 * gardenDeparture).toFixed(4));
+    root.style.setProperty("--garden-y", `${(-1.5 * gardenArrival - 3 * gardenDeparture).toFixed(3)}vh`);
     root.style.setProperty("--outcome-opacity", outcomeArrival.toFixed(3));
     root.style.setProperty("--outcome-y", `${(2 * (1 - outcomeArrival)).toFixed(3)}vh`);
 
