@@ -39,7 +39,7 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
     let landscapeReveal = easeBetween(progress, .855, 1);
-    let treesReveal = 0;
+    const treesReveal = easeBetween(progress, .93, 1);
 
     // Synchronize the landscape with the actual “beneath it rivers flow”
     // content beat. This remains responsive if the text layout changes.
@@ -52,15 +52,6 @@
       const beatPosition = 1 - beatCenter / Math.max(window.innerHeight, 1);
       landscapeReveal = easeBetween(beatPosition, .18, .48);
       riverProgress = easeBetween(beatPosition, .32, .82);
-    }
-    const shadeBeat = document.querySelector(
-      '#content-scene-the-promise .source-beat[data-beat="3"]'
-    );
-    if (shadeBeat) {
-      const beatRect = shadeBeat.getBoundingClientRect();
-      const beatCenter = beatRect.top + beatRect.height / 2;
-      const beatPosition = 1 - beatCenter / Math.max(window.innerHeight, 1);
-      treesReveal = easeBetween(beatPosition, .18, .5);
     }
 
     if (!reduceMotion.matches) {

@@ -985,12 +985,12 @@ blockquote.source-english {
 
 .content-review-mode .sky-scene {
   display: block;
-  height: 100svh;
+  height: 700svh;
   background: var(--page-blue);
 }
 
 .content-review-mode .sky-viewport {
-  position: relative;
+  position: sticky;
 }
 
 .content-review-mode .landscape-window,
