@@ -1015,7 +1015,7 @@ blockquote.source-english {
 }
 
 .content-review-mode .river-continuation {
-  display: none;
+  display: block;
 }
 
 .content-review-mode .sky-scene {
