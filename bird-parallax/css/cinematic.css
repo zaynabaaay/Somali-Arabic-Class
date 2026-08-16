@@ -1441,6 +1441,36 @@ blockquote.source-english {
   line-height: 1.08;
 }
 
+/* The Part One divider is intentionally quiet and compact, like a chapter plate. */
+.content-review-mode .part-one-title {
+  position: relative;
+  padding-top: clamp(20px, 2.2vh, 28px);
+  font-size: clamp(2rem, 3.8vw, 3.5rem);
+  font-weight: 400;
+}
+
+.content-review-mode .part-one-title::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: clamp(84px, 10vw, 132px);
+  height: 1px;
+  background: rgba(102, 91, 70, .22);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.content-review-mode .part-one-title::after {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(164, 139, 91, .48);
+  content: "";
+  transform: translateX(-50%) rotate(45deg);
+}
+
 .content-review-mode .source-arabic {
   width: min(100%, 880px);
   max-width: 880px;
