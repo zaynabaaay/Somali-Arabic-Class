@@ -447,6 +447,11 @@ body {
   will-change: opacity;
 }
 
+/* Keep the close river composite hidden while the next garden view is being prepared. */
+.content-review-mode .lower-river-world {
+  display: none;
+}
+
 .river-depth-layer {
   inset: 0;
   width: 100%;
