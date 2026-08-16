@@ -1,3 +1,10 @@
+import {
+  cleanHadithReference,
+  element,
+  renderBeatList,
+  renderCitation
+} from "./content-renderer.js";
+
 const dataPaths = {
   scenes: "data/part-three-scenes.json",
   quran: "data/part-three-quran.json",
@@ -5,53 +12,6 @@ const dataPaths = {
 };
 
 const root = document.querySelector("#part-three-scenes");
-
-function element(tag, className, text) {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (text !== undefined) node.textContent = text;
-  return node;
-}
-
-function arabicLine(text) {
-  const line = element("p", "source-arabic", text);
-  line.lang = "ar";
-  line.dir = "rtl";
-  return line;
-}
-
-function renderBeats(beats, sourceId) {
-  const list = element("ol", "source-beats");
-  beats.forEach((beat, index) => {
-    const item = element("li", "source-beat");
-    item.dataset.beat = String(index + 1);
-    if (sourceId === "woman_of_paradise" && index === beats.length - 1) {
-      item.classList.add("part-three-final-beat");
-    }
-    item.append(arabicLine(beat.arabic));
-    item.append(element("blockquote", "source-english", beat.english));
-    list.append(item);
-  });
-  return list;
-}
-
-function cleanHadithReference(reference) {
-  return reference.toUpperCase().replace(/ (\d+)[a-z]?$/i, " · $1");
-}
-
-function citationLink(label, url) {
-  const link = element("a", "source-reference", label);
-  link.href = url;
-  link.target = "_blank";
-  link.rel = "noreferrer";
-  return link;
-}
-
-function renderCitation(references) {
-  const citation = element("header", "source-citation");
-  references.forEach((reference) => citation.append(citationLink(reference.label, reference.url)));
-  return citation;
-}
 
 function renderSource(scene, data) {
   const source = element("div", "on-screen-source");
@@ -62,7 +22,10 @@ function renderSource(scene, data) {
       label: `SURAH ${passage.surah.toUpperCase()} · ${passage.reference}`,
       url: passage.source_url
     }]));
-    source.append(renderBeats(passage.verses, scene.source_id));
+    source.append(renderBeatList(passage.verses, {
+      sourceId: scene.source_id,
+      markBeat: (_, index, id) => id === "woman_of_paradise" && index === passage.verses.length - 1 ? "part-three-final-beat" : ""
+    }));
   } else {
     const record = data.hadith.hadith[scene.source_id];
     source.classList.add("hadith-source");
@@ -75,7 +38,10 @@ function renderSource(scene, data) {
       url: reference.url
     }));
     source.append(renderCitation(references));
-    source.append(renderBeats(record.beats, scene.source_id));
+    source.append(renderBeatList(record.beats, {
+      sourceId: scene.source_id,
+      markBeat: (_, index, id) => id === "woman_of_paradise" && index === record.beats.length - 1 ? "part-three-final-beat" : ""
+    }));
   }
   return source;
 }

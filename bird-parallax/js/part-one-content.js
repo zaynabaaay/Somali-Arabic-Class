@@ -1,3 +1,10 @@
+import {
+  cleanHadithReference,
+  element,
+  renderBeatList,
+  renderCitation
+} from "./content-renderer.js";
+
 const dataPaths = {
   scenes: "data/part-one-scenes.json",
   quran: "data/part-one-quran.json",
@@ -6,39 +13,8 @@ const dataPaths = {
 
 const root = document.querySelector("#part-one-scenes");
 
-function element(tag, className, text) {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (text !== undefined) node.textContent = text;
-  return node;
-}
-
-function arabicLine(text, className = "source-arabic") {
-  const line = element("p", className, text);
-  line.lang = "ar";
-  line.dir = "rtl";
-  return line;
-}
-
-function renderBeatList(beats, sourceId) {
-  const list = element("ol", "source-beats");
-  beats.forEach((beat, index) => {
-    const item = element("li", "source-beat");
-    item.dataset.beat = String(index + 1);
-    if (sourceId === "greatest_reward" && index === 2) item.classList.add("veil-beat");
-    item.append(arabicLine(beat.arabic));
-    item.append(element("blockquote", "source-english", beat.english));
-    list.append(item);
-  });
-  return list;
-}
-
 function quranReference(passage) {
   return `SURAH ${passage.surah.toUpperCase()} · ${passage.reference}`;
-}
-
-function cleanHadithReference(reference) {
-  return reference.replace(/(\d+)[a-z]$/i, "$1").toUpperCase();
 }
 
 function hadithReference(record) {
@@ -48,28 +24,24 @@ function hadithReference(record) {
   return references.join(" · ");
 }
 
-function renderCitation(label, url) {
-  const citation = element("header", "source-citation");
-  const link = element("a", "source-reference", label);
-  link.href = url;
-  link.target = "_blank";
-  link.rel = "noreferrer";
-  citation.append(link);
-  return citation;
-}
-
 function renderQuranPassage(passage, sourceId) {
   const source = element("div", "on-screen-source quran-source");
-  source.append(renderCitation(quranReference(passage), passage.source_url));
-  source.append(renderBeatList(passage.beats, sourceId));
+  source.append(renderCitation([{ label: quranReference(passage), url: passage.source_url }]));
+  source.append(renderBeatList(passage.beats, {
+    sourceId,
+    markBeat: (_, index, id) => id === "greatest_reward" && index === 2 ? "veil-beat" : ""
+  }));
   return source;
 }
 
 function renderHadith(record, sourceId) {
   const source = element("div", "on-screen-source hadith-source");
   const beats = record.beats || [{ arabic: record.arabic, english: record.english }];
-  source.append(renderCitation(hadithReference(record), record.primary_url));
-  source.append(renderBeatList(beats, sourceId));
+  source.append(renderCitation([{ label: hadithReference(record), url: record.primary_url }]));
+  source.append(renderBeatList(beats, {
+    sourceId,
+    markBeat: (_, index, id) => id === "greatest_reward" && index === 2 ? "veil-beat" : ""
+  }));
   return source;
 }
 
