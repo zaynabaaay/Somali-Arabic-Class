@@ -15,6 +15,7 @@
   --landscape-focus-y: 0%;
   --landscape-mask-mid: 9%;
   --landscape-mask-end: 20%;
+  --trees-reveal: 0;
   --distant-cloud-y: 0vh;
   --close-cloud-y: 0vh;
   --continuation-aerial-opacity: 1;
@@ -125,6 +126,36 @@ body {
   object-fit: cover;
   object-position: center var(--landscape-focus-y);
   filter: saturate(.8) brightness(1.035) contrast(.94);
+  transform: translate3d(0, var(--landscape-y), 0) scale(var(--landscape-scale));
+  transform-origin: center 72%;
+  will-change: transform, object-position;
+}
+
+.trees-window {
+  position: absolute;
+  z-index: -2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--landscape-height);
+  overflow: hidden;
+  opacity: var(--trees-reveal);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .62) var(--landscape-mask-mid), #000 var(--landscape-mask-end));
+  mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .62) var(--landscape-mask-mid), #000 var(--landscape-mask-end));
+  will-change: opacity, height;
+}
+
+.trees-landscape {
+  position: absolute;
+  top: 0;
+  left: -4%;
+  width: 108%;
+  height: 100svh;
+  max-width: none;
+  object-fit: cover;
+  object-position: center var(--landscape-focus-y);
+  filter: saturate(.86) brightness(1.02) contrast(.95);
   transform: translate3d(0, var(--landscape-y), 0) scale(var(--landscape-scale));
   transform-origin: center 72%;
   will-change: transform, object-position;
@@ -965,6 +996,11 @@ blockquote.source-english {
 .content-review-mode .landscape-window,
 .content-review-mode .scripture-beat {
   display: none;
+}
+
+.content-review-mode .landscape-window,
+.content-review-mode .trees-window {
+  display: block;
 }
 
 .content-review-mode .sky-background {

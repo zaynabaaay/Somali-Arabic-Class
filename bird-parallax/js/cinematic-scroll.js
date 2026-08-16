@@ -39,6 +39,7 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
     let landscapeReveal = easeBetween(progress, .855, 1);
+    let treesReveal = 0;
 
     // Synchronize the landscape with the actual “beneath it rivers flow”
     // content beat. This remains responsive if the text layout changes.
@@ -51,6 +52,15 @@
       const beatPosition = 1 - beatCenter / Math.max(window.innerHeight, 1);
       landscapeReveal = easeBetween(beatPosition, .18, .48);
       riverProgress = easeBetween(beatPosition, .32, .82);
+    }
+    const shadeBeat = document.querySelector(
+      '#content-scene-the-promise .source-beat[data-beat="3"]'
+    );
+    if (shadeBeat) {
+      const beatRect = shadeBeat.getBoundingClientRect();
+      const beatCenter = beatRect.top + beatRect.height / 2;
+      const beatPosition = 1 - beatCenter / Math.max(window.innerHeight, 1);
+      treesReveal = easeBetween(beatPosition, .18, .5);
     }
 
     if (!reduceMotion.matches) {
@@ -67,6 +77,7 @@
     root.style.setProperty("--bridge-opacity", (bridgeArrival * (1 - bridgeDeparture)).toFixed(3));
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
+    root.style.setProperty("--trees-reveal", treesReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
     const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
