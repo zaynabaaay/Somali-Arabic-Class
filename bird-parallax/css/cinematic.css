@@ -1267,6 +1267,13 @@ blockquote.source-english {
   height: 480svh;
 }
 
+/* The visual timeline remains long, but it no longer reserves that entire
+   distance above the presentation content. Part One keeps its original
+   one-viewport start position and scrolls over the pinned sky scene. */
+.content-review-mode .part-one-content {
+  margin-top: -380svh;
+}
+
 .content-review-mode .sky-viewport {
   position: sticky;
   top: 0;
@@ -1307,11 +1314,20 @@ blockquote.source-english {
   .content-review-mode .sky-scene {
     height: 460svh;
   }
+
+  .content-review-mode .part-one-content {
+    margin-top: -360svh;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .content-review-mode .sky-scene {
     height: 460svh;
+  }
+
+
+  .content-review-mode .part-one-content {
+    margin-top: -360svh;
   }
 }
 
