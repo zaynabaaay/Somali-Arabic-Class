@@ -39,7 +39,6 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
     let landscapeReveal = easeBetween(progress, .855, 1);
-    const treesReveal = easeBetween(progress, .72, .92);
 
     // Synchronize the landscape with the actual “beneath it rivers flow”
     // content beat. This remains responsive if the text layout changes.
@@ -68,7 +67,6 @@
     root.style.setProperty("--bridge-opacity", (bridgeArrival * (1 - bridgeDeparture)).toFixed(3));
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
-    root.style.setProperty("--trees-reveal", treesReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
     const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
@@ -129,8 +127,6 @@
       root.style.setProperty("--river-water-y", `${(-2.5 * forwardProgress).toFixed(3)}vh`);
       root.style.setProperty("--river-banks-scale", (1 + .14 * forwardProgress).toFixed(4));
       root.style.setProperty("--river-banks-y", `${(-4.5 * forwardProgress).toFixed(3)}vh`);
-      root.style.setProperty("--river-trees-scale", (1 + .22 * forwardProgress).toFixed(4));
-      root.style.setProperty("--river-trees-y", `${(-7 * forwardProgress).toFixed(3)}vh`);
       root.style.setProperty("--river-foliage-scale", (1 + .3 * forwardProgress).toFixed(4));
       root.style.setProperty("--river-foliage-y", `${(-10 * forwardProgress).toFixed(3)}vh`);
     }
