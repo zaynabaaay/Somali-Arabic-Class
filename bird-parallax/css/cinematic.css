@@ -1410,6 +1410,7 @@ blockquote.source-english {
   font-weight: 400;
   line-height: 1.65;
   text-align: center;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, .78), 0 0 18px rgba(255, 255, 255, .46);
   white-space: pre-line;
 }
 
@@ -1423,6 +1424,7 @@ blockquote.source-english {
   font-weight: 400;
   line-height: 1.55;
   text-align: center;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, .82), 0 0 14px rgba(255, 255, 255, .42);
 }
 
 .content-review-mode .source-citation {
@@ -1454,8 +1456,8 @@ blockquote.source-english {
 .content-review-mode .source-beat::before {
   position: absolute;
   z-index: -1;
-  inset: 12% 3%;
-  background: radial-gradient(ellipse at center, rgba(248, 244, 234, .58), rgba(248, 244, 234, .2) 52%, transparent 76%);
+  inset: 9% 2%;
+  background: radial-gradient(ellipse at center, rgba(248, 246, 239, .78) 0, rgba(248, 246, 239, .54) 38%, rgba(248, 246, 239, .18) 62%, transparent 78%);
   content: "";
   pointer-events: none;
 }
