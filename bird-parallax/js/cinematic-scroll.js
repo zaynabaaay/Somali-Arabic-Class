@@ -62,6 +62,14 @@
     const gardenReveal = elementArrival(fruitLine, .95, .5);
     const gardenProgress = elementArrival(fruitLine, .95, .12);
 
+    const firstToEnterScene = document.querySelector("#content-scene-the-first-to-enter");
+    const fullMoonLine = firstToEnterScene?.querySelector('.source-beat[data-beat="1"]');
+    const nextFirstToEnterLine = firstToEnterScene?.querySelector('.source-beat[data-beat="2"]');
+    const moonArrival = elementArrival(fullMoonLine, .95, .5);
+    const moonProgress = elementArrival(fullMoonLine, .95, .12);
+    const moonDeparture = elementArrival(nextFirstToEnterLine, .95, .5);
+    const moonReveal = moonArrival * (1 - moonDeparture);
+
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
       root.style.setProperty(
@@ -82,6 +90,8 @@
       );
       root.style.setProperty("--garden-y", `${(4 - 8 * gardenProgress).toFixed(3)}vh`);
       root.style.setProperty("--garden-scale", (1.06 - .04 * gardenProgress).toFixed(4));
+      root.style.setProperty("--moon-y", `${(4 - 8 * moonProgress).toFixed(3)}vh`);
+      root.style.setProperty("--moon-scale", (1.06 - .04 * moonProgress).toFixed(4));
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
       const riverIsIntroduced = landscapeJourney > 0 ? 1 : 0;
@@ -90,6 +100,8 @@
       root.style.setProperty("--landscape-scale", riverIsIntroduced ? "1" : "1.6");
       root.style.setProperty("--garden-y", "0vh");
       root.style.setProperty("--garden-scale", "1.02");
+      root.style.setProperty("--moon-y", "0vh");
+      root.style.setProperty("--moon-scale", "1.02");
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
@@ -109,6 +121,7 @@
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
     root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
+    root.style.setProperty("--moon-reveal", moonReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(atmosphereProgress, 0, .72);
     const distantCloudDeparture = easeBetween(atmosphereProgress, .08, .88);
