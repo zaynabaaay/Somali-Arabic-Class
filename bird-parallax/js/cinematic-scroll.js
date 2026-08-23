@@ -38,10 +38,16 @@
     const verseDeparture = easeBetween(progress, .8, .87);
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
-    // Keep the aerial river reveal controlled by the opening sequence itself,
-    // so it emerges with the “beneath it rivers flow” bridge rather than
-    // waiting for a later content section farther down the page.
-    const landscapeReveal = easeBetween(progress, .855, 1);
+
+    // Two-stage river reveal for Part One:
+    // 1) As the Surah reference appears, introduce only the pale atmospheric
+    //    top of the river artwork so it can blend naturally into the sky.
+    // 2) As “beneath it rivers flow” arrives, move deeper into the artwork
+    //    until the river itself is clearly visible. The reveal intentionally
+    //    stops short of exposing the entire portrait image.
+    const riverBlend = easeBetween(progress, .54, .74);
+    const riverEmergence = easeBetween(progress, .8, .94);
+    const landscapeReveal = Math.min(.78, .18 * riverBlend + .6 * riverEmergence);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -57,11 +63,13 @@
     root.style.setProperty("--bridge-opacity", (bridgeArrival * (1 - bridgeDeparture)).toFixed(3));
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
-    // The garden now belongs to the later fruit-and-shade beat.
+    // The garden belongs to the later fruit-and-shade beat.
     root.style.setProperty("--garden-reveal", "0");
 
     const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
     const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
+    // The first 18% is the atmospheric blend. The second phase exposes enough
+    // landscape for the river to read clearly, without requiring a full-image reveal.
     const landscapeHeight = 82 * landscapeReveal + 18 * riverProgress;
     const landscapeY = 2 * (1 - landscapeReveal) - 6 * riverProgress;
     const landscapeScale = .96 + .04 * landscapeReveal + .22 * riverProgress;
@@ -74,12 +82,11 @@
     root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
-      // As the aerial image rises into view, shift its focal point down into
-      // the river rather than leaving the wide viewport on the pale sky at
-      // the top of the portrait asset.
+      // Begin high in the misty sky portion of the river artwork, then lower
+      // the focal point only as the river sentence arrives.
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(48 + 10 * landscapeReveal).toFixed(3)}%`
+        `${(18 + 40 * riverEmergence).toFixed(3)}%`
       );
       root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
       root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
