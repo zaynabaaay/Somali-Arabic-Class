@@ -68,7 +68,7 @@
       );
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(18 + 50 * landscapeJourney).toFixed(3)}%`
+        `${(10 + 58 * landscapeJourney).toFixed(3)}%`
       );
       root.style.setProperty(
         "--landscape-scroll-y",
