@@ -11,6 +11,7 @@
   --landscape-reveal: 0;
   --landscape-focus-y: 0%;
   --landscape-scroll-y: 0vh;
+  --landscape-scale: 1.6;
   --garden-reveal: 0;
   --distant-cloud-y: 0vh;
   --close-cloud-y: 0vh;
@@ -116,7 +117,8 @@ body {
   object-fit: cover;
   object-position: center var(--landscape-focus-y);
   filter: saturate(.8) brightness(1.035) contrast(.94);
-  transform: translate3d(0, var(--landscape-scroll-y), 0);
+  transform: translate3d(0, var(--landscape-scroll-y), 0) scale(var(--landscape-scale));
+  transform-origin: center top;
   will-change: transform, object-position;
 }
 

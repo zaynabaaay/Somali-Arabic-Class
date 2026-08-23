@@ -54,11 +54,11 @@
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
     const promiseScene = document.querySelector("#content-scene-the-promise");
-    const reference = promiseScene?.querySelector(".source-citation");
+    const firstVerse = promiseScene?.querySelector('.source-beat[data-beat="1"]');
     const riverLine = promiseScene?.querySelector('.source-beat[data-beat="2"]');
-    const landscapeReveal = elementArrival(reference, .95, .5);
-    const preLineDrift = scrollBetween(reference, riverLine, .95, .95);
-    const atmosphereProgress = scrollBetween(reference, riverLine, .95, .12);
+    const landscapeReveal = elementArrival(firstVerse, .95, .5);
+    const preLineDrift = scrollBetween(firstVerse, riverLine, .95, .95);
+    const atmosphereProgress = scrollBetween(firstVerse, riverLine, .95, .12);
     const landscapeJourney = elementArrival(riverLine, .95, .12);
 
     if (!reduceMotion.matches) {
@@ -73,12 +73,18 @@
       );
       root.style.setProperty(
         "--landscape-scroll-y",
-        `${(-45 * landscapeJourney).toFixed(3)}vh`
+        `${(-12 * preLineDrift - 33 * landscapeJourney).toFixed(3)}vh`
+      );
+      root.style.setProperty(
+        "--landscape-scale",
+        (1.6 - .2 * preLineDrift - .4 * landscapeJourney).toFixed(4)
       );
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
-      root.style.setProperty("--landscape-focus-y", "68%");
-      root.style.setProperty("--landscape-scroll-y", "0vh");
+      const riverIsIntroduced = landscapeJourney > 0 ? 1 : 0;
+      root.style.setProperty("--landscape-focus-y", riverIsIntroduced ? "68%" : "0%");
+      root.style.setProperty("--landscape-scroll-y", riverIsIntroduced ? "-45vh" : "0vh");
+      root.style.setProperty("--landscape-scale", riverIsIntroduced ? "1" : "1.6");
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
