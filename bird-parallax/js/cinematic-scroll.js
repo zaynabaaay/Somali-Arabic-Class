@@ -35,9 +35,9 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
-    // The river artwork now follows the text beats directly:
-    // - the pale upper part starts blending as the opening scripture/reference is present;
-    // - the downward crop movement is driven by the actual river-sentence arrival.
+    // The river artwork follows the opening text beats directly:
+    // - its pale upper atmosphere blends in with the scripture/reference;
+    // - the crop itself moves down only with the “beneath it rivers flow” beat.
     const referenceBlend = verseArrival;
     const riverEmergence = bridgeArrival;
     const landscapeReveal = Math.min(.78, .18 * referenceBlend + .6 * riverEmergence);
@@ -72,10 +72,11 @@
     root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
-      // The crop moves down only as the “beneath it rivers flow” beat appears.
+      // Start at the true top of the artwork. Do not pre-crop 18% down into
+      // the image. Travel downward only as the river sentence itself appears.
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(18 + 40 * bridgeArrival).toFixed(3)}%`
+        `${(58 * riverEmergence).toFixed(3)}%`
       );
       root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
       root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
