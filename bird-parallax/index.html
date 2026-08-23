@@ -11,9 +11,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran:wght@400&family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/cinematic.css?v=source-text-glow-1">
   <style>
+    :root {
+      --moon-reveal: 0;
+      --moon-y: 4vh;
+      --moon-scale: 1.06;
+    }
+
     body,
     body * {
       color: #000 !important;
+    }
+
+    .moon-window {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      overflow: hidden;
+      opacity: var(--moon-reveal);
+      pointer-events: none;
+      will-change: opacity;
+    }
+
+    .moon-landscape {
+      position: absolute;
+      inset: -4%;
+      width: 108%;
+      height: 108%;
+      max-width: none;
+      object-fit: cover;
+      object-position: center 28%;
+      transform: translate3d(0, var(--moon-y), 0) scale(var(--moon-scale));
+      transform-origin: center;
+      will-change: transform;
     }
   </style>
 </head>
@@ -47,6 +76,17 @@
             alt=""
             width="1672"
             height="941"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="moon-window" aria-hidden="true">
+          <img
+            class="moon-landscape"
+            src="assets/backgrounds/landscape/jannah-full-moon-v1.webp"
+            alt=""
+            width="720"
+            height="1292"
             loading="lazy"
             decoding="async"
           >
@@ -200,6 +240,6 @@
   <script type="module" src="js/part-one-content.js?v=reference-first-1"></script>
   <script type="module" src="js/part-two-content.js?v=reference-first-1"></script>
   <script type="module" src="js/part-three-content.js?v=reference-first-1"></script>
-  <script type="module" src="js/cinematic-scroll.js?v=garden-crossfade-overscan-1"></script>
+  <script type="module" src="js/cinematic-scroll.js?v=full-moon-beat-1"></script>
 </body>
 </html>
