@@ -115,7 +115,7 @@ body {
   top: 0;
   left: -4%;
   width: 108%;
-  height: 145svh;
+  height: 165svh;
   max-width: none;
   object-fit: cover;
   object-position: center var(--landscape-focus-y);
