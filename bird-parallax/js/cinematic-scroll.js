@@ -39,11 +39,11 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
-    // Start blending the river artwork around the Surah reference, then keep
-    // the same downward crop movement as before but begin it later, with the
-    // actual “beneath it rivers flow” sentence.
+    // Start blending the river artwork around the Surah reference. Keep the
+    // existing crop movement, but start that downward movement later so the
+    // river itself does not arrive before “beneath it rivers flow.”
     const riverBlend = easeBetween(progress, .54, .74);
-    const riverEmergence = easeBetween(progress, .86, .96);
+    const riverEmergence = easeBetween(progress, .90, .985);
     const landscapeReveal = Math.min(.78, .18 * riverBlend + .6 * riverEmergence);
 
     if (!reduceMotion.matches) {
@@ -77,8 +77,7 @@
     root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
-      // Keep the original crop movement; only its timing is shifted later so
-      // the river itself comes into view with the river sentence.
+      // Same crop movement as before; only the start/end timing is later.
       root.style.setProperty(
         "--landscape-focus-y",
         `${(18 + 40 * riverEmergence).toFixed(3)}%`
