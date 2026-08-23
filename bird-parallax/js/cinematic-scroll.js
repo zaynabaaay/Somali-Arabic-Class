@@ -108,10 +108,7 @@
     );
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
-    const gardenMaskStart = 100 * (1 - gardenReveal);
-    const gardenMaskEnd = gardenMaskStart + 18 * (1 - gardenReveal);
-    root.style.setProperty("--garden-mask-start", `${gardenMaskStart.toFixed(3)}%`);
-    root.style.setProperty("--garden-mask-end", `${gardenMaskEnd.toFixed(3)}%`);
+    root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(atmosphereProgress, 0, .72);
     const distantCloudDeparture = easeBetween(atmosphereProgress, .08, .88);
