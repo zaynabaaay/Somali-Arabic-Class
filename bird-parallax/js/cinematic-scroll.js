@@ -32,27 +32,16 @@
     const previousOpeningTravel = Math.max(1, totalTravel * openingPhaseRatio);
     const riverTravel = Math.max(1, totalTravel - previousOpeningTravel);
     const progress = clamp(scrolled / previousOpeningTravel);
-    let riverProgress = clamp((scrolled - previousOpeningTravel) / riverTravel);
+    const riverProgress = clamp((scrolled - previousOpeningTravel) / riverTravel);
     const heroDeparture = easeBetween(progress, .2, .35);
     const verseArrival = easeBetween(progress, .5, .58);
     const verseDeparture = easeBetween(progress, .8, .87);
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
-    let landscapeReveal = easeBetween(progress, .855, 1);
-    const gardenReveal = easeBetween(progress, .72, .92);
-
-    // Synchronize the landscape with the actual “beneath it rivers flow”
-    // content beat. This remains responsive if the text layout changes.
-    const riversBeat = document.querySelector(
-      '#content-scene-the-promise .source-beat[data-beat="2"]'
-    );
-    if (riversBeat) {
-      const beatRect = riversBeat.getBoundingClientRect();
-      const beatCenter = beatRect.top + beatRect.height / 2;
-      const beatPosition = 1 - beatCenter / Math.max(window.innerHeight, 1);
-      landscapeReveal = easeBetween(beatPosition, .18, .48);
-      riverProgress = easeBetween(beatPosition, .32, .82);
-    }
+    // Keep the aerial river reveal controlled by the opening sequence itself,
+    // so it emerges with the “beneath it rivers flow” bridge rather than
+    // waiting for a later content section farther down the page.
+    const landscapeReveal = easeBetween(progress, .855, 1);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -68,7 +57,8 @@
     root.style.setProperty("--bridge-opacity", (bridgeArrival * (1 - bridgeDeparture)).toFixed(3));
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
-    root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
+    // The garden now belongs to the later fruit-and-shade beat.
+    root.style.setProperty("--garden-reveal", "0");
 
     const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
     const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
@@ -110,6 +100,18 @@
     const fruitDeparture = easeBetween(continuationProgress, .69, .76);
     const outcomeArrival = easeBetween(continuationProgress, .76, .84);
 
+    // Reveal the shaded garden as the “Its fruit is lasting, and its shade.”
+    // beat enters the lower half of the viewport and complete the transition
+    // as that beat approaches the middle of the screen.
+    let gardenReveal = 0;
+    const fruitAndShadeBeat = document.querySelector(".fruit-and-shade");
+    if (fruitAndShadeBeat) {
+      const beatRect = fruitAndShadeBeat.getBoundingClientRect();
+      const beatCenter = beatRect.top + beatRect.height / 2;
+      const beatPosition = 1 - beatCenter / Math.max(window.innerHeight, 1);
+      gardenReveal = easeBetween(beatPosition, .18, .5);
+    }
+
     root.style.setProperty("--continuation-viewport-opacity", continuationRect.top <= .5 ? "1" : "0");
     root.style.setProperty("--continuation-aerial-opacity", (1 - aerialDeparture).toFixed(3));
     root.style.setProperty("--lower-river-opacity", worldArrival.toFixed(3));
@@ -118,6 +120,7 @@
     root.style.setProperty("--fruit-y", `${(2 - 4 * fruitArrival - 4 * fruitDeparture).toFixed(3)}vh`);
     root.style.setProperty("--outcome-opacity", outcomeArrival.toFixed(3));
     root.style.setProperty("--outcome-y", `${(2 * (1 - outcomeArrival)).toFixed(3)}vh`);
+    root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--continuation-aerial-scale", (1.22 + .14 * descentProgress).toFixed(4));
