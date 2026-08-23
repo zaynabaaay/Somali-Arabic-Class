@@ -40,14 +40,13 @@
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
     // Two-stage river reveal for Part One:
-    // 1) As the Surah reference appears, introduce only the pale atmospheric
-    //    top of the river artwork so it can blend naturally into the sky.
-    // 2) As “beneath it rivers flow” arrives, move deeper into the artwork
-    //    until the river itself is clearly visible. The reveal intentionally
-    //    stops short of exposing the entire portrait image.
+    // 1) Around the Surah reference, expose only a very shallow strip of the
+    //    pale atmospheric top of the river artwork so it blends into the sky.
+    // 2) Do not move the crop downward until “beneath it rivers flow” begins.
+    //    Then reveal enough of the artwork for the river itself to read clearly.
     const riverBlend = easeBetween(progress, .54, .74);
-    const riverEmergence = easeBetween(progress, .8, .94);
-    const landscapeReveal = Math.min(.78, .18 * riverBlend + .6 * riverEmergence);
+    const riverEmergence = easeBetween(progress, .86, .95);
+    const landscapeReveal = Math.min(.78, .07 * riverBlend + .71 * riverEmergence);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -68,8 +67,6 @@
 
     const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
     const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
-    // The first 18% is the atmospheric blend. The second phase exposes enough
-    // landscape for the river to read clearly, without requiring a full-image reveal.
     const landscapeHeight = 82 * landscapeReveal + 18 * riverProgress;
     const landscapeY = 2 * (1 - landscapeReveal) - 6 * riverProgress;
     const landscapeScale = .96 + .04 * landscapeReveal + .22 * riverProgress;
@@ -82,11 +79,11 @@
     root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
-      // Begin high in the misty sky portion of the river artwork, then lower
-      // the focal point only as the river sentence arrives.
+      // Stay locked to the very top of the river artwork during the reference
+      // blend. Only travel downward once the river sentence itself begins.
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(18 + 40 * riverEmergence).toFixed(3)}%`
+        `${(58 * riverEmergence).toFixed(3)}%`
       );
       root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
       root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
