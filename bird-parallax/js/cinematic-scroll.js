@@ -29,35 +29,42 @@
     const riverTravel = Math.max(1, totalTravel - previousOpeningTravel);
     const progress = clamp(scrolled / previousOpeningTravel);
     const riverProgress = clamp((scrolled - previousOpeningTravel) / riverTravel);
+
     const heroDeparture = easeBetween(progress, .2, .35);
     const verseArrival = easeBetween(progress, .5, .58);
     const verseDeparture = easeBetween(progress, .8, .87);
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
-    // The river artwork follows the opening text beats directly:
-    // - its pale upper atmosphere blends in with the scripture/reference;
-    // - the river landscape reveal still follows the river sentence.
-    const referenceBlend = verseArrival;
-    const riverEmergence = bridgeArrival;
-    const landscapeReveal = Math.min(.78, .18 * referenceBlend + .6 * riverEmergence);
-
-    // The crop should not move at the first invisible hint of bridgeArrival.
-    // Wait until the river sentence is almost fully visible, then move down.
-    const riverCropProgress = easeBetween(bridgeArrival, .92, 1);
+    const landscapeReveal = Math.min(
+      .78,
+      .18 * verseArrival + .6 * bridgeArrival
+    );
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
-      root.style.setProperty("--scroll-cue-opacity", Math.max(0, 1 - progress * 8).toFixed(3));
+      root.style.setProperty(
+        "--scroll-cue-opacity",
+        Math.max(0, 1 - progress * 8).toFixed(3)
+      );
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
     root.style.setProperty("--hero-y", `${(-5 * heroDeparture).toFixed(3)}vh`);
-    root.style.setProperty("--verse-opacity", (verseArrival * (1 - verseDeparture)).toFixed(3));
-    root.style.setProperty("--verse-y", `${(2 - 5 * easeBetween(progress, .5, .8) - 6 * verseDeparture).toFixed(3)}vh`);
-    root.style.setProperty("--bridge-opacity", (bridgeArrival * (1 - bridgeDeparture)).toFixed(3));
+    root.style.setProperty(
+      "--verse-opacity",
+      (verseArrival * (1 - verseDeparture)).toFixed(3)
+    );
+    root.style.setProperty(
+      "--verse-y",
+      `${(2 - 5 * easeBetween(progress, .5, .8) - 6 * verseDeparture).toFixed(3)}vh`
+    );
+    root.style.setProperty(
+      "--bridge-opacity",
+      (bridgeArrival * (1 - bridgeDeparture)).toFixed(3)
+    );
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
     root.style.setProperty("--garden-reveal", "0");
@@ -72,25 +79,35 @@
     root.style.setProperty("--landscape-height", `${landscapeHeight.toFixed(3)}%`);
     root.style.setProperty("--landscape-y", `${landscapeY.toFixed(3)}vh`);
     root.style.setProperty("--landscape-scale", landscapeScale.toFixed(4));
-    root.style.setProperty("--landscape-mask-mid", `${(9 * landscapeMaskFactor).toFixed(3)}%`);
-    root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
+    root.style.setProperty(
+      "--landscape-mask-mid",
+      `${(9 * landscapeMaskFactor).toFixed(3)}%`
+    );
+    root.style.setProperty(
+      "--landscape-mask-end",
+      `${(20 * landscapeMaskFactor).toFixed(3)}%`
+    );
 
     if (!reduceMotion.matches) {
-      // Restore the original starting crop. Only delay when the downward
-      // movement begins relative to the visible river sentence.
       root.style.setProperty(
-        "--landscape-focus-y",
-        `${(18 + 40 * riverCropProgress).toFixed(3)}%`
+        "--close-cloud-y",
+        `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`
       );
-      root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
-      root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
+      root.style.setProperty(
+        "--distant-cloud-y",
+        `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`
+      );
     }
 
     if (!continuation) return;
 
     const continuationRect = continuation.getBoundingClientRect();
-    const continuationTravel = Math.max(1, continuation.offsetHeight - window.innerHeight);
+    const continuationTravel = Math.max(
+      1,
+      continuation.offsetHeight - window.innerHeight
+    );
     const continuationProgress = clamp(-continuationRect.top / continuationTravel);
+
     const descentProgress = easeBetween(continuationProgress, 0, .3);
     const aerialDeparture = easeBetween(continuationProgress, .3, .47);
     const worldArrival = easeBetween(continuationProgress, .27, .45);
@@ -110,20 +127,47 @@
       gardenReveal = easeBetween(beatPosition, .18, .5);
     }
 
-    root.style.setProperty("--continuation-viewport-opacity", continuationRect.top <= .5 ? "1" : "0");
-    root.style.setProperty("--continuation-aerial-opacity", (1 - aerialDeparture).toFixed(3));
+    root.style.setProperty(
+      "--continuation-viewport-opacity",
+      continuationRect.top <= .5 ? "1" : "0"
+    );
+    root.style.setProperty(
+      "--continuation-aerial-opacity",
+      (1 - aerialDeparture).toFixed(3)
+    );
     root.style.setProperty("--lower-river-opacity", worldArrival.toFixed(3));
-    root.style.setProperty("--descent-mist-opacity", (.94 * mistArrival * (1 - mistDeparture)).toFixed(3));
-    root.style.setProperty("--fruit-opacity", (fruitArrival * (1 - fruitDeparture)).toFixed(3));
-    root.style.setProperty("--fruit-y", `${(2 - 4 * fruitArrival - 4 * fruitDeparture).toFixed(3)}vh`);
+    root.style.setProperty(
+      "--descent-mist-opacity",
+      (.94 * mistArrival * (1 - mistDeparture)).toFixed(3)
+    );
+    root.style.setProperty(
+      "--fruit-opacity",
+      (fruitArrival * (1 - fruitDeparture)).toFixed(3)
+    );
+    root.style.setProperty(
+      "--fruit-y",
+      `${(2 - 4 * fruitArrival - 4 * fruitDeparture).toFixed(3)}vh`
+    );
     root.style.setProperty("--outcome-opacity", outcomeArrival.toFixed(3));
-    root.style.setProperty("--outcome-y", `${(2 * (1 - outcomeArrival)).toFixed(3)}vh`);
+    root.style.setProperty(
+      "--outcome-y",
+      `${(2 * (1 - outcomeArrival)).toFixed(3)}vh`
+    );
     root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
 
     if (!reduceMotion.matches) {
-      root.style.setProperty("--continuation-aerial-scale", (1.22 + .14 * descentProgress).toFixed(4));
-      root.style.setProperty("--continuation-aerial-y", `${(-6 - 4 * descentProgress).toFixed(3)}vh`);
-      root.style.setProperty("--continuation-aerial-focus-y", `${(58 + 6 * descentProgress).toFixed(3)}%`);
+      root.style.setProperty(
+        "--continuation-aerial-scale",
+        (1.22 + .14 * descentProgress).toFixed(4)
+      );
+      root.style.setProperty(
+        "--continuation-aerial-y",
+        `${(-6 - 4 * descentProgress).toFixed(3)}vh`
+      );
+      root.style.setProperty(
+        "--continuation-aerial-focus-y",
+        `${(58 + 6 * descentProgress).toFixed(3)}%`
+      );
       root.style.setProperty("--river-far-scale", (1 + .025 * forwardProgress).toFixed(4));
       root.style.setProperty("--river-far-y", `${(-1 * forwardProgress).toFixed(3)}vh`);
       root.style.setProperty("--river-water-scale", (1 + .08 * forwardProgress).toFixed(4));
@@ -144,9 +188,5 @@
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate, { passive: true });
   reduceMotion.addEventListener?.("change", requestUpdate);
-  const contentRoot = document.querySelector("#part-one-scenes");
-  if (contentRoot) {
-    new MutationObserver(requestUpdate).observe(contentRoot, { childList: true });
-  }
   requestUpdate();
 })();
