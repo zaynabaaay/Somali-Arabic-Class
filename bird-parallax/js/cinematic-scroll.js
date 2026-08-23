@@ -20,14 +20,10 @@
     if (!scene) return;
 
     const totalTravel = Math.max(1, scene.offsetHeight - window.innerHeight);
-    // The viewport inside the opening is sticky, so its bounding rect stays
-    // pinned at the top. Use document scroll position for the scene progress.
     const scrolled = Math.min(
       totalTravel,
       Math.max(0, window.scrollY - scene.offsetTop)
     );
-    // Preserve the original opening/river phase proportions inside the
-    // shorter text-layout scroll distance, so content position does not move.
     const openingPhaseRatio = window.innerWidth <= 760 ? 3.6 / 5.6 : 3.8 / 6;
     const previousOpeningTravel = Math.max(1, totalTravel * openingPhaseRatio);
     const riverTravel = Math.max(1, totalTravel - previousOpeningTravel);
@@ -39,12 +35,12 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
-    // Start blending the river artwork around the Surah reference. Keep the
-    // existing crop movement, but start that downward movement later so the
-    // river itself does not arrive before “beneath it rivers flow.”
-    const riverBlend = easeBetween(progress, .54, .74);
-    const riverEmergence = easeBetween(progress, .90, .985);
-    const landscapeReveal = Math.min(.78, .18 * riverBlend + .6 * riverEmergence);
+    // The river artwork now follows the text beats directly:
+    // - the pale upper part starts blending as the opening scripture/reference is present;
+    // - the downward crop movement is driven by the actual river-sentence arrival.
+    const referenceBlend = verseArrival;
+    const riverEmergence = bridgeArrival;
+    const landscapeReveal = Math.min(.78, .18 * referenceBlend + .6 * riverEmergence);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -60,7 +56,6 @@
     root.style.setProperty("--bridge-opacity", (bridgeArrival * (1 - bridgeDeparture)).toFixed(3));
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
-    // The garden belongs to the later fruit-and-shade beat.
     root.style.setProperty("--garden-reveal", "0");
 
     const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
@@ -77,10 +72,10 @@
     root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
-      // Same crop movement as before; only the start/end timing is later.
+      // The crop moves down only as the “beneath it rivers flow” beat appears.
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(18 + 40 * riverEmergence).toFixed(3)}%`
+        `${(18 + 40 * bridgeArrival).toFixed(3)}%`
       );
       root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
       root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
@@ -101,9 +96,6 @@
     const fruitDeparture = easeBetween(continuationProgress, .69, .76);
     const outcomeArrival = easeBetween(continuationProgress, .76, .84);
 
-    // Reveal the shaded garden as the “Its fruit is lasting, and its shade.”
-    // beat enters the lower half of the viewport and complete the transition
-    // as that beat approaches the middle of the screen.
     let gardenReveal = 0;
     const fruitAndShadeBeat = document.querySelector(".fruit-and-shade");
     if (fruitAndShadeBeat) {
