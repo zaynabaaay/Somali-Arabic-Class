@@ -36,7 +36,7 @@
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
     const landscapeReveal = Math.min(.78, .18 * verseArrival + .6 * bridgeArrival);
-    const riverCropProgress = easeBetween(bridgeArrival, .75, 1);
+    const riverCropProgress = easeBetween(progress, .89, 1);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
