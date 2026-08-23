@@ -12,7 +12,8 @@
   --landscape-focus-y: 0%;
   --landscape-scroll-y: 0vh;
   --landscape-scale: 1.6;
-  --garden-reveal: 0;
+  --garden-mask-start: 100%;
+  --garden-mask-end: 100%;
   --garden-y: 4vh;
   --garden-scale: 1.06;
   --distant-cloud-y: 0vh;
@@ -1240,9 +1241,10 @@ blockquote.source-english {
   z-index: -2;
   inset: 0;
   overflow: hidden;
-  opacity: var(--garden-reveal);
   pointer-events: none;
-  will-change: opacity;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent var(--garden-mask-start), #000 var(--garden-mask-end), #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, transparent var(--garden-mask-start), #000 var(--garden-mask-end), #000 100%);
+  will-change: -webkit-mask-image, mask-image;
 }
 
 .garden-landscape {
