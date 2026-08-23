@@ -36,6 +36,7 @@
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
     const landscapeReveal = Math.min(.78, .18 * verseArrival + .6 * bridgeArrival);
+    const riverCropProgress = easeBetween(bridgeArrival, .85, 1);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -45,7 +46,7 @@
       );
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(18 + 40 * riverProgress).toFixed(3)}%`
+        `${(18 + 40 * riverCropProgress).toFixed(3)}%`
       );
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
