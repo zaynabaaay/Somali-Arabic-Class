@@ -16,7 +16,6 @@
 
   function updateScenes() {
     frameRequested = false;
-
     if (!scene) return;
 
     const totalTravel = Math.max(1, scene.offsetHeight - window.innerHeight);
@@ -25,10 +24,10 @@
       Math.max(0, window.scrollY - scene.offsetTop)
     );
     const openingPhaseRatio = window.innerWidth <= 760 ? 3.6 / 5.6 : 3.8 / 6;
-    const previousOpeningTravel = Math.max(1, totalTravel * openingPhaseRatio);
-    const riverTravel = Math.max(1, totalTravel - previousOpeningTravel);
-    const progress = clamp(scrolled / previousOpeningTravel);
-    const riverProgress = clamp((scrolled - previousOpeningTravel) / riverTravel);
+    const openingTravel = Math.max(1, totalTravel * openingPhaseRatio);
+    const riverTravel = Math.max(1, totalTravel - openingTravel);
+    const progress = clamp(scrolled / openingTravel);
+    const riverProgress = clamp((scrolled - openingTravel) / riverTravel);
 
     const heroDeparture = easeBetween(progress, .2, .35);
     const verseArrival = easeBetween(progress, .5, .58);
@@ -36,16 +35,17 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
-    const landscapeReveal = Math.min(
-      .78,
-      .18 * verseArrival + .6 * bridgeArrival
-    );
+    const landscapeReveal = Math.min(.78, .18 * verseArrival + .6 * bridgeArrival);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
       root.style.setProperty(
         "--scroll-cue-opacity",
         Math.max(0, 1 - progress * 8).toFixed(3)
+      );
+      root.style.setProperty(
+        "--landscape-focus-y",
+        `${(18 + 40 * riverProgress).toFixed(3)}%`
       );
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
