@@ -13,6 +13,8 @@
   --landscape-scroll-y: 0vh;
   --landscape-scale: 1.6;
   --garden-reveal: 0;
+  --garden-y: 4vh;
+  --garden-scale: 1.06;
   --distant-cloud-y: 0vh;
   --close-cloud-y: 0vh;
   --continuation-aerial-opacity: 1;
@@ -1215,14 +1217,14 @@ blockquote.source-english {
    text-first content below it. The river handoff happens beneath cloud layers
    that rise vertically at different rates as the page scrolls. */
 .content-review-mode .sky-scene {
-  height: 480svh;
+  height: 710svh;
 }
 
 /* The visual timeline remains long, but it no longer reserves that entire
    distance above the presentation content. Part One keeps its original
    one-viewport start position and scrolls over the pinned sky scene. */
 .content-review-mode .part-one-content {
-  margin-top: -380svh;
+  margin-top: -610svh;
 }
 
 .content-review-mode .sky-viewport {
@@ -1245,13 +1247,16 @@ blockquote.source-english {
 
 .garden-landscape {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
   max-width: none;
   object-fit: cover;
   object-position: center;
   filter: saturate(.86) brightness(1.02) contrast(.95);
+  transform: translate3d(0, var(--garden-y), 0) scale(var(--garden-scale));
+  transform-origin: center;
+  will-change: transform;
 }
 
 
@@ -1276,22 +1281,22 @@ blockquote.source-english {
 
 @media (max-width: 760px) {
   .content-review-mode .sky-scene {
-    height: 460svh;
+    height: 690svh;
   }
 
   .content-review-mode .part-one-content {
-    margin-top: -360svh;
+    margin-top: -590svh;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .content-review-mode .sky-scene {
-    height: 460svh;
+    height: 690svh;
   }
 
 
   .content-review-mode .part-one-content {
-    margin-top: -360svh;
+    margin-top: -590svh;
   }
 }
 

@@ -38,13 +38,11 @@
     frameRequested = false;
     if (!scene) return;
 
-    const totalTravel = Math.max(1, scene.offsetHeight - window.innerHeight);
-    const scrolled = Math.min(
-      totalTravel,
-      Math.max(0, window.scrollY - scene.offsetTop)
+    const scrolled = Math.max(0, window.scrollY - scene.offsetTop);
+    const openingTravel = Math.max(
+      1,
+      window.innerHeight * (window.innerWidth <= 760 ? 2.3143 : 2.4067)
     );
-    const openingPhaseRatio = window.innerWidth <= 760 ? 3.6 / 5.6 : 3.8 / 6;
-    const openingTravel = Math.max(1, totalTravel * openingPhaseRatio);
     const progress = clamp(scrolled / openingTravel);
 
     const heroDeparture = easeBetween(progress, .2, .35);
@@ -56,10 +54,13 @@
     const promiseScene = document.querySelector("#content-scene-the-promise");
     const firstVerse = promiseScene?.querySelector('.source-beat[data-beat="1"]');
     const riverLine = promiseScene?.querySelector('.source-beat[data-beat="2"]');
+    const fruitLine = promiseScene?.querySelector('.source-beat[data-beat="3"]');
     const landscapeReveal = elementArrival(firstVerse, .95, .5);
     const preLineDrift = scrollBetween(firstVerse, riverLine, .95, .95);
     const atmosphereProgress = scrollBetween(firstVerse, riverLine, .95, .12);
     const landscapeJourney = elementArrival(riverLine, .95, .12);
+    const gardenReveal = elementArrival(fruitLine, .95, .5);
+    const gardenProgress = elementArrival(fruitLine, .95, .12);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -79,12 +80,16 @@
         "--landscape-scale",
         (1.6 - .2 * preLineDrift - .4 * landscapeJourney).toFixed(4)
       );
+      root.style.setProperty("--garden-y", `${(4 - 8 * gardenProgress).toFixed(3)}vh`);
+      root.style.setProperty("--garden-scale", (1.06 - .04 * gardenProgress).toFixed(4));
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
       const riverIsIntroduced = landscapeJourney > 0 ? 1 : 0;
       root.style.setProperty("--landscape-focus-y", riverIsIntroduced ? "68%" : "0%");
       root.style.setProperty("--landscape-scroll-y", riverIsIntroduced ? "-45vh" : "0vh");
       root.style.setProperty("--landscape-scale", riverIsIntroduced ? "1" : "1.6");
+      root.style.setProperty("--garden-y", "0vh");
+      root.style.setProperty("--garden-scale", "1.02");
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
@@ -103,7 +108,7 @@
     );
     root.style.setProperty("--bridge-y", `${(2 * (1 - bridgeArrival)).toFixed(3)}vh`);
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
-    root.style.setProperty("--garden-reveal", "0");
+    root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(atmosphereProgress, 0, .72);
     const distantCloudDeparture = easeBetween(atmosphereProgress, .08, .88);
@@ -138,15 +143,6 @@
     const fruitDeparture = easeBetween(continuationProgress, .69, .76);
     const outcomeArrival = easeBetween(continuationProgress, .76, .84);
 
-    let gardenReveal = 0;
-    const fruitAndShadeBeat = document.querySelector(".fruit-and-shade");
-    if (fruitAndShadeBeat) {
-      const beatRect = fruitAndShadeBeat.getBoundingClientRect();
-      const beatCenter = beatRect.top + beatRect.height / 2;
-      const beatPosition = 1 - beatCenter / Math.max(window.innerHeight, 1);
-      gardenReveal = easeBetween(beatPosition, .18, .5);
-    }
-
     root.style.setProperty(
       "--continuation-viewport-opacity",
       continuationRect.top <= .5 ? "1" : "0"
@@ -173,8 +169,6 @@
       "--outcome-y",
       `${(2 * (1 - outcomeArrival)).toFixed(3)}vh`
     );
-    root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
-
     if (!reduceMotion.matches) {
       root.style.setProperty(
         "--continuation-aerial-scale",
