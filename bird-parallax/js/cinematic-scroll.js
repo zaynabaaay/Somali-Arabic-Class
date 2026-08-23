@@ -37,10 +37,14 @@
 
     // The river artwork follows the opening text beats directly:
     // - its pale upper atmosphere blends in with the scripture/reference;
-    // - the crop itself moves down only with the “beneath it rivers flow” beat.
+    // - the river landscape reveal still follows the river sentence.
     const referenceBlend = verseArrival;
     const riverEmergence = bridgeArrival;
     const landscapeReveal = Math.min(.78, .18 * referenceBlend + .6 * riverEmergence);
+
+    // The crop should not move at the first invisible hint of bridgeArrival.
+    // Wait until the river sentence is visibly underway, then move down.
+    const riverCropProgress = easeBetween(bridgeArrival, .45, 1);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -72,11 +76,11 @@
     root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
-      // Start at the true top of the artwork. Do not pre-crop 18% down into
-      // the image. Travel downward only as the river sentence itself appears.
+      // Restore the original starting crop. Only delay when the downward
+      // movement begins relative to the visible river sentence.
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(58 * riverEmergence).toFixed(3)}%`
+        `${(18 + 40 * riverCropProgress).toFixed(3)}%`
       );
       root.style.setProperty("--close-cloud-y", `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`);
       root.style.setProperty("--distant-cloud-y", `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`);
