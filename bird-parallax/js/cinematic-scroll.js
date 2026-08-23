@@ -57,7 +57,8 @@
     const reference = promiseScene?.querySelector(".source-citation");
     const riverLine = promiseScene?.querySelector('.source-beat[data-beat="2"]');
     const landscapeReveal = elementArrival(reference, .95, .5);
-    const landscapeScroll = scrollBetween(reference, riverLine, .95, .12);
+    const preLineDrift = scrollBetween(reference, riverLine, .95, .95);
+    const atmosphereProgress = scrollBetween(reference, riverLine, .95, .12);
     const landscapeJourney = elementArrival(riverLine, .95, .12);
 
     if (!reduceMotion.matches) {
@@ -68,11 +69,11 @@
       );
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(10 + 58 * landscapeJourney).toFixed(3)}%`
+        `${(3 * preLineDrift + 65 * landscapeJourney).toFixed(3)}%`
       );
       root.style.setProperty(
         "--landscape-scroll-y",
-        `${(-45 * landscapeScroll).toFixed(3)}vh`
+        `${(-45 * landscapeJourney).toFixed(3)}vh`
       );
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
@@ -98,8 +99,8 @@
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
     root.style.setProperty("--garden-reveal", "0");
 
-    const closeCloudDeparture = easeBetween(landscapeScroll, 0, .72);
-    const distantCloudDeparture = easeBetween(landscapeScroll, .08, .88);
+    const closeCloudDeparture = easeBetween(atmosphereProgress, 0, .72);
+    const distantCloudDeparture = easeBetween(atmosphereProgress, .08, .88);
 
     if (!reduceMotion.matches) {
       root.style.setProperty(
