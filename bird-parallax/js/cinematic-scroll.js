@@ -42,8 +42,8 @@
     const riverEmergence = bridgeArrival;
     const landscapeReveal = Math.min(.78, .18 * referenceBlend + .6 * riverEmergence);
 
-    // Keep the later crop timing only: wait until the river sentence is
-    // almost fully visible before moving the crop downward.
+    // The crop should not move at the first invisible hint of bridgeArrival.
+    // Wait until the river sentence is almost fully visible, then move down.
     const riverCropProgress = easeBetween(bridgeArrival, .92, 1);
 
     if (!reduceMotion.matches) {
@@ -76,6 +76,8 @@
     root.style.setProperty("--landscape-mask-end", `${(20 * landscapeMaskFactor).toFixed(3)}%`);
 
     if (!reduceMotion.matches) {
+      // Restore the original starting crop. Only delay when the downward
+      // movement begins relative to the visible river sentence.
       root.style.setProperty(
         "--landscape-focus-y",
         `${(18 + 40 * riverCropProgress).toFixed(3)}%`
