@@ -22,6 +22,18 @@
     return easeBetween(viewportPosition, 1 - startViewport, 1 - endViewport);
   }
 
+  function scrollBetween(startElement, endElement, startViewport, endViewport) {
+    if (!startElement || !endElement) return 0;
+    const viewportHeight = Math.max(window.innerHeight, 1);
+    const startRect = startElement.getBoundingClientRect();
+    const endRect = endElement.getBoundingClientRect();
+    const startScroll = window.scrollY + startRect.top + startRect.height / 2
+      - viewportHeight * startViewport;
+    const endScroll = window.scrollY + endRect.top + endRect.height / 2
+      - viewportHeight * endViewport;
+    return clamp((window.scrollY - startScroll) / Math.max(1, endScroll - startScroll));
+  }
+
   function updateScenes() {
     frameRequested = false;
     if (!scene) return;
@@ -45,6 +57,7 @@
     const reference = promiseScene?.querySelector(".source-citation");
     const riverLine = promiseScene?.querySelector('.source-beat[data-beat="2"]');
     const landscapeReveal = elementArrival(reference, .95, .5);
+    const landscapeScroll = scrollBetween(reference, riverLine, .95, .12);
     const landscapeJourney = elementArrival(riverLine, .95, .12);
 
     if (!reduceMotion.matches) {
@@ -57,9 +70,14 @@
         "--landscape-focus-y",
         `${(18 + 50 * landscapeJourney).toFixed(3)}%`
       );
+      root.style.setProperty(
+        "--landscape-scroll-y",
+        `${(-45 * landscapeScroll).toFixed(3)}vh`
+      );
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
       root.style.setProperty("--landscape-focus-y", "68%");
+      root.style.setProperty("--landscape-scroll-y", "0vh");
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
@@ -80,8 +98,8 @@
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
     root.style.setProperty("--garden-reveal", "0");
 
-    const closeCloudDeparture = easeBetween(landscapeJourney, 0, .42);
-    const distantCloudDeparture = easeBetween(landscapeJourney, .03, .52);
+    const closeCloudDeparture = easeBetween(landscapeScroll, 0, .72);
+    const distantCloudDeparture = easeBetween(landscapeScroll, .08, .88);
 
     if (!reduceMotion.matches) {
       root.style.setProperty(
@@ -157,7 +175,7 @@
       );
       root.style.setProperty(
         "--continuation-aerial-y",
-        `${(-4 * descentProgress).toFixed(3)}vh`
+        `${(-45 - 4 * descentProgress).toFixed(3)}vh`
       );
       root.style.setProperty(
         "--continuation-aerial-focus-y",

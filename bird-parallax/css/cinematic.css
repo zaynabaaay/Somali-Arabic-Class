@@ -10,12 +10,13 @@
   --bridge-y: 2vh;
   --landscape-reveal: 0;
   --landscape-focus-y: 18%;
+  --landscape-scroll-y: 0vh;
   --garden-reveal: 0;
   --distant-cloud-y: 0vh;
   --close-cloud-y: 0vh;
   --continuation-aerial-opacity: 1;
   --continuation-aerial-scale: 1;
-  --continuation-aerial-y: 0vh;
+  --continuation-aerial-y: -45vh;
   --continuation-aerial-focus-y: 68%;
   --lower-river-opacity: 0;
   --descent-mist-opacity: 0;
@@ -110,12 +111,13 @@ body {
   top: 0;
   left: -4%;
   width: 108%;
-  height: 100svh;
+  height: 145svh;
   max-width: none;
   object-fit: cover;
   object-position: center var(--landscape-focus-y);
   filter: saturate(.8) brightness(1.035) contrast(.94);
-  will-change: object-position;
+  transform: translate3d(0, var(--landscape-scroll-y), 0);
+  will-change: transform, object-position;
 }
 
 .distant-clouds {
@@ -415,7 +417,7 @@ body {
   top: 0;
   left: -4%;
   width: 108%;
-  height: 100svh;
+  height: 145svh;
   object-fit: cover;
   object-position: center var(--continuation-aerial-focus-y);
   opacity: var(--continuation-aerial-opacity);
