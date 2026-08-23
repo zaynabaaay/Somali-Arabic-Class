@@ -10,9 +10,10 @@
     verseOut: [.8, .87],
     bridgeIn: [.84, .89],
     bridgeOut: [.915, .985],
-    // The river sentence should already be clearly visible before the
-    // landscape begins travelling down toward the river.
     riverRevealAfterBridgeVisibility: .7,
+    // Only the downward crop waits this late. The rest of the river reveal
+    // keeps its existing timing.
+    riverCropAfterBridgeVisibility: .92,
     referenceBlendAmount: .18,
     riverRevealAmount: .6,
     riverStartFocus: 18,
@@ -52,16 +53,18 @@
     const bridgeArrival = easeBetween(openingProgress, ...OPENING.bridgeIn);
     const bridgeDeparture = easeBetween(openingProgress, ...OPENING.bridgeOut);
 
-    // Keep the two visual jobs separate:
-    // 1) the first scripture/reference beat introduces only a shallow slice
-    //    of the pale top of the river artwork;
-    // 2) once “beneath it rivers flow” is clearly visible, one shared reveal
-    //    progress controls BOTH the crop movement and the window expansion.
-    // This prevents one property from revealing the river ahead of another.
     const referenceBlend = verseArrival;
     const riverReveal = easeBetween(
       bridgeArrival,
       OPENING.riverRevealAfterBridgeVisibility,
+      1
+    );
+
+    // Crop timing is intentionally separate from the general river reveal.
+    // It does not start moving down until the river sentence is almost fully visible.
+    const riverCropProgress = easeBetween(
+      bridgeArrival,
+      OPENING.riverCropAfterBridgeVisibility,
       1
     );
 
@@ -73,16 +76,13 @@
     const closeCloudDeparture = easeBetween(postOpeningRiverProgress, 0, .42);
     const distantCloudDeparture = easeBetween(postOpeningRiverProgress, .03, .52);
 
-    // Before the river sentence is visibly underway, landscapeReveal can only
-    // reach the shallow reference-blend amount. The larger reveal is driven by
-    // riverReveal, the same value that moves the crop downward.
     const landscapeHeight = 82 * landscapeReveal + 18 * postOpeningRiverProgress;
     const landscapeY = 2 * (1 - landscapeReveal) - 6 * postOpeningRiverProgress;
     const landscapeScale = .96 + .04 * landscapeReveal + .22 * postOpeningRiverProgress;
     const landscapeMaskFactor = 1 - postOpeningRiverProgress;
     const landscapeFocusY =
       OPENING.riverStartFocus +
-      (OPENING.riverEndFocus - OPENING.riverStartFocus) * riverReveal;
+      (OPENING.riverEndFocus - OPENING.riverStartFocus) * riverCropProgress;
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", openingProgress.toFixed(4));
@@ -132,7 +132,6 @@
       `${(20 * landscapeMaskFactor).toFixed(3)}%`
     );
 
-    // The garden belongs only to the later fruit-and-shade beat.
     root.style.setProperty("--garden-reveal", "0");
   }
 
