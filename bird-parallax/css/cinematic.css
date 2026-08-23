@@ -9,19 +9,14 @@
   --bridge-opacity: 0;
   --bridge-y: 2vh;
   --landscape-reveal: 0;
-  --landscape-height: 0%;
-  --landscape-y: 2vh;
-  --landscape-scale: .96;
-  --landscape-focus-y: 0%;
-  --landscape-mask-mid: 9%;
-  --landscape-mask-end: 20%;
+  --landscape-focus-y: 18%;
   --garden-reveal: 0;
   --distant-cloud-y: 0vh;
   --close-cloud-y: 0vh;
   --continuation-aerial-opacity: 1;
-  --continuation-aerial-scale: 1.22;
-  --continuation-aerial-y: -6vh;
-  --continuation-aerial-focus-y: 58%;
+  --continuation-aerial-scale: 1;
+  --continuation-aerial-y: 0vh;
+  --continuation-aerial-focus-y: 68%;
   --lower-river-opacity: 0;
   --descent-mist-opacity: 0;
   --river-far-scale: 1;
@@ -103,15 +98,11 @@ body {
 .landscape-window {
   position: absolute;
   z-index: -3;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: var(--landscape-height);
+  inset: 0;
   overflow: hidden;
+  opacity: var(--landscape-reveal);
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .62) var(--landscape-mask-mid), #000 var(--landscape-mask-end));
-  mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .62) var(--landscape-mask-mid), #000 var(--landscape-mask-end));
-  will-change: height;
+  will-change: opacity;
 }
 
 .river-landscape {
@@ -124,9 +115,7 @@ body {
   object-fit: cover;
   object-position: center var(--landscape-focus-y);
   filter: saturate(.8) brightness(1.035) contrast(.94);
-  transform: translate3d(0, var(--landscape-y), 0) scale(var(--landscape-scale));
-  transform-origin: center 72%;
-  will-change: transform, object-position;
+  will-change: object-position;
 }
 
 .distant-clouds {
@@ -894,7 +883,6 @@ blockquote.source-english {
   }
 
   .river-landscape {
-    transform: none;
     will-change: auto;
   }
 
@@ -928,8 +916,8 @@ blockquote.source-english {
 
 /*
   Text-first review mode.
-  Preserve the cloud title opening while keeping the landscape and river
-  imagery outside the audience-facing content flow.
+  Preserve the cloud title opening and overlay the source content while the
+  standalone river-continuation section remains disabled.
 */
 .visually-hidden {
   position: absolute;
@@ -1239,19 +1227,6 @@ blockquote.source-english {
   min-height: 100svh;
   height: 100dvh;
   overflow: hidden;
-}
-
-.content-review-mode .river-landscape {
-  height: 100dvh;
-}
-
-.content-review-mode .landscape-window {
-  display: block;
-  height: 100%;
-  z-index: -3;
-  opacity: var(--landscape-reveal);
-  -webkit-mask-image: none;
-  mask-image: none;
 }
 
 .garden-window {

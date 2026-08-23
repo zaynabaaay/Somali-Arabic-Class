@@ -14,6 +14,14 @@
     return value * value * (3 - 2 * value);
   }
 
+  function elementArrival(element, startViewport, endViewport) {
+    if (!element) return 0;
+    const rect = element.getBoundingClientRect();
+    const center = rect.top + rect.height / 2;
+    const viewportPosition = 1 - center / Math.max(window.innerHeight, 1);
+    return easeBetween(viewportPosition, 1 - startViewport, 1 - endViewport);
+  }
+
   function updateScenes() {
     frameRequested = false;
     if (!scene) return;
@@ -25,9 +33,7 @@
     );
     const openingPhaseRatio = window.innerWidth <= 760 ? 3.6 / 5.6 : 3.8 / 6;
     const openingTravel = Math.max(1, totalTravel * openingPhaseRatio);
-    const riverTravel = Math.max(1, totalTravel - openingTravel);
     const progress = clamp(scrolled / openingTravel);
-    const riverProgress = clamp((scrolled - openingTravel) / riverTravel);
 
     const heroDeparture = easeBetween(progress, .2, .35);
     const verseArrival = easeBetween(progress, .5, .58);
@@ -35,7 +41,11 @@
     const bridgeArrival = easeBetween(progress, .84, .89);
     const bridgeDeparture = easeBetween(progress, .915, .985);
 
-    const landscapeReveal = Math.min(.78, .18 * verseArrival + .6 * bridgeArrival);
+    const promiseScene = document.querySelector("#content-scene-the-promise");
+    const reference = promiseScene?.querySelector(".source-citation");
+    const riverLine = promiseScene?.querySelector('.source-beat[data-beat="2"]');
+    const landscapeReveal = elementArrival(reference, .95, .5);
+    const landscapeJourney = elementArrival(riverLine, .95, .12);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", progress.toFixed(4));
@@ -45,10 +55,11 @@
       );
       root.style.setProperty(
         "--landscape-focus-y",
-        `${(18 + 40 * bridgeArrival).toFixed(3)}%`
+        `${(18 + 50 * landscapeJourney).toFixed(3)}%`
       );
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
+      root.style.setProperty("--landscape-focus-y", "68%");
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
@@ -69,24 +80,8 @@
     root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
     root.style.setProperty("--garden-reveal", "0");
 
-    const closeCloudDeparture = easeBetween(riverProgress, 0, .42);
-    const distantCloudDeparture = easeBetween(riverProgress, .03, .52);
-    const landscapeHeight = 82 * landscapeReveal + 18 * riverProgress;
-    const landscapeY = 2 * (1 - landscapeReveal) - 6 * riverProgress;
-    const landscapeScale = .96 + .04 * landscapeReveal + .22 * riverProgress;
-    const landscapeMaskFactor = 1 - riverProgress;
-
-    root.style.setProperty("--landscape-height", `${landscapeHeight.toFixed(3)}%`);
-    root.style.setProperty("--landscape-y", `${landscapeY.toFixed(3)}vh`);
-    root.style.setProperty("--landscape-scale", landscapeScale.toFixed(4));
-    root.style.setProperty(
-      "--landscape-mask-mid",
-      `${(9 * landscapeMaskFactor).toFixed(3)}%`
-    );
-    root.style.setProperty(
-      "--landscape-mask-end",
-      `${(20 * landscapeMaskFactor).toFixed(3)}%`
-    );
+    const closeCloudDeparture = easeBetween(landscapeJourney, 0, .42);
+    const distantCloudDeparture = easeBetween(landscapeJourney, .03, .52);
 
     if (!reduceMotion.matches) {
       root.style.setProperty(
@@ -158,15 +153,15 @@
     if (!reduceMotion.matches) {
       root.style.setProperty(
         "--continuation-aerial-scale",
-        (1.22 + .14 * descentProgress).toFixed(4)
+        (1 + .14 * descentProgress).toFixed(4)
       );
       root.style.setProperty(
         "--continuation-aerial-y",
-        `${(-6 - 4 * descentProgress).toFixed(3)}vh`
+        `${(-4 * descentProgress).toFixed(3)}vh`
       );
       root.style.setProperty(
         "--continuation-aerial-focus-y",
-        `${(58 + 6 * descentProgress).toFixed(3)}%`
+        `${(68 + 6 * descentProgress).toFixed(3)}%`
       );
       root.style.setProperty("--river-far-scale", (1 + .025 * forwardProgress).toFixed(4));
       root.style.setProperty("--river-far-y", `${(-1 * forwardProgress).toFixed(3)}vh`);
@@ -188,5 +183,9 @@
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate, { passive: true });
   reduceMotion.addEventListener?.("change", requestUpdate);
+  const contentRoot = document.querySelector("#part-one-scenes");
+  if (contentRoot) {
+    new MutationObserver(requestUpdate).observe(contentRoot, { childList: true });
+  }
   requestUpdate();
 })();
