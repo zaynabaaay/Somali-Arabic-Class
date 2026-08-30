@@ -4,10 +4,6 @@
   --scroll-cue-opacity: 1;
   --hero-opacity: 1;
   --hero-y: 0vh;
-  --verse-opacity: 0;
-  --verse-y: 2vh;
-  --bridge-opacity: 0;
-  --bridge-y: 2vh;
   --landscape-reveal: 0;
   --landscape-focus-y: 0%;
   --landscape-scroll-y: 0vh;
@@ -17,12 +13,6 @@
   --garden-scale: 1.06;
   --distant-cloud-y: 0vh;
   --close-cloud-y: 0vh;
-  --page-sky-x: 0vw;
-  --page-sky-y: 0vh;
-  --page-distant-x: 0vw;
-  --page-distant-y: 0vh;
-  --page-close-x: 0vw;
-  --page-close-y: 0vh;
   --page-blue: #dbeaf5;
   --page-ivory: #f8f4ea;
   --story-ink: #46596a;
@@ -183,13 +173,7 @@ body {
 .hero-arabic,
 .hero-english,
 .hero-subtitle,
-.hero-part-label,
-.scripture-arabic,
-.scripture-english,
-.scripture-reference,
-.scripture-bridge,
-.scripture-bridge-arabic,
-.scripture-bridge-english {
+.hero-part-label {
   margin: 0;
 }
 
@@ -266,71 +250,6 @@ body {
   font-size: clamp(.92rem, 1.15vw, 1.08rem);
   font-style: italic;
   letter-spacing: .06em;
-}
-
-.scripture-beat {
-  align-content: center;
-}
-
-.scripture-opening {
-  width: min(100%, 980px);
-  opacity: var(--verse-opacity);
-  transform: translate3d(0, var(--verse-y), 0);
-  will-change: opacity, transform;
-}
-
-.scripture-arabic {
-  color: var(--story-ink);
-  font-family: "Amiri Quran", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
-  font-size: clamp(2.3rem, 5.4vw, 5rem);
-  font-weight: 400;
-  line-height: 1.55;
-  text-shadow: 0 3px 22px rgba(255, 255, 255, .48);
-}
-
-.scripture-english {
-  max-width: 680px;
-  margin: clamp(20px, 3vh, 34px) auto 0;
-  color: var(--story-ink);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
-  line-height: 1.55;
-}
-
-.scripture-reference {
-  margin-top: 16px;
-  color: var(--story-soft);
-  font-size: clamp(.62rem, .85vw, .75rem);
-  font-weight: 600;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-
-.scripture-bridge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(82vw, 620px);
-  color: var(--story-ink);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.2rem, 2.35vw, 2rem);
-  font-style: italic;
-  line-height: 1.45;
-  opacity: var(--bridge-opacity);
-  transform: translate3d(-50%, calc(-50% + var(--bridge-y)), 0);
-  text-shadow: 0 3px 22px rgba(255, 255, 255, .48);
-  will-change: opacity, transform;
-}
-
-.scripture-bridge-arabic {
-  font-family: "Amiri Quran", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
-  font-size: clamp(2rem, 4.5vw, 4.25rem);
-  font-style: normal;
-  line-height: 1.5;
-}
-
-.scripture-bridge-english {
-  margin-top: clamp(16px, 2.4vh, 28px);
 }
 
 @keyframes hero-arrival {
@@ -630,10 +549,6 @@ blockquote.source-english {
     text-indent: .34em;
   }
 
-  .scripture-arabic {
-    font-size: clamp(2.05rem, 9.2vw, 3.6rem);
-  }
-
   .part-one-content {
     padding-right: 24px;
     padding-left: 24px;
@@ -681,9 +596,7 @@ blockquote.source-english {
     animation: none;
   }
 
-  .hero-beat,
-  .scripture-opening,
-  .scripture-bridge {
+  .hero-beat {
     transition: none;
     will-change: auto;
   }
@@ -703,10 +616,6 @@ blockquote.source-english {
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
-}
-
-.content-review-mode .scripture-beat {
-  display: none;
 }
 
 .content-review-mode,
@@ -914,68 +823,6 @@ blockquote.source-english {
   position: relative;
   isolation: isolate;
   background: transparent;
-}
-
-/* One continuous three-layer atmosphere behind the title and every content part. */
-.content-review-mode .page-atmosphere {
-  position: fixed;
-  z-index: 0;
-  inset: 0;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--page-blue), var(--page-ivory));
-  pointer-events: none;
-}
-
-.content-review-mode .page-atmosphere-sky,
-.content-review-mode .page-atmosphere-distant,
-.content-review-mode .page-atmosphere-close {
-  position: absolute;
-  max-width: none;
-  object-fit: cover;
-}
-
-.content-review-mode .page-atmosphere-sky {
-  z-index: 0;
-  inset: -2%;
-  width: 104%;
-  height: 104%;
-  object-position: center 18%;
-  transform: translate3d(var(--page-sky-x), var(--page-sky-y), 0) scale(1.04);
-  will-change: transform;
-}
-
-.content-review-mode .page-atmosphere-distant {
-  z-index: 1;
-  inset: -5%;
-  width: 110%;
-  height: 110%;
-  object-position: center 20%;
-  opacity: .72;
-  filter: saturate(.72) contrast(.94);
-  transform: translate3d(var(--page-distant-x), var(--page-distant-y), 0) scale(1.035);
-  will-change: transform;
-}
-
-.content-review-mode .page-atmosphere-close {
-  z-index: 2;
-  inset: -12%;
-  width: 124%;
-  height: 124%;
-  object-position: center 20%;
-  opacity: .84;
-  filter: saturate(.78) brightness(1.015);
-  transform: translate3d(var(--page-close-x), var(--page-close-y), 0) scale(1.04);
-  will-change: transform;
-}
-
-.content-review-mode .page-atmosphere::after {
-  position: absolute;
-  z-index: 3;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 28%, rgba(255, 255, 255, .08), transparent 48%),
-    linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 250, 239, .07));
-  content: "";
 }
 
 /* Restore the original cinematic opening stack while retaining the current
