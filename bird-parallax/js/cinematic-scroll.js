@@ -2,6 +2,7 @@
   const root = document.documentElement;
   const scene = document.querySelector("#opening-sky");
   const partOne = document.querySelector("#part-one-content");
+  const partTwo = document.querySelector("#part-two-content");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let frameRequested = false;
 
@@ -38,10 +39,19 @@
     if (!scene || !partOne || !endScene) return;
 
     const viewportHeight = Math.max(window.innerHeight, 1);
-    const overlap = Math.max(
-      viewportHeight,
-      endScene.offsetTop + endScene.offsetHeight
-    );
+    let overlap = viewportHeight;
+
+    if (partOne.contains(endScene)) {
+      overlap = Math.max(
+        viewportHeight,
+        endScene.offsetTop + endScene.offsetHeight
+      );
+    } else if (partTwo?.contains(endScene)) {
+      overlap = Math.max(
+        viewportHeight,
+        partOne.offsetHeight + endScene.offsetTop + endScene.offsetHeight
+      );
+    }
 
     scene.style.height = `${viewportHeight + overlap}px`;
     partOne.style.marginTop = `-${overlap}px`;
@@ -73,7 +83,15 @@
 
     const firstToEnterScene = document.querySelector("#content-scene-the-first-to-enter");
     const seeingAllahScene = document.querySelector("#content-scene-seeing-allah");
-    syncPinnedTimeline(seeingAllahScene || firstToEnterScene);
+    const alBaqarahScene = document.querySelector("#part-two-al-baqarah-2-214");
+    const muslim2822Scene = document.querySelector("#part-two-muslim-2822");
+
+    syncPinnedTimeline(
+      muslim2822Scene ||
+      alBaqarahScene ||
+      seeingAllahScene ||
+      firstToEnterScene
+    );
 
     const fullMoonLine = firstToEnterScene?.querySelector('.source-beat[data-beat="1"]');
     const seeingAllahCitation = seeingAllahScene?.querySelector('.source-citation');
@@ -83,18 +101,11 @@
     const moonArrival = elementArrival(fullMoonLine, .7, .42);
     const moonProgress = elementArrival(fullMoonLine, .7, .12);
 
-    // Same transition pattern used throughout: when the next section arrives,
-    // fade the current artwork away and reveal the existing opening sky/cloud
-    // layers that have remained in the sticky viewport the whole time.
     const skyReturn = elementArrival(seeingAllahCitation, .95, .5);
     const moonReveal = moonArrival * (1 - skyReturn);
     const restoredLandscapeReveal = landscapeReveal * (1 - skyReturn);
     const restoredGardenReveal = gardenReveal * (1 - skyReturn);
 
-    // Once the opening atmosphere has returned, give Seeing Allah its own local
-    // scroll progress and run the same parallax relationships as the opening:
-    // the sky changes focus slowly, distant clouds move less, and close clouds
-    // move faster to create depth.
     const seeingAllahProgress = scrollBetween(
       seeingAllahCitation,
       seeingAllahLastBeat,
@@ -106,6 +117,13 @@
 
     const restoredSkyProgress =
       progress * (1 - skyReturn) + seeingAllahProgress * skyReturn;
+
+    const povertyLine = alBaqarahScene?.querySelector('.source-beat[data-beat="2"]');
+    const povertyExitAnchor = muslim2822Scene?.querySelector('.source-citation');
+    const povertyArrival = elementArrival(povertyLine, .7, .42);
+    const povertyProgress = elementArrival(povertyLine, .7, .12);
+    const povertyFade = elementArrival(povertyExitAnchor, .95, .5);
+    const povertyReveal = povertyArrival * (1 - povertyFade);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", restoredSkyProgress.toFixed(4));
@@ -129,6 +147,8 @@
       root.style.setProperty("--garden-scale", (1.06 - .04 * gardenProgress).toFixed(4));
       root.style.setProperty("--moon-y", `${(4 - 8 * moonProgress).toFixed(3)}vh`);
       root.style.setProperty("--moon-scale", (1.06 - .04 * moonProgress).toFixed(4));
+      root.style.setProperty("--poverty-y", `${(4 - 8 * povertyProgress).toFixed(3)}vh`);
+      root.style.setProperty("--poverty-scale", (1.06 - .04 * povertyProgress).toFixed(4));
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
       const riverIsIntroduced = landscapeJourney > 0 ? 1 : 0;
@@ -139,6 +159,8 @@
       root.style.setProperty("--garden-scale", "1.02");
       root.style.setProperty("--moon-y", "0vh");
       root.style.setProperty("--moon-scale", "1.02");
+      root.style.setProperty("--poverty-y", "0vh");
+      root.style.setProperty("--poverty-scale", "1.02");
       root.style.setProperty(
         "--sky-progress",
         (skyReturn > .5 ? seeingAllahProgress : progress).toFixed(4)
@@ -150,6 +172,7 @@
     root.style.setProperty("--landscape-reveal", restoredLandscapeReveal.toFixed(4));
     root.style.setProperty("--garden-reveal", restoredGardenReveal.toFixed(4));
     root.style.setProperty("--moon-reveal", moonReveal.toFixed(4));
+    root.style.setProperty("--poverty-reveal", povertyReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(atmosphereProgress, 0, .72);
     const distantCloudDeparture = easeBetween(atmosphereProgress, .08, .88);
@@ -191,9 +214,13 @@
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate, { passive: true });
   reduceMotion.addEventListener?.("change", requestUpdate);
-  const contentRoot = document.querySelector("#part-one-scenes");
-  if (contentRoot) {
-    new MutationObserver(requestUpdate).observe(contentRoot, { childList: true });
-  }
+
+  ["#part-one-scenes", "#part-two-scenes"].forEach((selector) => {
+    const contentRoot = document.querySelector(selector);
+    if (contentRoot) {
+      new MutationObserver(requestUpdate).observe(contentRoot, { childList: true });
+    }
+  });
+
   requestUpdate();
 })();
