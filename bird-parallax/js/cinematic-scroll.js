@@ -77,6 +77,8 @@
 
     const fullMoonLine = firstToEnterScene?.querySelector('.source-beat[data-beat="1"]');
     const seeingAllahCitation = seeingAllahScene?.querySelector('.source-citation');
+    const seeingAllahBeats = seeingAllahScene?.querySelectorAll('.source-beat');
+    const seeingAllahLastBeat = seeingAllahBeats?.[seeingAllahBeats.length - 1];
 
     const moonArrival = elementArrival(fullMoonLine, .7, .42);
     const moonProgress = elementArrival(fullMoonLine, .7, .12);
@@ -88,7 +90,22 @@
     const moonReveal = moonArrival * (1 - skyReturn);
     const restoredLandscapeReveal = landscapeReveal * (1 - skyReturn);
     const restoredGardenReveal = gardenReveal * (1 - skyReturn);
-    const restoredSkyProgress = progress * (1 - skyReturn);
+
+    // Once the opening atmosphere has returned, give Seeing Allah its own local
+    // scroll progress and run the same parallax relationships as the opening:
+    // the sky changes focus slowly, distant clouds move less, and close clouds
+    // move faster to create depth.
+    const seeingAllahProgress = scrollBetween(
+      seeingAllahCitation,
+      seeingAllahLastBeat,
+      .5,
+      .12
+    );
+    const seeingCloseCloudDeparture = easeBetween(seeingAllahProgress, 0, .72);
+    const seeingDistantCloudDeparture = easeBetween(seeingAllahProgress, .08, .88);
+
+    const restoredSkyProgress =
+      progress * (1 - skyReturn) + seeingAllahProgress * skyReturn;
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", restoredSkyProgress.toFixed(4));
@@ -122,7 +139,10 @@
       root.style.setProperty("--garden-scale", "1.02");
       root.style.setProperty("--moon-y", "0vh");
       root.style.setProperty("--moon-scale", "1.02");
-      root.style.setProperty("--sky-progress", skyReturn > .5 ? "0" : progress.toFixed(4));
+      root.style.setProperty(
+        "--sky-progress",
+        (skyReturn > .5 ? seeingAllahProgress : progress).toFixed(4)
+      );
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
@@ -137,14 +157,24 @@
     if (!reduceMotion.matches) {
       const departedCloseCloudY = -10 * progress - 132 * closeCloudDeparture;
       const departedDistantCloudY = -3.5 * progress - 104 * distantCloudDeparture;
+      const seeingCloseCloudY =
+        -10 * seeingAllahProgress - 132 * seeingCloseCloudDeparture;
+      const seeingDistantCloudY =
+        -3.5 * seeingAllahProgress - 104 * seeingDistantCloudDeparture;
 
       root.style.setProperty(
         "--close-cloud-y",
-        `${(departedCloseCloudY * (1 - skyReturn)).toFixed(3)}vh`
+        `${(
+          departedCloseCloudY * (1 - skyReturn) +
+          seeingCloseCloudY * skyReturn
+        ).toFixed(3)}vh`
       );
       root.style.setProperty(
         "--distant-cloud-y",
-        `${(departedDistantCloudY * (1 - skyReturn)).toFixed(3)}vh`
+        `${(
+          departedDistantCloudY * (1 - skyReturn) +
+          seeingDistantCloudY * skyReturn
+        ).toFixed(3)}vh`
       );
     } else if (skyReturn > .5) {
       root.style.setProperty("--close-cloud-y", "0vh");
