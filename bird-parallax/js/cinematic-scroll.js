@@ -119,11 +119,17 @@
       progress * (1 - skyReturn) + seeingAllahProgress * skyReturn;
 
     const povertyLine = alBaqarahScene?.querySelector('.source-beat[data-beat="2"]');
-    const povertyExitAnchor = muslim2822Scene?.querySelector('.source-citation');
+    const nextLine = alBaqarahScene?.querySelector('.source-beat[data-beat="3"]');
+    const nextExitAnchor = muslim2822Scene?.querySelector('.source-citation');
+
     const povertyArrival = elementArrival(povertyLine, .7, .42);
     const povertyProgress = elementArrival(povertyLine, .7, .12);
-    const povertyFade = elementArrival(povertyExitAnchor, .95, .5);
-    const povertyReveal = povertyArrival * (1 - povertyFade);
+    const nextArrival = elementArrival(nextLine, .7, .42);
+    const nextProgress = elementArrival(nextLine, .7, .12);
+    const nextFade = elementArrival(nextExitAnchor, .95, .5);
+
+    const povertyReveal = povertyArrival * (1 - nextArrival);
+    const nextReveal = nextArrival * (1 - nextFade);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", restoredSkyProgress.toFixed(4));
@@ -149,6 +155,8 @@
       root.style.setProperty("--moon-scale", (1.06 - .04 * moonProgress).toFixed(4));
       root.style.setProperty("--poverty-y", `${(4 - 8 * povertyProgress).toFixed(3)}vh`);
       root.style.setProperty("--poverty-scale", (1.06 - .04 * povertyProgress).toFixed(4));
+      root.style.setProperty("--next-visual-y", `${(4 - 8 * nextProgress).toFixed(3)}vh`);
+      root.style.setProperty("--next-visual-scale", (1.06 - .04 * nextProgress).toFixed(4));
     } else {
       root.style.setProperty("--scroll-cue-opacity", "0");
       const riverIsIntroduced = landscapeJourney > 0 ? 1 : 0;
@@ -161,6 +169,8 @@
       root.style.setProperty("--moon-scale", "1.02");
       root.style.setProperty("--poverty-y", "0vh");
       root.style.setProperty("--poverty-scale", "1.02");
+      root.style.setProperty("--next-visual-y", "0vh");
+      root.style.setProperty("--next-visual-scale", "1.02");
       root.style.setProperty(
         "--sky-progress",
         (skyReturn > .5 ? seeingAllahProgress : progress).toFixed(4)
@@ -173,6 +183,7 @@
     root.style.setProperty("--garden-reveal", restoredGardenReveal.toFixed(4));
     root.style.setProperty("--moon-reveal", moonReveal.toFixed(4));
     root.style.setProperty("--poverty-reveal", povertyReveal.toFixed(4));
+    root.style.setProperty("--next-visual-reveal", nextReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(atmosphereProgress, 0, .72);
     const distantCloudDeparture = easeBetween(atmosphereProgress, .08, .88);
