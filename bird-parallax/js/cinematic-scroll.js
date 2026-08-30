@@ -119,21 +119,31 @@
     const seeingCloseCloudDeparture = easeBetween(seeingAllahProgress, 0, .72);
     const seeingDistantCloudDeparture = easeBetween(seeingAllahProgress, .08, .88);
 
-    const restoredSkyProgress =
-      progress * (1 - skyReturn) + seeingAllahProgress * skyReturn;
-
     const povertyLine = alBaqarahScene?.querySelector('.source-beat[data-beat="2"]');
     const fireLine = muslim2822Scene?.querySelector('.source-beat[data-beat="1"]');
-    const fireExitAnchor = tirmidhi2560Scene?.querySelector('.source-citation');
+    const tirmidhi2560Citation = tirmidhi2560Scene?.querySelector('.source-citation');
+    const tirmidhi2560SecondLine = tirmidhi2560Scene?.querySelector('.source-beat[data-beat="2"]');
 
     const povertyArrival = elementArrival(povertyLine, .7, .42);
     const povertyProgress = elementArrival(povertyLine, .7, .12);
     const nextArrival = elementArrival(fireLine, .7, .42);
     const nextProgress = elementArrival(fireLine, .7, .12);
-    const nextFade = elementArrival(fireExitAnchor, .95, .5);
+    const nextFade = elementArrival(tirmidhi2560Citation, .95, .5);
 
     const povertyReveal = povertyArrival * (1 - nextArrival);
     const nextReveal = nextArrival * (1 - nextFade);
+
+    // After Sahih Muslim 2822, bring the original opening atmosphere back.
+    // It remains the visible canvas through Tirmidhi 2560 beat 1, until beat 2.
+    const cloudReturn = elementArrival(tirmidhi2560Citation, .95, .5);
+    const cloudHold = tirmidhi2560SecondLine
+      ? 1 - elementArrival(tirmidhi2560SecondLine, .7, .42)
+      : 1;
+    const cloudReturnAmount = cloudReturn * Math.max(.001, cloudHold);
+
+    const restoredSkyProgress =
+      (progress * (1 - skyReturn) + seeingAllahProgress * skyReturn) *
+      (1 - cloudReturnAmount);
 
     if (!reduceMotion.matches) {
       root.style.setProperty("--sky-progress", restoredSkyProgress.toFixed(4));
@@ -177,7 +187,7 @@
       root.style.setProperty("--next-visual-scale", "1.02");
       root.style.setProperty(
         "--sky-progress",
-        (skyReturn > .5 ? seeingAllahProgress : progress).toFixed(4)
+        cloudReturnAmount > .5 ? "0" : (skyReturn > .5 ? seeingAllahProgress : progress).toFixed(4)
       );
     }
 
@@ -200,21 +210,22 @@
       const seeingDistantCloudY =
         -3.5 * seeingAllahProgress - 104 * seeingDistantCloudDeparture;
 
+      const closeCloudY =
+        departedCloseCloudY * (1 - skyReturn) +
+        seeingCloseCloudY * skyReturn;
+      const distantCloudY =
+        departedDistantCloudY * (1 - skyReturn) +
+        seeingDistantCloudY * skyReturn;
+
       root.style.setProperty(
         "--close-cloud-y",
-        `${(
-          departedCloseCloudY * (1 - skyReturn) +
-          seeingCloseCloudY * skyReturn
-        ).toFixed(3)}vh`
+        `${(closeCloudY * (1 - cloudReturnAmount)).toFixed(3)}vh`
       );
       root.style.setProperty(
         "--distant-cloud-y",
-        `${(
-          departedDistantCloudY * (1 - skyReturn) +
-          seeingDistantCloudY * skyReturn
-        ).toFixed(3)}vh`
+        `${(distantCloudY * (1 - cloudReturnAmount)).toFixed(3)}vh`
       );
-    } else if (skyReturn > .5) {
+    } else if (skyReturn > .5 || cloudReturnAmount > .5) {
       root.style.setProperty("--close-cloud-y", "0vh");
       root.style.setProperty("--distant-cloud-y", "0vh");
     }
