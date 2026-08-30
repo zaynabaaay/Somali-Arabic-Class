@@ -11,14 +11,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran:wght@400&family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/cinematic.css?v=source-text-glow-1">
 <style>
-:root{--moon-reveal:0;--moon-y:4vh;--moon-scale:1.06;--poverty-reveal:0;--poverty-y:4vh;--poverty-scale:1.06}
+:root{--moon-reveal:0;--moon-y:4vh;--moon-scale:1.06;--poverty-reveal:0;--poverty-y:4vh;--poverty-scale:1.06;--next-visual-reveal:0;--next-visual-y:4vh;--next-visual-scale:1.06}
 body,body *{color:#000!important}
-.moon-window,.poverty-window{position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none;will-change:opacity}
+.moon-window,.poverty-window,.next-visual-window{position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none;will-change:opacity}
 .moon-window{opacity:var(--moon-reveal)}
 .poverty-window{opacity:var(--poverty-reveal)}
-.moon-landscape,.poverty-landscape{position:absolute;inset:-4%;width:108%;height:108%;max-width:none;object-fit:cover;transform-origin:center;will-change:transform}
+.next-visual-window{opacity:var(--next-visual-reveal)}
+.moon-landscape,.poverty-landscape,.next-visual-landscape{position:absolute;inset:-4%;width:108%;height:108%;max-width:none;object-fit:cover;transform-origin:center;will-change:transform}
 .moon-landscape{object-position:center 28%;transform:translate3d(0,var(--moon-y),0) scale(var(--moon-scale))}
 .poverty-landscape{object-position:center;transform:translate3d(0,var(--poverty-y),0) scale(var(--poverty-scale))}
+.next-visual-landscape{object-position:center;transform:translate3d(0,var(--next-visual-y),0) scale(var(--next-visual-scale))}
 </style>
 </head>
 <body class="content-review-mode">
@@ -30,6 +32,7 @@ body,body *{color:#000!important}
 <div class="garden-window" aria-hidden="true"><img class="garden-landscape" src="assets/backgrounds/landscape/jannah-shaded-garden-v1.png" alt="" width="1672" height="941" loading="lazy" decoding="async"></div>
 <div class="moon-window" aria-hidden="true"><img class="moon-landscape" src="assets/backgrounds/landscape/EA72E77E-5C60-48AF-863E-7887F992D715.png" alt="" loading="lazy" decoding="async"></div>
 <div class="poverty-window" aria-hidden="true"><img class="poverty-landscape" src="assets/backgrounds/landscape/EC244487-BEDC-422A-A3BA-BBC934D5EE93.png" alt="" loading="lazy" decoding="async"></div>
+<div class="next-visual-window" aria-hidden="true"><img class="next-visual-landscape" src="assets/backgrounds/landscape/32261E73-C94F-43F6-A537-FEDD65DA946D.png" alt="" loading="lazy" decoding="async"></div>
 <img class="distant-clouds" src="assets/backgrounds/clouds/distant-clouds-v1.png" alt="" width="941" height="1672" decoding="async">
 <img class="close-clouds" src="assets/backgrounds/clouds/close-clouds-v1.png" alt="" width="941" height="1672" decoding="async">
 <div class="atmosphere" aria-hidden="true"></div>
@@ -44,6 +47,6 @@ body,body *{color:#000!important}
 <script type="module" src="js/part-one-content.js?v=reference-first-1"></script>
 <script type="module" src="js/part-two-content.js?v=reference-first-1"></script>
 <script type="module" src="js/part-three-content.js?v=reference-first-1"></script>
-<script type="module" src="js/cinematic-scroll.js?v=poverty-beat-1"></script>
+<script type="module" src="js/cinematic-scroll.js?v=al-baqarah-next-visual-1"></script>
 </body>
 </html>
