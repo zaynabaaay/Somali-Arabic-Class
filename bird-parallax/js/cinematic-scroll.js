@@ -47,90 +47,6 @@
     partOne.style.marginTop = `-${overlap}px`;
   }
 
-  function ensureReturnAtmosphere() {
-    const viewport = scene?.querySelector(".sky-viewport");
-    if (!viewport) return null;
-
-    let layer = viewport.querySelector(".return-atmosphere-window");
-    if (layer) return layer;
-
-    const sourceSky = viewport.querySelector(".sky-background");
-    const sourceDistant = viewport.querySelector(".distant-clouds");
-    const sourceClose = viewport.querySelector(".close-clouds");
-    if (!sourceSky || !sourceDistant || !sourceClose) return null;
-
-    layer = document.createElement("div");
-    layer.className = "return-atmosphere-window";
-    Object.assign(layer.style, {
-      position: "absolute",
-      inset: "0",
-      zIndex: "2",
-      overflow: "hidden",
-      opacity: "0",
-      pointerEvents: "none",
-      transform: "translate3d(0, 3vh, 0) scale(1.012)",
-      transformOrigin: "center",
-      willChange: "opacity, transform"
-    });
-
-    const sky = document.createElement("img");
-    sky.src = sourceSky.currentSrc || sourceSky.src;
-    sky.alt = "";
-    Object.assign(sky.style, {
-      position: "absolute",
-      zIndex: "0",
-      inset: "-2%",
-      width: "104%",
-      height: "104%",
-      maxWidth: "none",
-      objectFit: "cover",
-      objectPosition: "center 0%",
-      transform: "scale(1.025)"
-    });
-
-    const distant = document.createElement("img");
-    distant.src = sourceDistant.currentSrc || sourceDistant.src;
-    distant.alt = "";
-    Object.assign(distant.style, {
-      position: "absolute",
-      zIndex: "1",
-      inset: "-5%",
-      width: "110%",
-      height: "110%",
-      maxWidth: "none",
-      objectFit: "cover",
-      objectPosition: "center 0%",
-      opacity: ".72",
-      filter: "saturate(.72) contrast(.94)",
-      WebkitMaskImage: "linear-gradient(to bottom, #000 0, #000 82%, transparent 100%)",
-      maskImage: "linear-gradient(to bottom, #000 0, #000 82%, transparent 100%)",
-      transform: "scale(1.015)"
-    });
-
-    const close = document.createElement("img");
-    close.src = sourceClose.currentSrc || sourceClose.src;
-    close.alt = "";
-    Object.assign(close.style, {
-      position: "absolute",
-      zIndex: "2",
-      inset: "-12%",
-      width: "124%",
-      height: "124%",
-      maxWidth: "none",
-      objectFit: "cover",
-      objectPosition: "center 0%",
-      opacity: ".84",
-      filter: "saturate(.78) brightness(1.015)",
-      WebkitMaskImage: "linear-gradient(to bottom, #000 0, #000 82%, transparent 100%)",
-      maskImage: "linear-gradient(to bottom, #000 0, #000 82%, transparent 100%)",
-      transform: "scale(1.025)"
-    });
-
-    layer.append(sky, distant, close);
-    viewport.append(layer);
-    return layer;
-  }
-
   function updateScenes() {
     frameRequested = false;
     if (!scene) return;
@@ -165,19 +81,17 @@
     const moonArrival = elementArrival(fullMoonLine, .7, .42);
     const moonProgress = elementArrival(fullMoonLine, .7, .12);
 
-    const skyReturn = elementArrival(seeingAllahCitation, .92, .5);
+    // Same transition pattern used throughout: when the next section arrives,
+    // fade the current artwork away and reveal the existing opening sky/cloud
+    // layers that have remained in the sticky viewport the whole time.
+    const skyReturn = elementArrival(seeingAllahCitation, .95, .5);
     const moonReveal = moonArrival * (1 - skyReturn);
     const restoredLandscapeReveal = landscapeReveal * (1 - skyReturn);
     const restoredGardenReveal = gardenReveal * (1 - skyReturn);
-
-    const returnAtmosphere = ensureReturnAtmosphere();
-    if (returnAtmosphere) {
-      returnAtmosphere.style.opacity = skyReturn.toFixed(4);
-      returnAtmosphere.style.transform = `translate3d(0, ${(3 * (1 - skyReturn)).toFixed(3)}vh, 0) scale(${(1 + .012 * (1 - skyReturn)).toFixed(4)})`;
-    }
+    const restoredSkyProgress = progress * (1 - skyReturn);
 
     if (!reduceMotion.matches) {
-      root.style.setProperty("--sky-progress", progress.toFixed(4));
+      root.style.setProperty("--sky-progress", restoredSkyProgress.toFixed(4));
       root.style.setProperty(
         "--scroll-cue-opacity",
         Math.max(0, 1 - progress * 8).toFixed(3)
@@ -208,6 +122,7 @@
       root.style.setProperty("--garden-scale", "1.02");
       root.style.setProperty("--moon-y", "0vh");
       root.style.setProperty("--moon-scale", "1.02");
+      root.style.setProperty("--sky-progress", skyReturn > .5 ? "0" : progress.toFixed(4));
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
@@ -220,14 +135,20 @@
     const distantCloudDeparture = easeBetween(atmosphereProgress, .08, .88);
 
     if (!reduceMotion.matches) {
+      const departedCloseCloudY = -10 * progress - 132 * closeCloudDeparture;
+      const departedDistantCloudY = -3.5 * progress - 104 * distantCloudDeparture;
+
       root.style.setProperty(
         "--close-cloud-y",
-        `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`
+        `${(departedCloseCloudY * (1 - skyReturn)).toFixed(3)}vh`
       );
       root.style.setProperty(
         "--distant-cloud-y",
-        `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`
+        `${(departedDistantCloudY * (1 - skyReturn)).toFixed(3)}vh`
       );
+    } else if (skyReturn > .5) {
+      root.style.setProperty("--close-cloud-y", "0vh");
+      root.style.setProperty("--distant-cloud-y", "0vh");
     }
   }
 
