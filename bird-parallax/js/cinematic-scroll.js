@@ -1,6 +1,7 @@
 (() => {
   const root = document.documentElement;
   const scene = document.querySelector("#opening-sky");
+  const partOne = document.querySelector("#part-one-content");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let frameRequested = false;
 
@@ -33,6 +34,23 @@
     return clamp((window.scrollY - startScroll) / Math.max(1, endScroll - startScroll));
   }
 
+  function syncPinnedTimeline(firstToEnterScene) {
+    if (!scene || !partOne || !firstToEnterScene) return;
+
+    // Keep Part One starting one viewport below the opening while allowing the
+    // pinned cinematic background to continue through the full first-to-enter
+    // hadith scene. This prevents the moon artwork from ending halfway through
+    // its section simply because the original sticky timeline was too short.
+    const viewportHeight = Math.max(window.innerHeight, 1);
+    const overlap = Math.max(
+      viewportHeight,
+      firstToEnterScene.offsetTop + firstToEnterScene.offsetHeight
+    );
+
+    scene.style.height = `${viewportHeight + overlap}px`;
+    partOne.style.marginTop = `-${overlap}px`;
+  }
+
   function updateScenes() {
     frameRequested = false;
     if (!scene) return;
@@ -58,11 +76,18 @@
     const gardenProgress = elementArrival(fruitLine, .95, .12);
 
     const firstToEnterScene = document.querySelector("#content-scene-the-first-to-enter");
+    syncPinnedTimeline(firstToEnterScene);
+
     const fullMoonLine = firstToEnterScene?.querySelector('.source-beat[data-beat="1"]');
-    const nextFirstToEnterLine = firstToEnterScene?.querySelector('.source-beat[data-beat="2"]');
-    const moonArrival = elementArrival(fullMoonLine, .95, .5);
-    const moonProgress = elementArrival(fullMoonLine, .95, .12);
-    const moonDeparture = elementArrival(nextFirstToEnterLine, .95, .5);
+    const seeingAllahScene = document.querySelector("#content-scene-seeing-allah");
+    const seeingAllahCitation = seeingAllahScene?.querySelector('.source-citation');
+
+    // Let the garden remain until the full-moon beat has substantially entered
+    // the viewport, then use the same soft fade/settle motion as the earlier
+    // cinematic backgrounds. Keep the moon visible for the entire hadith scene.
+    const moonArrival = elementArrival(fullMoonLine, .7, .42);
+    const moonProgress = elementArrival(fullMoonLine, .7, .12);
+    const moonDeparture = elementArrival(seeingAllahCitation, .95, .5);
     const moonReveal = moonArrival * (1 - moonDeparture);
 
     if (!reduceMotion.matches) {
@@ -118,7 +143,6 @@
         `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`
       );
     }
-
   }
 
   function requestUpdate() {
