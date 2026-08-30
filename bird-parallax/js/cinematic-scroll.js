@@ -85,8 +85,12 @@
     const seeingAllahScene = document.querySelector("#content-scene-seeing-allah");
     const alBaqarahScene = document.querySelector("#part-two-al-baqarah-2-214");
     const muslim2822Scene = document.querySelector("#part-two-muslim-2822");
+    const tirmidhi2560Scene = document.querySelector("#part-two-tirmidhi-2560");
+    const tirmidhi2450Scene = document.querySelector("#part-two-tirmidhi-2450");
 
     syncPinnedTimeline(
+      tirmidhi2450Scene ||
+      tirmidhi2560Scene ||
       muslim2822Scene ||
       alBaqarahScene ||
       seeingAllahScene ||
@@ -119,8 +123,8 @@
       progress * (1 - skyReturn) + seeingAllahProgress * skyReturn;
 
     const povertyLine = alBaqarahScene?.querySelector('.source-beat[data-beat="2"]');
-    const nextLine = alBaqarahScene?.querySelector('.source-beat[data-beat="3"]');
-    const nextExitAnchor = muslim2822Scene?.querySelector('.source-citation');
+    const nextLine = tirmidhi2560Scene?.querySelector('.source-beat[data-beat="1"]');
+    const nextExitAnchor = tirmidhi2450Scene?.querySelector('.source-citation');
 
     const povertyArrival = elementArrival(povertyLine, .7, .42);
     const povertyProgress = elementArrival(povertyLine, .7, .12);
