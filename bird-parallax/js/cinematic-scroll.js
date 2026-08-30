@@ -34,17 +34,15 @@
     return clamp((window.scrollY - startScroll) / Math.max(1, endScroll - startScroll));
   }
 
-  function syncPinnedTimeline(firstToEnterScene) {
-    if (!scene || !partOne || !firstToEnterScene) return;
+  function syncPinnedTimeline(endScene) {
+    if (!scene || !partOne || !endScene) return;
 
     // Keep Part One starting one viewport below the opening while allowing the
-    // pinned cinematic background to continue through the full first-to-enter
-    // hadith scene. This prevents the moon artwork from ending halfway through
-    // its section simply because the original sticky timeline was too short.
+    // pinned cinematic background to continue through the current visual scene.
     const viewportHeight = Math.max(window.innerHeight, 1);
     const overlap = Math.max(
       viewportHeight,
-      firstToEnterScene.offsetTop + firstToEnterScene.offsetHeight
+      endScene.offsetTop + endScene.offsetHeight
     );
 
     scene.style.height = `${viewportHeight + overlap}px`;
@@ -76,10 +74,10 @@
     const gardenProgress = elementArrival(fruitLine, .95, .12);
 
     const firstToEnterScene = document.querySelector("#content-scene-the-first-to-enter");
-    syncPinnedTimeline(firstToEnterScene);
+    const seeingAllahScene = document.querySelector("#content-scene-seeing-allah");
+    syncPinnedTimeline(seeingAllahScene || firstToEnterScene);
 
     const fullMoonLine = firstToEnterScene?.querySelector('.source-beat[data-beat="1"]');
-    const seeingAllahScene = document.querySelector("#content-scene-seeing-allah");
     const seeingAllahCitation = seeingAllahScene?.querySelector('.source-citation');
 
     // Let the garden remain until the full-moon beat has substantially entered
@@ -87,11 +85,18 @@
     // cinematic backgrounds. Keep the moon visible for the entire hadith scene.
     const moonArrival = elementArrival(fullMoonLine, .7, .42);
     const moonProgress = elementArrival(fullMoonLine, .7, .12);
-    const moonDeparture = elementArrival(seeingAllahCitation, .95, .5);
-    const moonReveal = moonArrival * (1 - moonDeparture);
+
+    // As Seeing Allah begins, return to the original opening atmosphere instead
+    // of introducing a new visual language: fade the moon/garden away, bring the
+    // original sky framing back, and let both cloud layers descend into place.
+    const skyReturn = elementArrival(seeingAllahCitation, .82, .35);
+    const moonReveal = moonArrival * (1 - skyReturn);
+    const restoredSkyProgress = progress * (1 - skyReturn);
+    const restoredLandscapeReveal = landscapeReveal * (1 - skyReturn);
+    const restoredGardenReveal = gardenReveal * (1 - skyReturn);
 
     if (!reduceMotion.matches) {
-      root.style.setProperty("--sky-progress", progress.toFixed(4));
+      root.style.setProperty("--sky-progress", restoredSkyProgress.toFixed(4));
       root.style.setProperty(
         "--scroll-cue-opacity",
         Math.max(0, 1 - progress * 8).toFixed(3)
@@ -122,26 +127,33 @@
       root.style.setProperty("--garden-scale", "1.02");
       root.style.setProperty("--moon-y", "0vh");
       root.style.setProperty("--moon-scale", "1.02");
+      root.style.setProperty("--sky-progress", skyReturn > .5 ? "0" : progress.toFixed(4));
     }
 
     root.style.setProperty("--hero-opacity", (1 - heroDeparture).toFixed(3));
     root.style.setProperty("--hero-y", `${(-5 * heroDeparture).toFixed(3)}vh`);
-    root.style.setProperty("--landscape-reveal", landscapeReveal.toFixed(4));
-    root.style.setProperty("--garden-reveal", gardenReveal.toFixed(4));
+    root.style.setProperty("--landscape-reveal", restoredLandscapeReveal.toFixed(4));
+    root.style.setProperty("--garden-reveal", restoredGardenReveal.toFixed(4));
     root.style.setProperty("--moon-reveal", moonReveal.toFixed(4));
 
     const closeCloudDeparture = easeBetween(atmosphereProgress, 0, .72);
     const distantCloudDeparture = easeBetween(atmosphereProgress, .08, .88);
 
     if (!reduceMotion.matches) {
+      const departedCloseCloudY = -10 * progress - 132 * closeCloudDeparture;
+      const departedDistantCloudY = -3.5 * progress - 104 * distantCloudDeparture;
+
       root.style.setProperty(
         "--close-cloud-y",
-        `${(-10 * progress - 132 * closeCloudDeparture).toFixed(3)}vh`
+        `${(departedCloseCloudY * (1 - skyReturn)).toFixed(3)}vh`
       );
       root.style.setProperty(
         "--distant-cloud-y",
-        `${(-3.5 * progress - 104 * distantCloudDeparture).toFixed(3)}vh`
+        `${(departedDistantCloudY * (1 - skyReturn)).toFixed(3)}vh`
       );
+    } else if (skyReturn > .5) {
+      root.style.setProperty("--close-cloud-y", "0vh");
+      root.style.setProperty("--distant-cloud-y", "0vh");
     }
   }
 
