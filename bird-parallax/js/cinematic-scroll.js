@@ -123,14 +123,14 @@
       progress * (1 - skyReturn) + seeingAllahProgress * skyReturn;
 
     const povertyLine = alBaqarahScene?.querySelector('.source-beat[data-beat="2"]');
-    const nextLine = tirmidhi2560Scene?.querySelector('.source-beat[data-beat="1"]');
-    const nextExitAnchor = tirmidhi2450Scene?.querySelector('.source-citation');
+    const fireLine = muslim2822Scene?.querySelector('.source-beat[data-beat="1"]');
+    const fireExitAnchor = tirmidhi2560Scene?.querySelector('.source-citation');
 
     const povertyArrival = elementArrival(povertyLine, .7, .42);
     const povertyProgress = elementArrival(povertyLine, .7, .12);
-    const nextArrival = elementArrival(nextLine, .7, .42);
-    const nextProgress = elementArrival(nextLine, .7, .12);
-    const nextFade = elementArrival(nextExitAnchor, .95, .5);
+    const nextArrival = elementArrival(fireLine, .7, .42);
+    const nextProgress = elementArrival(fireLine, .7, .12);
+    const nextFade = elementArrival(fireExitAnchor, .95, .5);
 
     const povertyReveal = povertyArrival * (1 - nextArrival);
     const nextReveal = nextArrival * (1 - nextFade);
